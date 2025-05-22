@@ -1,0 +1,19 @@
+.RightSection {
+  width: 35%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RightSection img {
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .RightSection {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

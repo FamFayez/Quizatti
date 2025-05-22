@@ -1,0 +1,53 @@
+.question{
+    background-color: #f8f8f8;
+    border-left:5px solid #280f91;
+    width: 80%;
+    margin: 3rem auto 0 auto;
+    padding: 1.5rem 2rem;
+}
+.question h1 {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.options-container {
+    display: inline-block;
+    width: 50%;
+}
+
+.option {
+    color: white;
+    background-color: #6b4aeb;
+    border-color: #000;
+    cursor: pointer;
+    margin: 2rem auto;
+    transition: 0.3s;
+    width: 90%;
+    text-align: center;
+    border-radius: 55px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto 1.5rem auto;
+    padding: 2rem;
+    width: 80%;
+}
+
+.button-container button {
+    border: none;
+    color: #f8f8f8;
+    cursor: pointer;
+    padding: 15px;
+    margin-right: 54rem;
+    border-radius: 55px;
+    background-color: #280f91;
+}

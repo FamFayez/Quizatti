@@ -1,0 +1,56 @@
+.section-content {
+  width: 35%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-button {
+ padding: 30px;
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: #290589;
+    color: white;
+    transition: 0.1s ease;
+    cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-button:hover {
+  background-color: #3f0aaa;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-container {
+    flex-direction: column;
+  }
+
+  .section-content {
+    width: 100%;
+    padding: 1.5rem;
+    align-items: center;
+  }
+
+  .section-buttons {
+    align-items: center;
+  }
+
+  .section-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}

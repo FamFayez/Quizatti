@@ -1,0 +1,33 @@
+body {
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    min-height: 90vh;
+    flex-wrap: wrap; 
+  }
+  
+  .upload-form {
+    margin-top: 20px;
+  }
+  
+  .upload-form input[type="file"] {
+    margin: 10px 0;
+  }
+  
+.link {
+  display: contents;
+}
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

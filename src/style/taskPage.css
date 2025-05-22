@@ -1,0 +1,121 @@
+/* === Layout === */
+.contentTA {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Task Item Section === */
+.section-block {
+  background-color: #f9f9f9;
+  border-left: 5px solid #007bff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.section-block:hover {
+  background-color: #f1f1f1;
+}
+
+.lecture-block h2 {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pdf-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pdf-link:hover {
+  text-decoration: underline;
+}
+
+/* === Edit & Action Buttons === */
+.edit-input {
+  padding: 4px;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+.btn {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+}
+
+/* === Upload Section === */
+.upload-section {
+  margin-top: 30px;
+}
+
+.upload-message {
+  color: green;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  color: red;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.text-preview {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+  white-space: pre-wrap;
+}
+
+/* === Manual Text Task Input === */
+.manual-task {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.task-input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #046ddd;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #007bff;
+}
+
+.remove-all-btn {
+  background-color: #ff4747;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

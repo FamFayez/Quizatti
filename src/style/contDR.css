@@ -1,0 +1,83 @@
+.contentDR {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  width: 50%;
+}
+
+.section-block {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(50% - 2rem);
+  box-sizing: border-box;
+}
+
+.section-block h2 {
+  margin-bottom: 1rem;
+  color: #3b0a8d;
+}
+
+.pdf-link {
+  text-decoration: none;
+  color: #3b0a8d;
+  font-weight: bold;
+}
+
+.pdf-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout for tablets and smaller screens */
+@media (max-width: 768px) {
+  .contentDR {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .section-block {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  /* Adjust container for smaller screens */
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Main Container Styles */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  min-height: 90vh;
+  flex-wrap: wrap;
+}
+
+/* Upload Form Styles */
+.upload-form {
+  margin-top: 20px;
+}
+
+.upload-form input[type="file"] {
+  margin: 10px 0;
+}
+
+.link {
+  display: contents;
+}
+
+/* Responsive Layout for Container */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

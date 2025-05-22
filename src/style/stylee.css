@@ -1,0 +1,235 @@
+/*.subject{background-color: #d9d9d9;
+    border-radius: 20px;
+    width:200px;
+    height: 200px;
+    color: #000;
+    margin-left: 12%;
+    margin-top: 5%;
+    text-align: center;
+   
+    }
+    
+    .subject a{
+        color: #000;
+        text-decoration: none;
+        text-align: center;
+    }
+    .subject h5{
+        position: absolute;
+        padding-right: 9.6%;
+        padding-left: 1.6%;
+        text-align: center;
+        color: #000;
+        padding-top: 10%;
+       
+    }*/
+
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .subject {
+        background-color: #d9d9d9;
+        border-radius: 20px;
+        width: 200px;
+        height: 200px;
+        color: #000;
+        margin-left: 12%;
+        margin-top: 5%;
+        text-align: center;
+        position: relative; /* 🔸 This is important */
+      }
+      
+      .subject a {
+        color: #000;
+        text-decoration: none;
+        text-align: center;
+      }
+      
+      .subject h5 {
+        position: absolute;
+        bottom: 10px; /* 🔸 Distance from the bottom */
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        color: #000;
+        padding-left: 53px;
+  padding-right: 53.2px;
+      }
+    
+    .subjectName{
+
+        padding-top: 160px;
+        
+       
+        text-align: center;
+    }
+    .subjectList{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 20px;
+        padding-left: 4%;
+        
+    }
+    .subjectList a{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 25.6px;
+        color: #000;
+        text-decoration: none;
+        margin-bottom: 20%;
+         padding-top: 5%;
+         padding-right: 24.8px;
+        
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------------------*/
+    .Header{
+        background-color: #280f91;
+        color:white;
+       padding-top: 0px;
+        
+        border-bottom-right-radius: 200px;
+        size: 50px;
+       /*
+       border-top-right-radius: 200px;
+        width: 500px;
+        height:200px ;
+        */
+        
+        width: 30%;
+        height: 20%;
+        margin-bottom: 5%;
+        
+        
+    }
+    .logo{
+       width: 344.4px;
+  height: 209px;
+  size: auto;
+  border-radius: 60px;
+    }
+   .Quizati{
+    font-size: 500%;
+    /*font-size: 70px;
+    padding-left: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;*/
+    position: relative;
+    left: 15%;
+    margin: 10px;
+   }
+   .studentName{
+    margin-bottom: 50px;
+   }
+   .headerButtoms {
+    background-color: #280f91;
+    padding-left: 20%;
+    color:white;
+    width: 35%;
+    height: 20%;
+border-bottom-left-radius:10px ;
+border-top-right-radius: 55px;
+border-bottom-right-radius: 55px;
+box-shadow:-40px 0px #280f91;
+    
+   }
+   .headerButtoms ul{list-style: none;
+padding-bottom: 6%;
+padding-top: 6%;
+}
+   .headerButtoms ul li{display: inline-block;
+padding:  0 30px;
+}
+.headerButtoms ul li a{
+    color:white;
+    text-decoration: none;
+}
+.mainHeader{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+.Card{
+    background-color: #280f91;
+    color:white;
+    width: 25%;
+    margin-left: 15%;
+    margin-top: 5%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+border-radius: 55px;
+text-align: center;
+
+
+}
+.Card a{
+    text-decoration: none;
+    color: white;
+}
+
+    /*--------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/
+.Quslist{
+    margin-top: 10%;
+
+}
+/*-----------------------------------------------------------------------------------------------------------------------*/
+.question{
+    background-color: #f8f8f8;
+    border-left:5px solid #280f91;
+    width: 80%;
+    margin: 3rem auto 0 auto;
+    padding: 1.5rem 2rem;
+}
+.question h1{
+font-size: 1.2rem;
+margin-bottom: 3rem;
+line-height: 1.5;
+text-align: center;
+}
+.options-container{
+    display: inline-block;
+    width: 50%;
+}
+.option{
+    color: white;
+   /* background-color: #6b4aeb;*/
+   background-color: rgb(82, 148, 31);
+    border-color: #000;
+    cursor: pointer;
+    margin: 2rem auto;
+    transition: 0.3s ;
+    width: 90%;
+    text-align:center;
+    border-radius: 55px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+}
+.button-container{
+display: flex;
+justify-content: flex-start;
+margin: 0 auto 1.5rem auto;
+padding: 2rem;
+width: 80%;
+}
+.button-container button{
+    border: none;
+    color: #f8f8f8;
+    cursor: pointer;
+    padding: 15px;
+    margin-right: 54rem;
+    border-radius:55px ;
+    background-color: #280f91;
+}

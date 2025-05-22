@@ -1,0 +1,32 @@
+.section-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .section-content {
+    width: 35%;
+    padding: 2rem;
+  }
+
+  .section-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .section-button {
+    padding: 30px;
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: #290589;
+    color: white;
+    transition:  0.1s ease;
+    cursor: pointer;
+  }
+  
+  .section-button:hover {
+    background-color: #3f0aaa;
+  }
+
+  
+  

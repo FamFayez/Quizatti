@@ -1,0 +1,84 @@
+.choose-book-layout {
+  width: 100%;
+}
+
+.left-content {
+  flex: 1;
+  order: 1;
+  max-width: 50%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.right-image {
+  flex: 1;
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 40%;
+}
+.error-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+.book-select h2,
+.chapter-list h2,
+.summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.chapter-item {
+  display: block;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.chapter-item input {
+  margin-right: 10px;
+}
+
+.summary ul {
+  padding-left: 20px;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #005fa3;
+}
+
+@media (max-width: 768px) {
+  .left-content,
+  .right-image {
+    max-width: 100%;
+    order: unset;
+  }
+}
