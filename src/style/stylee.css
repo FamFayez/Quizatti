@@ -138,11 +138,20 @@ padding:  0 30px;
 border-radius: 30px;
 transition: 0.3s ease;
 }
-.headerButtoms ul li a:hover{
 
-background:#021d59;
-/*background: red;*/ 
+.headerButtoms ul li a:hover{
+    background:#021d59;
 }
+.logout-icon {
+  
+  vertical-align: middle;
+}
+.headerButtoms ul li a.logout:hover {
+  background: red;
+}
+
+
+
 .mainHeader{
     display: flex;
     flex-direction: row;
