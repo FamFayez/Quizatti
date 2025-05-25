@@ -1,5 +1,5 @@
-import Card from "../Components/Card";
-import ImageBackground from "../Components/ImageBackground";
+import Card from "../../Components/Card";
+import ImageBackground from "../../Components/ImageBackground";
 import "../../style/Container.css";
 import college from "../../assets/img/college.png";
 import { Chapter } from "../../core/data/Chapter";

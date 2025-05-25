@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Question from "../Question";
-import { quesdata } from "../../../core/data/Questions";
+import { useState } from "react";
+import Question from "../../Components/Question";
+import { quesdata } from "../../core/data/Questions";
 
 export default function QuizPage() {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -17,8 +17,8 @@ import ChooseBook from "./pages/chooseBook/chooseBook.js";
 import Profile from "./pages/Profile/ProfilePage.js";
 import HomePage from "./pages/Home/HomePage";
 import Book from "./pages/Book/Book.js";
-import QuizzesPage from "./pages/chooseBook/Quizzes/QuizzesPage";
-import QuizPage from "./pages/Components/Quiz/QuizPage";
+import QuizzesPage from "./pages/Quizzes/QuizzesPage.js";
+import QuizPage from "./pages/QuizP/QuizPage";
 
 import SubjPage from "./pages/Subjects/SubjPage";
 export const router = createBrowserRouter([
@@ -26,30 +26,10 @@ export const router = createBrowserRouter([
     path: "login",
     element: <Login />,
   },
-  {
-    path: "Profile",
-    element: <Profile />,
-  },
 
-  {
-    path: "/Book",
-    element: <Book />,
-  },
-  {
-    path: "/H",
-    element: <HomePage />,
-  },
   {
     path: "/Subject/:id",
     element: <SubjPage />,
-  },
-  {
-    path: "/quizzes",
-    element: <QuizzesPage />,
-  },
-  {
-    path: "/Quiz",
-    element: <QuizPage />,
   },
 
   {
@@ -105,6 +85,28 @@ export const router = createBrowserRouter([
       {
         path: "SectionPage",
         element: <SectionPage />,
+      },
+      {
+        path: "Profile",
+        element: <Profile />,
+      },
+
+      {
+        path: "/Book",
+        element: <Book />,
+      },
+      {
+        path: "/H",
+        element: <HomePage />,
+      },
+
+      {
+        path: "/Quiz",
+        element: <QuizPage />,
+      },
+      {
+        path: "/quizzes",
+        element: <QuizzesPage />,
       },
       {
         path: "*",

@@ -1,4 +1,4 @@
-import { Data } from "../../core/data/Subjects";
+import { Data } from "../core/data/Subjects";
 import Subject from "../Components/Subject";
 
 export default function SubjectList() {

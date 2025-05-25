@@ -1,4 +1,4 @@
-import Mainheader from "./pages/Components/Mainheader";
+import Mainheader from "./Components/Mainheader";
 import Footer from "./shared/Footer";
 import { Outlet } from "react-router-dom";
 

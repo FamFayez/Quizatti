@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../style/Container.css"; // DO NOT change this
+import "../../style/Container.css";
 import "../../style/ChooseBook.css";
 import book from "../../assets/img/book.png";
-import ImageBackground from "../Components/ImageBackground";
+import ImageBackground from "../../Components/ImageBackground";
 
 const books = [
   {

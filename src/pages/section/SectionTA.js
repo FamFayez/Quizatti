@@ -1,9 +1,8 @@
-import React from "react";
 import upload from "../../assets/img/upload.png";
-import ImageBackground from "../Components/ImageBackground";
+import ImageBackground from "../../Components/ImageBackground";
 import "../../style/Container.css";
 import { UploadTA } from "../../core/data/UploadTA";
-import Button from "../Components/Button";
+import Button from "../../Components/Button";
 import "../../style/section.css";
 
 const SectionTA = () => {

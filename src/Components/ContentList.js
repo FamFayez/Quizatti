@@ -1,4 +1,4 @@
-import { ContData } from "../../core/data/Content";
+import { ContData } from "../core/data/Content";
 
 import NewCard from "../Components/NewCard";
 
