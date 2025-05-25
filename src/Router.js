@@ -96,7 +96,7 @@ export const router = createBrowserRouter([
         element: <Book />,
       },
       {
-        path: "/H",
+        path: "/Home",
         element: <HomePage />,
       },
 
