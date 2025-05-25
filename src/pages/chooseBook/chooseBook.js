@@ -2,56 +2,31 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../style/Container.css";
 import "../../style/ChooseBook.css";
-import book from "../../assets/img/book.png";
+import bookImage from "../../assets/img/book.png";
 import ImageBackground from "../../Components/ImageBackground";
-
-const books = [
-  {
-    id: 1,
-    name: "Math",
-    chapters: [
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-      "Algebra",
-      "Geometry",
-      "Calculus",
-    ],
-  },
-  { id: 2, name: "Science", chapters: ["Physics", "Chemistry", "Biology"] },
-];
-
+import chapterTitles from "../../core/data/bookChapters"; 
 const ChooseBook = () => {
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [chapters, setChapters] = useState([]);
   const [selectedChapters, setSelectedChapters] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(""); // New state for error message
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
-  const handleBookChange = (e) => {
-    const book = books.find((b) => b.name === e.target.value);
-    console.log("Selected Book:", book); // Debugging: track book change
-    setSelectedBook(book);
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
     setSelectedChapters([]);
-    setErrorMessage(""); // Reset error message when book is selected
+    setErrorMessage("");
+
+    if (file && file.type === "application/pdf") {
+      setSelectedFile(file);
+      setChapters(chapterTitles); // Use mock chapters for now
+    } else {
+      setErrorMessage("Please upload a valid PDF file.");
+    }
   };
 
   const handleChapterToggle = (chapter) => {
-    console.log("Toggling chapter:", chapter); // Debugging: track chapter toggle
     setSelectedChapters((prev) =>
       prev.includes(chapter)
         ? prev.filter((ch) => ch !== chapter)
@@ -60,12 +35,8 @@ const ChooseBook = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Selected Book:", selectedBook); // Debugging: check selectedBook value
-    console.log("Selected Chapters:", selectedChapters); // Debugging: check selectedChapters value
-
-    // Validate that a book and at least one chapter are selected
-    if (!selectedBook) {
-      setErrorMessage("Please select a book.");
+    if (!selectedFile) {
+      setErrorMessage("Please upload a book.");
       return;
     }
 
@@ -74,41 +45,37 @@ const ChooseBook = () => {
       return;
     }
 
-    // If validation passes, navigate to the next page
-    setErrorMessage(""); // Clear error message if validation passes
+    setErrorMessage("");
+    console.log("Submitted Book:", selectedFile.name);
+    console.log("Selected Chapters:", selectedChapters);
     navigate("/Chapter");
   };
 
   return (
     <div className="container choose-book-layout">
-      {/* LEFT: Book Selection */}
+      {/* LEFT: Upload + Chapters */}
       <div className="left-content">
-        <div className="book-select">
-          <h2>Select a Book</h2>
-          <select onChange={handleBookChange} defaultValue="">
-            <option value="" disabled>
-              -- Choose Book --
-            </option>
-            {books.map((book) => (
-              <option key={book.id} value={book.name}>
-                {book.name}
-              </option>
-            ))}
-          </select>
+        <div className="book-upload">
+          <h2>Upload Book (PDF)</h2>
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handleFileUpload}
+          />
         </div>
 
-        {selectedBook && (
+        {chapters.length > 0 && (
           <div className="chapter-list">
             <h2>Choose Chapters</h2>
-            {selectedBook.chapters.map((chapter, index) => (
+            {chapters.map((title, index) => (
               <label key={index} className="chapter-item">
                 <input
                   type="checkbox"
-                  value={chapter}
-                  checked={selectedChapters.includes(chapter)}
-                  onChange={() => handleChapterToggle(chapter)}
+                  value={title}
+                  checked={selectedChapters.includes(title)}
+                  onChange={() => handleChapterToggle(title)}
                 />
-                {chapter}
+                {title}
               </label>
             ))}
           </div>
@@ -125,7 +92,6 @@ const ChooseBook = () => {
           </div>
         )}
 
-        {/* Display error message if there's any */}
         {errorMessage && <div className="error-message">{errorMessage}</div>}
 
         <button className="submit-btn" onClick={handleSubmit}>
@@ -135,7 +101,7 @@ const ChooseBook = () => {
 
       {/* RIGHT: Image */}
       <div className="right-image">
-        <ImageBackground imageSrc={book} altText="Tasks Image" />
+        <ImageBackground imageSrc={bookImage} altText="Tasks Image" />
       </div>
     </div>
   );

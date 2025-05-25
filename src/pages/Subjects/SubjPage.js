@@ -14,9 +14,8 @@ export default function SubjPage() {
       <div className="container">
         <Card items={SubjectData} />
         <ImageBackground imageSrc={subject} altText="collegeImg" />
-
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

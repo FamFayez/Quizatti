@@ -1,15 +1,21 @@
 .choose-book-layout {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .left-content {
   flex: 1;
   order: 1;
-  max-width: 50%;
-  padding: 20px;
+  max-width:40%;
+  padding: 24px;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .right-image {
@@ -20,14 +26,23 @@
   align-items: center;
   max-width: 40%;
 }
+
+.book-upload input[type="file"] {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
 .error-message {
   color: red;
   font-size: 16px;
   margin-top: 10px;
 }
 
-
-.book-select h2,
+.book-upload h2,
 .chapter-list h2,
 .summary h2 {
   font-size: 1.5rem;
@@ -35,24 +50,22 @@
   color: #2c3e50;
 }
 
-select {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .chapter-item {
-  display: block;
-  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 1rem;
+  width: calc(33.333% - 10px); /* 3 per row */
 }
 
 .chapter-item input {
-  margin-right: 10px;
+  transform: scale(1.2);
 }
 
 .summary ul {
@@ -60,15 +73,17 @@ select {
 }
 
 .submit-btn {
-  margin-top: 20px;
-  padding: 12px 28px;
-  background-color: #007acc;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+ position: relative;
+    margin: auto;
+    padding: 12px 28px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 30%;
+    transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
@@ -76,9 +91,17 @@ select {
 }
 
 @media (max-width: 768px) {
+  .choose-book-layout {
+    flex-direction: column;
+  }
+
   .left-content,
   .right-image {
     max-width: 100%;
     order: unset;
+  }
+
+  .chapter-item {
+    width: 100%;
   }
 }
