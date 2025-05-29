@@ -23,6 +23,10 @@
         padding-top: 10%;
        
     }*/
+    
+#root {
+    overflow-x: hidden;
+}
 
     body{
         margin: 0;
@@ -60,16 +64,16 @@
     .subjectName{
 
         padding-top: 160px;
-        
-       
         text-align: center;
     }
     .subjectList{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 20px;
-        padding-left: 4%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    padding-left: 4%;
+    max-width: 100vw;
+    overflow-x: hidden;
         
     }
     .subjectList a{
@@ -89,7 +93,6 @@
     .Header{
     
         color:white;
-       padding-top: 0px;
         
         
         size: 50px;
@@ -107,9 +110,11 @@
     }
     .logo{
        width: 344.4px;
-  height: 209px;
-  size: auto;
-  border-radius: 60px;
+     height: 209px;
+    size: auto;
+    border-radius: 60px;
+    position: relative ;
+    top: -47px;
     }
    
    
@@ -123,12 +128,14 @@
 
     
    }
-   .headerButtoms ul{list-style: none;
-padding-bottom: 6%;
-padding-top: 6%;
+   .headerButtoms ul{
+    list-style: none;
+    padding-bottom: 6%;
+    padding-top: 6%;
 }
-   .headerButtoms ul li{display: inline-block;
-padding:  0 30px;
+   .headerButtoms ul li{
+    display: inline-block;
+    padding:  0 30px;
 }
 .headerButtoms ul li a{
     color:white;
@@ -155,11 +162,11 @@ transition: 0.3s ease;
 .mainHeader{
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
-}
+max-width: 100vw;
+    overflow-x: hidden;}
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-.Card{
+/* .Card{
     background-color: #280f91;
     color:white;
     width: 25%;
@@ -175,7 +182,7 @@ text-align: center;
 .Card a{
     text-decoration: none;
     color: white;
-}
+} */
 
     /*--------------------------------------------------------------------------------------------------------------------------*/
 
@@ -207,7 +214,6 @@ text-align: center;
 }
 .option{
     color: white;
-   /* background-color: #6b4aeb;*/
    background-color: rgb(82, 148, 31);
     border-color: #000;
     cursor: pointer;

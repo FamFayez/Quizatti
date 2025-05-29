@@ -28,11 +28,6 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/Subject/:id",
-    element: <SubjPage />,
-  },
-
-  {
     path: "/",
     element: <App />,
     children: [
@@ -107,6 +102,10 @@ export const router = createBrowserRouter([
       {
         path: "/quizzes",
         element: <QuizzesPage />,
+      },
+      {
+        path: "/Subject/:id",
+        element: <SubjPage />,
       },
       {
         path: "*",
