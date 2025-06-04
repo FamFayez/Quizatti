@@ -45,17 +45,27 @@ const TaskPage = () => {
     const isPPT = fileExtension === "ppt" || fileExtension === "pptx";
 
     if (isPDF || isPPT) {
+      const newTask = {
+        title: file.name,
+        file: URL.createObjectURL(file),
+      };
+      setTasks([...tasks, newTask]);
       setSelectedFile(file);
       setTextPreview("");
       setErrorMessage("");
-      setUploadMessage(`✔️ Selected file: ${file.name}`);
+      setUploadMessage(`✔️ File "${file.name}" uploaded successfully!`);
     } else if (isText) {
       const reader = new FileReader();
       reader.onload = (e) => {
+        const newTask = {
+          title: file.name,
+          file: null,
+        };
+        setTasks([...tasks, newTask]);
         setSelectedFile(file);
         setTextPreview(e.target.result);
         setErrorMessage("");
-        setUploadMessage(`✔️ Selected file: ${file.name}`);
+        setUploadMessage(`✔️ Text file "${file.name}" uploaded successfully!`);
       };
       reader.onerror = () => {
         setErrorMessage("❌ Failed to read the text file.");
@@ -84,6 +94,11 @@ const TaskPage = () => {
     toast.success("✏️ Task updated successfully!");
   };
 
+  const handleRemoveAll = () => {
+    setTasks([]);
+    toast.info("🧹 All tasks removed successfully!");
+  };
+
   return (
     <div className="container">
       <ToastContainer position="top-right" autoClose={3000} />
@@ -105,8 +120,13 @@ const TaskPage = () => {
           setManualTaskText={setManualTaskText}
           onTextTaskSubmit={handleTextTaskSubmit}
         />
+
+        {userRole === "ta" && tasks.length > 0 && (
+          <button className="remove-all-btn" onClick={handleRemoveAll}>
+            Remove All Tasks
+          </button>
+        )}
       </div>
-      <></>
 
       <div className="image-container">
         <ImageBackground imageSrc={taskImage} altText="tasks" />

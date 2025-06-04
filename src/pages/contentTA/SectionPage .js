@@ -59,7 +59,7 @@ const Content = () => {
         )}
 
         {userRole === "doctor" && lectures.length > 0 && (
-          <button className="remove-all-btn" onClick={handleRemoveAll}>
+          <button className="remove-all" onClick={handleRemoveAll}>
             Remove All Files
           </button>
         )}
