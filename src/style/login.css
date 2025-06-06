@@ -88,7 +88,7 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: white;
   font-size: 18px;
   transition: 0.3s;
 }
@@ -165,7 +165,8 @@
   border-radius: 25px;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #1e90ff, #4682b4, #1e90ff);
+  background-color: #00698E;
+  /* background-image: linear-gradient(to right, #1e90ff, #4682b4, #1e90ff); */
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;

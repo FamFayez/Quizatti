@@ -53,6 +53,7 @@
   border: none;
   border-radius: 4px;
   display: flex;
+  cursor: pointer;
 }
 
 /* === Upload Section === */
@@ -61,7 +62,7 @@
 }
 
 .upload-message {
-  color: green;
+  color:#FFF;
   font-weight: 500;
   margin-top: 0.5rem;
 }
