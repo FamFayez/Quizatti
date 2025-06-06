@@ -6,9 +6,9 @@ body {
     display: flex;
     justify-content: space-between; 
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
-    min-height: 90vh;
+    min-height: 88vh;
     flex-wrap: wrap; 
   }
   

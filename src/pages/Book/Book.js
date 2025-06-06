@@ -1,5 +1,5 @@
-import Header from "../Components/Header";
-import ContentList from "../Components/ContentList";
+import Header from "../../Components/Header";
+import ContentList from "../../Components/ContentList";
 
 export default function Book() {
   return (

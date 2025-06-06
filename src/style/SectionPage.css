@@ -88,12 +88,15 @@ p {
 .upload-form button {
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 28px;
   font-size: 1rem;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
+  position: relative;
+    margin: auto;    
+    cursor: pointer;
+    width: 60%;
 }
 
 .upload-btn:hover,

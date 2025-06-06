@@ -1,5 +1,5 @@
-import "../../style/profile.css";
-import { ProfileData } from "../../core/data/ProfileCont";
+import "../style/profile.css";
+import { ProfileData } from "../core/data/ProfileCont";
 export default function Profile() {
   const user = ProfileData[0];
   return (

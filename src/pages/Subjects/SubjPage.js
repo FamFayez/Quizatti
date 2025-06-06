@@ -1,22 +1,16 @@
-import { Link } from "react-router-dom";
-import Header from "../Components/Header";
-import SmallCard from "../Components/smallCard";
+import Card from "../../Components/Card";
 import "../../style/App.css";
-
+import { SubjectData } from "../../core/data/subjectData";
+import ImageBackground from "../../Components/ImageBackground";
+import subject from "../../assets/img/subject.png";
+import "../../style/Container.css";
+import "../../style/Footer.css";
 export default function SubjPage() {
   return (
-    <div className="Subpage">
-      <Header name="Subject" />
-      <div className="subjectList">
-        <Link to="/Content">
-          <SmallCard name="Content" />
-        </Link>
-        <Link to="/quizzes">
-          <SmallCard name="Quiz" />
-        </Link>
-        <Link to="/SectionTA">
-          <SmallCard name="Section" />
-        </Link>
+    <div>
+      <div className="container">
+        <Card items={SubjectData} />
+        <ImageBackground imageSrc={subject} altText="collegeImg" />
       </div>
     </div>
   );

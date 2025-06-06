@@ -1,4 +1,4 @@
-import "./../../style/imageBackground.css";
+import "./../style/imageBackground.css";
 
 const ImageBackground = ({ imageSrc, altText = "Background" }) => {
   return (

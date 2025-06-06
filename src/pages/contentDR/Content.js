@@ -1,11 +1,11 @@
 import { useState } from "react";
 import sectionData from "../../core/data/sectionData";
 import "../../style/SectionPage.css";
-import ImageBackground from "../Components/ImageBackground";
+import ImageBackground from "../../Components/ImageBackground";
 import Learning from "../../assets/img/Learning.png";
 import "../../style/Container.css";
-import SectionTask from "../Components/sectionTask";
-import UploadFile from "../Components/UploadFile";
+import SectionTask from "../../Components/sectionTask";
+import UploadFile from "../../Components/UploadFile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

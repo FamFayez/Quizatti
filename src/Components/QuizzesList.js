@@ -1,6 +1,6 @@
-import { QizzesData } from "../../core/data/Quizzes";
+import { QizzesData } from "../core/data/Quizzes";
 import { Link } from "react-router-dom";
-import NewCard from "./NewCard";
+import NewCard from "../Components/NewCard";
 export default function QuizzesList() {
   const QData = QizzesData;
   return (
