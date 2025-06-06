@@ -19,13 +19,13 @@ export default function QuizPage() {
 
   return (
     <div>
-      <Question
-        question={quesdata[currentIndex]}
-        onNext={goToNext}
-        onPrevious={goToPrevious}
-        isFirst={currentIndex === 0}
-        isLast={currentIndex === quesdata.length - 1}
-      />
+     <Question 
+  question={quesdata[currentIndex]} 
+  onNext={goToNext} 
+  onPrevious={goToPrevious} 
+  isFirst={currentIndex === 0}
+  isLast={currentIndex === quesdata.length - 1}
+/>
     </div>
   );
 }
