@@ -150,7 +150,7 @@ transition: 0.3s ease;
     background:#021d59;
 }
 .logout-icon {
-  
+  margin-right: 4px;
   vertical-align: middle;
 }
 .headerButtoms ul li a.logout:hover {
