@@ -17,11 +17,11 @@ export default function Question({ question, onNext, onPrevious, isFirst, isLast
 
       <div className="button-container">
         {!isFirst && (
-          <button onClick={onPrevious}>Previous</button>
+          <button onClick={onPrevious}>&laquo;</button>
         )}
 
         {!isLast ? (
-          <button onClick={onNext}>Next</button>
+          <button onClick={onNext}>&raquo;</button>
         ) : (
           <button onClick={() => alert("Quiz submitted!")}>Submit</button>
         )}
