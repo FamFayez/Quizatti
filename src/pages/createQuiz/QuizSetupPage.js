@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../style/quiz.css";
 
 const QuizSetipPage = () => {
@@ -13,6 +14,8 @@ const QuizSetipPage = () => {
   });
   const [submittedData, setSubmittedData] = useState(null);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChapterCheckbox = (e) => {
     const value = e.target.value;
@@ -66,6 +69,10 @@ const QuizSetipPage = () => {
       grade,
       difficultyCounts,
     });
+  };
+
+  const goToQuizPage = () => {
+    navigate("/quiz");
   };
 
   return (
@@ -152,15 +159,20 @@ const QuizSetipPage = () => {
       </button>
 
       {submittedData && (
-        <div className="submittedData">
-          <h3>Submitted Data</h3>
-          <p>Number of Questions: {submittedData.numQuestions}</p>
-          <p>Easy: {submittedData.difficultyCounts.easy}</p>
-          <p>Medium: {submittedData.difficultyCounts.medium}</p>
-          <p>Hard: {submittedData.difficultyCounts.hard}</p>
-          <p>Chapters: {submittedData.selectedChapters.join(", ")}</p>
-          <p>Time: {submittedData.time} min</p>
-          <p>Grade: {submittedData.grade}</p>
+        <div className="submittedSection">
+          <div className="submittedData">
+            <h3>Submitted Data</h3>
+            <p>Number of Questions: {submittedData.numQuestions}</p>
+            <p>Easy: {submittedData.difficultyCounts.easy}</p>
+            <p>Medium: {submittedData.difficultyCounts.medium}</p>
+            <p>Hard: {submittedData.difficultyCounts.hard}</p>
+            <p>Chapters: {submittedData.selectedChapters.join(", ")}</p>
+            <p>Time: {submittedData.time} min</p>
+            <p>Grade: {submittedData.grade}</p>
+          </div>
+          <button onClick={goToQuizPage} className="quizPageButton">
+            Go to Quiz Page
+          </button>
         </div>
       )}
     </div>

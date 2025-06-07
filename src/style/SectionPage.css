@@ -94,14 +94,45 @@ p {
   border-radius: 8px;
   transition: background-color 0.3s ease;
   position: relative;
-    margin: auto;    
     cursor: pointer;
-    width: 60%;
+    margin-top: 5%;
+    width: 90%;
+    margin-left: 6%;  
 }
 
 .upload-btn:hover,
 .upload-form button:hover {
   background-color: #0056b3;
+}
+.goToQuizButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.goToQuizButton:hover {
+  background-color: #1e7e34;
+}
+
+.submittedData {
+  margin-top: 20px;
+  background-color: #eaf9f0;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.submittedData h3 {
+  margin-bottom: 15px;
+  color: #2c3e50;
 }
 
 .upload-form {
@@ -119,6 +150,8 @@ p {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
+  width: 80%;
+  margin-left: 0%;
 }
 
 /* Delete Button */
@@ -158,7 +191,7 @@ p {
   color: #333;
 }
 /* Remove All Files Button */
-.remove-all-btn {
+.remove-all{
   background-color: #f44336; /* Red background for emphasis */
   color: white;
   padding: 12px 20px;
@@ -168,14 +201,15 @@ p {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
-  width: 100%; /* Full width to make the button prominent */
+  width: 65%; 
+  margin-left: 4%;
 }
 
-.remove-all-btn:hover {
+.remove-all:hover {
   background-color: #d32f2f; /* Darker red on hover */
 }
 
-.remove-all-btn:active {
+.remove-all:active {
   background-color: #b71c1c; /* Even darker red when clicked */
 }
 .lecture-item {

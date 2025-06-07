@@ -6,7 +6,7 @@
   border-radius: 10px;
   background-color: #fdfdfd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 85vh;
+  box-sizing: border-box;
 }
 
 .inputGroup {
@@ -57,7 +57,8 @@
   margin-bottom: 20px;
 }
 
-.submitButton {
+.submitButton,
+.quizPageButton {
   background-color: #007bff;
   color: white;
   border: none;
@@ -67,19 +68,22 @@
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
-  box-shadow:   0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 }
 
-.submitButton:hover {
+.submitButton:hover,
+.quizPageButton:hover {
   background-color: #0056b3;
 }
 
-.submittedData {
-  margin-top: 10px;
+.submittedSection {
+  margin-top: 20px;
   background-color: #eaf9f0;
-  border-radius: 6px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.submittedData h3 {
+.submittedData {
   margin-bottom: 15px;
 }

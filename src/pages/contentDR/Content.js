@@ -14,7 +14,6 @@ const userRole = "doctor";
 const SectionPage = () => {
   const [lectures, setLectures] = useState(sectionData.lectures);
 
-  // ✅ Handle file upload
   const handleDelete = (index) => {
     const updatedLectures = [...lectures];
     updatedLectures.splice(index, 1);
@@ -39,7 +38,6 @@ const SectionPage = () => {
     <div className="section-container">
       <ToastContainer position="top-right" autoClose={3000} />
 
-      {/* Lecture Grid */}
       <div className="section-page-layout">
         <SectionTask
           lectures={lectures}
