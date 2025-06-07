@@ -6,9 +6,8 @@ import ImageBackground from "../../Components/ImageBackground";
 import taskData from "../../core/data/taskData";
 import TaskList from "../../Components/TaskList";
 import TaskUpload from "../../Components/taskUpload";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 
 const userRole = "ta";
 
@@ -17,20 +16,22 @@ const TaskPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [textPreview, setTextPreview] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [uploadMessage, setUploadMessage] = useState("");
   const [manualTaskText, setManualTaskText] = useState("");
 
-  const handleTextTaskSubmit = () => {
+  const handleTextTaskSubmit = (type) => {
     if (manualTaskText.trim() === "") return;
 
     const newTask = {
       title: manualTaskText,
-      file: null,
+      file: type === "link" ? manualTaskText : null, // link goes into file field
+      isLink: type === "link",
     };
 
     setTasks([...tasks, newTask]);
     setManualTaskText("");
-    setUploadMessage("✔️ Text task added successfully!");
+    toast.success(
+      `✔️ ${type === "link" ? "Link" : "Text"} task added successfully!`
+    );
   };
 
   const handleFileChange = (event) => {
@@ -53,7 +54,7 @@ const TaskPage = () => {
       setSelectedFile(file);
       setTextPreview("");
       setErrorMessage("");
-      setUploadMessage(`✔️ File "${file.name}" uploaded successfully!`);
+      toast.success(`✔️ File "${file.name}" uploaded successfully!`);
     } else if (isText) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -65,18 +66,18 @@ const TaskPage = () => {
         setSelectedFile(file);
         setTextPreview(e.target.result);
         setErrorMessage("");
-        setUploadMessage(`✔️ Text file "${file.name}" uploaded successfully!`);
+        toast.success(`✔️ Text file "${file.name}" uploaded successfully!`);
       };
       reader.onerror = () => {
         setErrorMessage("❌ Failed to read the text file.");
-        setUploadMessage("");
+        toast.error("❌ Failed to read the text file.");
       };
       reader.readAsText(file);
     } else {
       setErrorMessage("❌ Only PDF, TXT, and PowerPoint files are allowed.");
       setSelectedFile(null);
       setTextPreview("");
-      setUploadMessage("");
+      toast.error("❌ Only PDF, TXT, and PowerPoint files are allowed.");
     }
   };
 
@@ -114,7 +115,6 @@ const TaskPage = () => {
           selectedFile={selectedFile}
           textPreview={textPreview}
           errorMessage={errorMessage}
-          uploadMessage={uploadMessage}
           onFileChange={handleFileChange}
           manualTaskText={manualTaskText}
           setManualTaskText={setManualTaskText}

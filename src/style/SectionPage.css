@@ -1,3 +1,4 @@
+   /* 📦 Container Layout */
 .section-container {
   display: flex;
   justify-content: space-between;
@@ -14,7 +15,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
-  width: 50%;
+  width: 70%;
 }
 
 .right-section {
@@ -26,7 +27,9 @@
   flex: 1;
 }
 
-/* Section Blocks */
+/* ================================
+   📚 Section Block Styles
+================================== */
 .section-block {
   background: #fff;
   padding: 1.5rem;
@@ -52,166 +55,7 @@
   margin: 0.5rem 0;
 }
 
-/* Lecture Titles & Notes */
-h3 {
-  font-size: 1.9rem;
-  color: #fff;
-}
-
-p {
-  font-size: 1.5rem;
-  color: #555;
-}
-
-/* File & Note Links */
-.pdf-link,
-.file-link {
-  text-decoration: none;
-  color: #3b0a8d;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-.pdf-link:hover,
-.file-link:hover {
-  text-decoration: underline;
-}
-
-/* Upload Area */
-.upload-section {
-  text-align: center;
-  width: 100%;
-}
-
-.upload-btn,
-.upload-form button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 28px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  position: relative;
-    cursor: pointer;
-    margin-top: 5%;
-    width: 90%;
-    margin-left: 6%;  
-}
-
-.upload-btn:hover,
-.upload-form button:hover {
-  background-color: #0056b3;
-}
-.goToQuizButton {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  margin-top: 15px;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.goToQuizButton:hover {
-  background-color: #1e7e34;
-}
-
-.submittedData {
-  margin-top: 20px;
-  background-color: #eaf9f0;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.submittedData h3 {
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.upload-form {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.upload-form input[type="text"],
-.upload-form input[type="file"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  width: 80%;
-  margin-left: 0%;
-}
-
-/* Delete Button */
-.delete-btn {
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  color: #cc0000;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.delete-btn:hover {
-  color: #990000;
-}
-
-/* Success Message */
-.success-message {
-  color: #28a745;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-/* Utility */
-.link {
-  display: contents;
-}
-.Toastify {
-  position: fixed;
-
-}
-
-.selected-file {
-  margin-top: 10px;
-  font-style: italic;
-  color: #333;
-}
-/* Remove All Files Button */
-.remove-all{
-  background-color: #f44336; /* Red background for emphasis */
-  color: white;
-  padding: 12px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  width: 65%; 
-  margin-left: 4%;
-}
-
-.remove-all:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-}
-
-.remove-all:active {
-  background-color: #b71c1c; /* Even darker red when clicked */
-}
+   /* 📝 Lecture Items (Editable & Notes) */
 .lecture-item {
   display: flex;
   justify-content: space-between;
@@ -227,9 +71,102 @@ p {
   cursor: pointer;
 }
 
+   /* 🔗 File & Note Links */
+.pdf-link,
+.file-link {
+  text-decoration: none;
+  color: #3b0a8d;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.pdf-link:hover,
+.file-link:hover {
+  text-decoration: underline;
+}
+
+   /* ☁️ Upload Form */
+.upload-form {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.upload-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-form button:hover {
+  background-color: #0056b3;
+}
+
+.selected-file {
+  margin-top: 10px;
+  font-style: italic;
+  color: #333;
+}
+
+   /* ❌ Delete & Action Buttons */
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #cc0000;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #990000;
+}
+
+   /* 🗑 Remove All Button */
+.remove-all-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.remove-all-btn:hover {
+  background-color: #d32f2f;
+}
+
+.remove-all-btn:active {
+  background-color: #b71c1c;
+}
 
 
-/* Responsive Design */
+.Toastify {
+  position: fixed;
+}
+
+
 @media (max-width: 768px) {
   .section-page-layout,
   .section-container,

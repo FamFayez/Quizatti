@@ -1,6 +1,6 @@
 import { useState } from "react";
 import sectionData from "../../core/data/sectionData";
-import "../../style/SectionPage.css";
+import "../../style/content.css";
 import ImageBackground from "../../Components/ImageBackground";
 import Learning from "../../assets/img/Learning.png";
 import "../../style/Container.css";
@@ -61,11 +61,13 @@ const SectionPage = () => {
                 );
               }}
             />
-
-            <button className="remove-all-btn" onClick={handleRemoveAll}>
-              Remove All Files
-            </button>
           </>
+        )}
+
+        {userRole === "doctor" && lectures.length > 0 && (
+          <button className="remove-all" onClick={handleRemoveAll}>
+            Remove All Files
+          </button>
         )}
       </div>
     </div>

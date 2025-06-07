@@ -16,7 +16,6 @@ import TaskPage from "./pages/task/taskPage.js";
 import ChooseBook from "./pages/chooseBook/chooseBook.js";
 import Profile from "./pages/Profile/ProfilePage.js";
 import HomePage from "./pages/Home/HomePage";
-import Book from "./pages/Book/Book.js";
 import QuizzesPage from "./pages/Quizzes/QuizzesPage.js";
 import QuizPage from "./pages/QuizP/QuizPage";
 
@@ -86,10 +85,6 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
 
-      {
-        path: "/Book",
-        element: <Book />,
-      },
       {
         path: "/Home",
         element: <HomePage />,

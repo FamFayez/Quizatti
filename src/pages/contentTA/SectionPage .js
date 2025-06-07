@@ -1,6 +1,6 @@
 import { useState } from "react";
 import lecturesData from "../../core/data/lecturesData";
-import "../../style/content.css";
+import "../../style/sectionPage.css";
 import content from "../../assets/img/content.png";
 import ImageBackground from "../../Components/ImageBackground";
 import LectureList from "../../Components/LectureList";
@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UploadFile from "../../Components/UploadFile";
 
-const userRole = "doctor";
+const userRole = "ta";
 
 const Content = () => {
   const [lectures, setLectures] = useState(lecturesData.lectures);
@@ -44,7 +44,7 @@ const Content = () => {
           onUpdate={handleUpdate}
         />
 
-        {userRole === "doctor" && (
+        {userRole === "ta" && (
           <div className="upload-section">
             <UploadFile
               showNote={false}
@@ -58,8 +58,8 @@ const Content = () => {
           </div>
         )}
 
-        {userRole === "doctor" && lectures.length > 0 && (
-          <button className="remove-all" onClick={handleRemoveAll}>
+        {userRole === "ta" && lectures.length > 0 && (
+          <button className="remove-all-btn" onClick={handleRemoveAll}>
             Remove All Files
           </button>
         )}

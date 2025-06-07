@@ -10,32 +10,54 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
     setIsEditing(false);
   };
 
+  const isExternalLink = task.isLink && task.file;
+
   return (
     <article className="section-block">
       <div className="lecture-block">
         <h2>
-          {task.file ? (
-            <span>
-              <a
-                href={task.file}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pdf-link"
-              >
-                📝{" "}
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedTitle}
-                    onChange={(e) => setEditedTitle(e.target.value)}
-                    className="edit-input"
-                  />
-                ) : (
-                  task.title
-                )}
-              </a>
-            </span>
+          {isExternalLink ? (
+            // External link
+            <a
+              href={task.file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pdf-link"
+            >
+              🔗{" "}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                  className="edit-input"
+                />
+              ) : (
+                task.title
+              )}
+            </a>
+          ) : task.file ? (
+            // Uploaded file
+            <a
+              href={task.file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pdf-link"
+            >
+              📄{" "}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                  className="edit-input"
+                />
+              ) : (
+                task.title
+              )}
+            </a>
           ) : (
+            // Plain text
             <span>
               📝{" "}
               {isEditing ? (

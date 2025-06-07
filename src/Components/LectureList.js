@@ -18,7 +18,7 @@ const LectureList = ({ lectures, userRole, onDelete, onUpdate }) => {
                   >
                     📄 {lecture.title}
                   </a>
-                  {userRole === "doctor" && (
+                  {(userRole === "doctor" || userRole === "ta") && (
                     <button
                       className="delete-btn"
                       onClick={() => onDelete(index, "file")}
@@ -32,8 +32,7 @@ const LectureList = ({ lectures, userRole, onDelete, onUpdate }) => {
               )}
             </h2>
 
-            {/* Editable Title Component */}
-            {userRole === "doctor" && (
+            {(userRole === "doctor" || userRole === "ta") && (
               <EditableLectureItem
                 index={index}
                 lecture={lecture}
@@ -48,11 +47,13 @@ const LectureList = ({ lectures, userRole, onDelete, onUpdate }) => {
             {lecture.note ? (
               <>
                 <p>{lecture.note}</p>
-                {userRole === "doctor" && (
+                {(userRole === "doctor" || userRole === "ta") && (
                   <button
                     className="delete-btn"
                     onClick={() => onDelete(index, "note")}
-                  ></button>
+                  >
+                    🗑 Remove Note
+                  </button>
                 )}
               </>
             ) : (
