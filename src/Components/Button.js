@@ -9,11 +9,7 @@ const Button = ({ items }) => {
           <Link key={item.id} to={item.link} className="section-button">
             {item.name}
           </Link>
-        ) : (
-          <button key={item.id} className="section-button" disabled>
-            {item.name}
-          </button>
-        )
+        ) : null
       )}
     </div>
   );

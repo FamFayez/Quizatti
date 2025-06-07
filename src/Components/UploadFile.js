@@ -12,7 +12,7 @@ const UploadFile = ({ onFileUpload, showNote = true }) => {
     const newLecture = {
       title,
       file: URL.createObjectURL(file),
-      note: showNote ? note : "", // Include note only if showNote is true
+      note: showNote ? note : "",
     };
 
     onFileUpload(newLecture);
@@ -20,6 +20,9 @@ const UploadFile = ({ onFileUpload, showNote = true }) => {
     setTitle("");
     setFile(null);
     setNote("");
+
+    // Optionally clear file input manually (if needed)
+    e.target.reset?.();
   };
 
   return (
@@ -37,7 +40,14 @@ const UploadFile = ({ onFileUpload, showNote = true }) => {
         <input
           type="file"
           accept=".pdf,.ppt,.pptx,.doc,.docx"
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={(e) => {
+            const selectedFile = e.target.files[0];
+            if (selectedFile) {
+              setFile(selectedFile);
+              const fileName = selectedFile.name.replace(/\.[^/.]+$/, ""); // Remove extension
+              setTitle(fileName); // Auto-fill title with file name
+            }
+          }}
           required
         />
       </div>
