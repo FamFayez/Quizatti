@@ -238,13 +238,19 @@ justify-content: flex-start;
 margin: 0 auto 1.5rem auto;
 padding: 2rem;
 width: 80%;
+margin-left: 0px;
 }
-.button-container button{
+.button-container button {
     border: none;
-    color: #f8f8f8;
+    color: #280f91;
     cursor: pointer;
     padding: 15px;
-    margin-right: 54rem;
-    border-radius:55px ;
+    margin-right: 67rem;
+    border-radius:50px ;
+    background-color: rgb(205, 204, 204);
+    
+}
+.button-container button:hover{
     background-color: #280f91;
+    color: #fcfbfb;
 }
