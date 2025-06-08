@@ -20,6 +20,7 @@ import QuizzesPage from "./pages/Quizzes/QuizzesPage.js";
 import QuizPage from "./pages/QuizP/QuizPage";
 
 import SubjPage from "./pages/Subjects/SubjPage";
+import QuestionBankPage from "./pages/QuestionBank/QuestionBankPage.js";
 export const router = createBrowserRouter([
   {
     path: "login",
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "QuizDR",
         element: <QuizDR />,
+      },
+      {
+        path: "/QuestionBank",
+        element: <QuestionBankPage />,
       },
       {
         path: "Chapter",

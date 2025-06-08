@@ -64,7 +64,7 @@
   grid-template-columns: 7% 93%;
   margin: 25px 0;
   padding: 5px 0;
-  border-bottom: 2px solid #d9d9d9;
+  border-bottom: 2px solid #fefdfd;
 }
 
 .login-page .input-div.one {
@@ -137,7 +137,7 @@
   background: none;
   padding: 0.5rem 0.7rem;
   font-size: 1.2rem;
-  color: #555;
+  color: #faf8f8;
   font-family: 'Poppins', sans-serif;
 }
 
