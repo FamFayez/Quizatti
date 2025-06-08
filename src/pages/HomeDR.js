@@ -1,8 +1,8 @@
-import Card from "../../Components/Card";
-import ImageBackground from "../../Components/ImageBackground";
+import Card from "../Components/Card";
+import ImageBackground from "../Components/ImageBackground";
 import "../../style/Container.css";
 import Doctor from "../../assets/img/Doctor.png";
-import { Courses } from "../../core/data/Courses";
+import { Courses } from "../core/data/Courses";
 
 const HomeDR = () => {
   return (

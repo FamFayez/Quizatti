@@ -1,12 +1,12 @@
 import { useState } from "react";
-import lecturesData from "../../core/data/lecturesData";
+import lecturesData from "../core/data/lecturesData";
 import "../../style/sectionPage.css";
 import content from "../../assets/img/content.png";
-import ImageBackground from "../../Components/ImageBackground";
-import LectureList from "../../Components/LectureList";
+import ImageBackground from "../Components/ImageBackground";
+import LectureList from "../Components/LectureList";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UploadFile from "../../Components/UploadFile";
+import UploadFile from "../Components/UploadFile";
 
 const userRole = "ta";
 

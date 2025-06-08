@@ -1,9 +1,9 @@
 import "../../style/App.css";
-import ImageBackground from "../../Components/ImageBackground";
+import ImageBackground from "../Components/ImageBackground";
 import Student from "../../assets/img/Studying-rafiki.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../../Components/Card"; // make sure this is correct
+import Card from "../Components/Card"; // make sure this is correct
 
 export default function HomePage() {
   const [courses, setCourses] = useState({

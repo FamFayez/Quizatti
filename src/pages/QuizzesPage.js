@@ -1,8 +1,8 @@
 // import Header from "../../Components/Header";
-import { QizzesData } from "../../core/data/Quizzes";
+import { QizzesData } from "../core/data/Quizzes";
 import quiz from "../../assets/img/quiz.png";
-import ImageBackground from "../../Components/ImageBackground";
-import Button from "../../Components/Button";
+import ImageBackground from "../Components/ImageBackground";
+import Button from "../Components/Button";
 import "../../style/Container.css";
 import "../../style/Button.css";
 

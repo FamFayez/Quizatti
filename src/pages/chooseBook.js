@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "../../style/Container.css";
 import "../../style/ChooseBook.css";
 import bookImage from "../../assets/img/book.png";
-import ImageBackground from "../../Components/ImageBackground";
-import chapterTitles from "../../core/data/bookChapters"; 
+import ImageBackground from "../Components/ImageBackground";
+import chapterTitles from "../core/data/bookChapters"; 
 const ChooseBook = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [chapters, setChapters] = useState([]);
