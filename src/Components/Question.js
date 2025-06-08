@@ -11,7 +11,8 @@ export default function Question({
 }) {
   const renderOption = (key) => (
     <p
-      className={`option ${selectedAnswer === key ? 'selected' : ''}`}
+      key={key}
+      className={`option ${selectedAnswer === key ? "selected" : ""}`}
       onClick={() => onAnswerSelect(key)}
     >
       {question[key]}
@@ -24,12 +25,12 @@ export default function Question({
       <h1>{question.Question}</h1>
 
       <div className="options-container">
-        {renderOption('A')}
-        {renderOption('B')}
+        {renderOption("A")}
+        {renderOption("B")}
       </div>
       <div className="options-container">
-        {renderOption('C')}
-        {renderOption('D')}
+        {renderOption("C")}
+        {renderOption("D")}
       </div>
 
       <div className="button-container">
@@ -39,6 +40,10 @@ export default function Question({
         ) : (
           <button onClick={() => alert("Quiz submitted!")}>Submit</button>
         )}
+      </div>
+
+      <div className="pagination">
+        {/* Pagination UI can be included here if needed */}
       </div>
     </div>
   );

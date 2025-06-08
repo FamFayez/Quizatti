@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Question from "../../component/Question";
+import Question from "../../Components/Question"
 import { quesdata } from "../../core/data/Questions";
 
 export default function QuizPage() {
@@ -52,7 +52,6 @@ export default function QuizPage() {
     );
   })}
 </div>
- </div>
+</div>
   );
-}
-
+};
