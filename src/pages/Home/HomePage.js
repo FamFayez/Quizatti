@@ -16,7 +16,7 @@ export default function HomePage() {
   useEffect(() => {
   setCourses(c => ({ ...c, loading: true }));
 
-  axios.get("http://localhost:3000/course")
+  axios.get("https://api.quizatty.com/api/v1/course")
     .then((resp) => {
       setCourses(c => ({
         ...c,
