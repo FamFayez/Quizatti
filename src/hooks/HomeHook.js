@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getData } from "../axios/axiosHelper";
 import toastMsg from "../functions/toastMsg";
-import { COURSE_URL } from "../utils/constants";
+import { COURSE_API_URL } from "../utils/constants";
 
 const HomeHook = () => {
   const [courses, setCourses] = useState([]);
@@ -9,7 +9,7 @@ const HomeHook = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getData(COURSE_URL)
+    getData(COURSE_API_URL)
       .then((res) => {
         setCourses(res.data.data);
       })

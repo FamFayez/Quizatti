@@ -20,90 +20,98 @@ import QuizzesPage from "./pages/QuizzesPage.js";
 import QuizPage from "./pages/QuizPage";
 import SubjPage from "./pages/SubjPage";
 import QuestionBankPage from "./pages/QuestionBankPage.js";
+import {
+  HOME_URL,
+  LOGIN_URL,
+  MATERIALS_DR_URL,
+  QUIZ_DR_URL,
+  QUESTION_BANK_URL,
+  CHAPTER_URL,
+  QUIZ_SETUP_URL,
+  CHOOSE_BOOK_URL,
+  MATERIAL_TA_URL,
+  SECTION_TA_URL,
+  CONTENT_URL,
+  TASK_URL,
+  SECTION_URL,
+  PROFILE_URL,
+  QUIZ_URL,
+  QUIZZES_URL,
+  COURSE_URL
+} from "./utils/constants";
+
 export const router = createBrowserRouter([
   {
-    path: "login",
+    path: LOGIN_URL,
     element: <Login />
   },
 
   {
-    path: "/",
+    path: HOME_URL,
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <HomeDr />
+        path: HOME_URL,
+        element: <HomePage />
       },
       {
-        path: "MaterialsDR",
+        path: MATERIALS_DR_URL,
         element: <MaterialsDR />
       },
       {
-        path: "QuizDR",
+        path: QUIZ_DR_URL,
         element: <QuizDR />
       },
       {
-        path: "/QuestionBank",
+        path: QUESTION_BANK_URL,
         element: <QuestionBankPage />
       },
       {
-        path: "Chapter",
+        path: CHAPTER_URL,
         element: <ChaptersDR />
       },
       {
-        path: "QuizSetupPage",
+        path: QUIZ_SETUP_URL,
         element: <QuizSetupPage />
       },
-
       {
-        path: "chooseBook",
+        path: CHOOSE_BOOK_URL,
         element: <ChooseBook />
       },
-
       {
-        path: "HomeTA",
-        element: <HomeTA />
-      },
-      {
-        path: "MaterialTA",
+        path: MATERIAL_TA_URL,
         element: <MaterialTA />
       },
       {
-        path: "SectionTA",
+        path: SECTION_TA_URL,
         element: <SectionTA />
       },
       {
-        path: "Content",
+        path: CONTENT_URL,
         element: <Content />
       },
       {
-        path: "TaskPage",
+        path: TASK_URL,
         element: <TaskPage />
       },
       {
-        path: "SectionPage",
+        path: SECTION_URL,
         element: <SectionPage />
       },
       {
-        path: "Profile",
+        path: PROFILE_URL,
         element: <Profile />
       },
-
       {
-        path: "/Home",
-        element: <HomePage />
-      },
-
-      {
-        path: "/Quiz",
+        path: QUIZ_URL,
         element: <QuizPage />
       },
       {
-        path: "/quizzes",
+        path: QUIZZES_URL,
         element: <QuizzesPage />
       },
       {
-        path: "/Subject/:id",
+        path: `${COURSE_URL}/:id`,
         element: <SubjPage />
       },
       {

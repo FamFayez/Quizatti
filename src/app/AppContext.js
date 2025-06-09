@@ -13,11 +13,17 @@ export const AppProvider = ({ children }) => {
   const [token, setToken] = useState(
     sessionStorage.getItem("token") ? sessionStorage.getItem("token") : null
   );
+  const [userType, setUserType] = useState(
+    sessionStorage.getItem("userType")
+      ? sessionStorage.getItem("userType")
+      : null
+  );
 
   const logout = () => {
     sessionStorage.clear();
     setUser(null);
     setToken(null);
+    setUserType(null);
   };
 
   return (
@@ -27,6 +33,8 @@ export const AppProvider = ({ children }) => {
         setUser,
         token,
         setToken,
+        userType,
+        setUserType,
         logout
       }}
     >

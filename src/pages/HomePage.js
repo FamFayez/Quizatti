@@ -1,6 +1,6 @@
 import "../style/App.css";
 import ImageBackground from "../Components/ImageBackground";
-import Student from "../assets/img/Studying-rafiki.png";
+import Doctor from "../assets/img/Doctor.png";
 import Card from "../Components/Card";
 import HomeHook from "../hooks/HomeHook";
 import Spinner from "../shared/Spinner";
@@ -12,7 +12,7 @@ export default function HomePage() {
     <main className="container">
       {isLoading && <Spinner />}
       <Card items={courses} />
-      <ImageBackground imageSrc={Student} altText="collegeImg" />
+      <ImageBackground imageSrc={Doctor} altText="collegeImg" />
     </main>
   );
 }

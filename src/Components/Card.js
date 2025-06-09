@@ -2,10 +2,6 @@ import { Link } from "react-router-dom";
 import "./../style/Card.css";
 
 export default function Card({ items, loading }) {
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <section className="leftSection">
       {items.map((item) => (

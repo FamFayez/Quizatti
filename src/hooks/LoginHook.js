@@ -43,8 +43,10 @@ const LoginHook = () => {
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("user", JSON.stringify(res.data.data));
+        sessionStorage.setItem("userType", res.data.data.userType);
         setUser(res.data.data);
         setToken(res.data.token);
+        toastMsg(res.data.message, "success");
         navigate(HOME_URL);
       })
       .catch((err) => {
