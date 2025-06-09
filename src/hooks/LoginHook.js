@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postData } from "../axios/axiosHelper";
-import { HOME_URL, LOGIN_URL } from "../utils/constants";
+import { HOME_URL, LOGIN_API_URL } from "../utils/constants";
 import toastMsg from "../functions/toastMsg";
 import { useProvider } from "../app/AppContext";
 
@@ -39,7 +39,7 @@ const LoginHook = () => {
     event.preventDefault();
     setError(null);
     setIsLoading(true);
-    await postData(LOGIN_URL, formData, false)
+    await postData(LOGIN_API_URL, formData, false)
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
         sessionStorage.setItem("user", JSON.stringify(res.data.data));

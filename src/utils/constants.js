@@ -25,3 +25,4 @@ export const COURSE_URL = "/course";
 // Backend URLs
 export const LOGIN_API_URL = "/user/auth/login";
 export const COURSE_API_URL = "/course";
+export const QUIZ_API_URL = "/quiz";
