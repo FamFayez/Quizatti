@@ -1,116 +1,123 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomeTA from "./pages/homeTA/HomeTA.js";
-import MaterialTA from "./pages/materialTa/MaterialTA.js";
+import HomeTA from "./pages/HomeTA.js";
+import MaterialTA from "./pages/MaterialTA.js";
 import App from "./App";
-import HomeDr from "./pages/homeDoctor/HomeDR";
-import SectionTA from "./pages/section/SectionTA";
-import MaterialsDR from "./pages/materialsDoctor/MaterialsDR";
-import QuizDR from "./pages/Quiz/QuizDR";
-import ChaptersDR from "./pages/chapterDR/ChaptersDR";
-import Error from "./pages/notFound/Error";
-import QuizSetupPage from "./pages/createQuiz/QuizSetupPage.js";
-import Login from "./pages/login/Login.js";
-import SectionPage from "./pages/contentTA/SectionPage .js";
-import Content from "./pages/contentDR/Content.js";
-import TaskPage from "./pages/task/taskPage.js";
-import ChooseBook from "./pages/chooseBook/chooseBook.js";
-import Profile from "./pages/Profile/ProfilePage.js";
-import HomePage from "./pages/Home/HomePage";
-import QuizzesPage from "./pages/Quizzes/QuizzesPage.js";
-import QuizPage from "./pages/QuizP/QuizPage";
+import HomeDr from "./pages/HomeDR";
+import SectionTA from "./pages/SectionTA";
+import MaterialsDR from "./pages/MaterialsDR";
+import QuizDR from "./pages/QuizDR";
+import ChaptersDR from "./pages/ChaptersDR";
+import Error from "./pages/Error";
+import QuizSetupPage from "./pages/QuizSetupPage.js";
+import Login from "./pages/Login.js";
+import SectionPage from "./pages/SectionPage .js";
+import Content from "./pages/Content.js";
+import TaskPage from "./pages/TaskPage.js";
+import ChooseBook from "./pages/chooseBook.js";
+import Profile from "./pages/ProfilePage.js";
+import HomePage from "./pages/HomePage";
+import QuizzesPage from "./pages/QuizzesPage.js";
+import QuizPage from "./pages/QuizPage";
+import SubjPage from "./pages/SubjPage";
+import QuestionBankPage from "./pages/QuestionBankPage.js";
+import {
+  HOME_URL,
+  LOGIN_URL,
+  MATERIALS_DR_URL,
+  QUIZ_DR_URL,
+  QUESTION_BANK_URL,
+  CHAPTER_URL,
+  QUIZ_SETUP_URL,
+  CHOOSE_BOOK_URL,
+  MATERIAL_TA_URL,
+  SECTION_TA_URL,
+  CONTENT_URL,
+  TASK_URL,
+  SECTION_URL,
+  PROFILE_URL,
+  QUIZ_URL,
+  QUIZZES_URL,
+  COURSE_URL
+} from "./utils/constants";
 
-import SubjPage from "./pages/Subjects/SubjPage";
-import QuestionBankPage from "./pages/QuestionBank/QuestionBankPage.js";
 export const router = createBrowserRouter([
   {
-    path: "login",
-    element: <Login />,
+    path: LOGIN_URL,
+    element: <Login />
   },
 
   {
-    path: "/",
+    path: HOME_URL,
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <HomeDr />,
+        path: HOME_URL,
+        element: <HomePage />
       },
       {
-        path: "MaterialsDR",
-        element: <MaterialsDR />,
+        path: MATERIALS_DR_URL,
+        element: <MaterialsDR />
       },
       {
-        path: "QuizDR",
-        element: <QuizDR />,
+        path: QUIZ_DR_URL,
+        element: <QuizDR />
       },
       {
-        path: "/QuestionBank",
-        element: <QuestionBankPage />,
+        path: QUESTION_BANK_URL,
+        element: <QuestionBankPage />
       },
       {
-        path: "Chapter",
-        element: <ChaptersDR />,
+        path: CHAPTER_URL,
+        element: <ChaptersDR />
       },
       {
-        path: "QuizSetupPage",
-        element: <QuizSetupPage />,
-      },
-
-      {
-        path: "chooseBook",
-        element: <ChooseBook />,
-      },
-
-      {
-        path: "HomeTA",
-        element: <HomeTA />,
+        path: QUIZ_SETUP_URL,
+        element: <QuizSetupPage />
       },
       {
-        path: "MaterialTA",
-        element: <MaterialTA />,
+        path: CHOOSE_BOOK_URL,
+        element: <ChooseBook />
       },
       {
-        path: "SectionTA",
-        element: <SectionTA />,
+        path: MATERIAL_TA_URL,
+        element: <MaterialTA />
       },
       {
-        path: "Content",
-        element: <Content />,
+        path: SECTION_TA_URL,
+        element: <SectionTA />
       },
       {
-        path: "TaskPage",
-        element: <TaskPage />,
+        path: CONTENT_URL,
+        element: <Content />
       },
       {
-        path: "SectionPage",
-        element: <SectionPage />,
+        path: TASK_URL,
+        element: <TaskPage />
       },
       {
-        path: "Profile",
-        element: <Profile />,
-      },
-
-      {
-        path: "/Home",
-        element: <HomePage />,
-      },
-
-      {
-        path: "/Quiz",
-        element: <QuizPage />,
+        path: SECTION_URL,
+        element: <SectionPage />
       },
       {
-        path: "/quizzes",
-        element: <QuizzesPage />,
+        path: PROFILE_URL,
+        element: <Profile />
       },
       {
-        path: "/Subject/:id",
-        element: <SubjPage />,
+        path: QUIZ_URL,
+        element: <QuizPage />
+      },
+      {
+        path: QUIZZES_URL,
+        element: <QuizzesPage />
+      },
+      {
+        path: `${COURSE_URL}/:id`,
+        element: <SubjPage />
       },
       {
         path: "*",
-        element: <Error />,
-      },
-    ],
-  },
+        element: <Error />
+      }
+    ]
+  }
 ]);
