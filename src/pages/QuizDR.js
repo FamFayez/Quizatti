@@ -1,5 +1,5 @@
 import { Quiz } from "../core/data/Quiz";
-import quiz from "../../assets/img/quiz.png";
+import quiz from "../assets/img/quiz.png";
 import Card from "../Components/Card";
 import ImageBackground from "../Components/ImageBackground";
 

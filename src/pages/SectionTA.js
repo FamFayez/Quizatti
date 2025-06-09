@@ -1,9 +1,9 @@
-import upload from "../../assets/img/upload.png";
+import upload from "../assets/img/upload.png";
 import ImageBackground from "../Components/ImageBackground";
-import "../../style/Container.css";
+import "../style/Container.css";
 import { UploadTA } from "../core/data/UploadTA";
 import Button from "../Components/Button";
-import "../../style/Button.css";
+import "../style/Button.css";
 
 const SectionTA = () => {
   return (

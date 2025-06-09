@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../../style/Container.css";
-import "../../style/taskPage.css";
-import taskImage from "../../assets/img/task.png";
+import "../style/Container.css";
+import "../style/taskPage.css";
+import taskImage from "../assets/img/task.png";
 import ImageBackground from "../Components/ImageBackground";
 import taskData from "../core/data/taskData";
 import TaskList from "../Components/TaskList";

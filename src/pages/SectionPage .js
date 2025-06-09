@@ -1,7 +1,7 @@
 import { useState } from "react";
 import lecturesData from "../core/data/lecturesData";
-import "../../style/sectionPage.css";
-import content from "../../assets/img/content.png";
+import "../style/SectionPage.css";
+import content from "../assets/img/content.png";
 import ImageBackground from "../Components/ImageBackground";
 import LectureList from "../Components/LectureList";
 import { ToastContainer, toast } from "react-toastify";

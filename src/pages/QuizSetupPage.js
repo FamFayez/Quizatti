@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../style/quiz.css";
+import "../style/quiz.css";
 
 const QuizSetipPage = () => {
   const [numQuestions, setNumQuestions] = useState("");
@@ -10,7 +10,7 @@ const QuizSetipPage = () => {
   const [difficultyCounts, setDifficultyCounts] = useState({
     easy: "",
     medium: "",
-    hard: "",
+    hard: ""
   });
   const [submittedData, setSubmittedData] = useState(null);
   const [error, setError] = useState("");
@@ -30,7 +30,7 @@ const QuizSetipPage = () => {
     const { name, value } = e.target;
     setDifficultyCounts((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -67,7 +67,7 @@ const QuizSetipPage = () => {
       selectedChapters,
       time,
       grade,
-      difficultyCounts,
+      difficultyCounts
     });
   };
 

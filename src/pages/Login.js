@@ -1,18 +1,21 @@
-import React, { useState } from "react"; 
-import "../../style/login.css";
-import avatar from "../../assets/img/avatar.png";
-import wave from "../../assets/img/wave.png";
-import educationImg from "../../assets/img/Education.png";
+import React, { useState } from "react";
+import "../style/login.css";
+import avatar from "../assets/img/avatar.png";
+import wave from "../assets/img/wave.png";
+import educationImg from "../assets/img/Education.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { postData } from "../axios/axiosHelper";
+import { HOME_URL, LOGIN_URL } from "../utils/constants";
+import toastMsg from "../functions/toastMsg";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const [focusedInputs, setFocusedInputs] = useState({
     email: false,
-    password: false,
+    password: false
   });
 
   const [formData, setFormData] = useState({
@@ -33,54 +36,44 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     setError(null);
-
-    try {
-      const response = await fetch("https://api.quizatty.com/api/v1/user/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+    await postData(LOGIN_URL, formData, false)
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("user", JSON.stringify(res.data.data));
+        navigate(HOME_URL);
+      })
+      .catch((err) => {
+        toastMsg(err.response.data.message);
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Login failed");
-      }
-
-      // Save token in localStorage or context
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("user", JSON.stringify(result.data));
-
-      // Navigate to home page or dashboard
-      navigate("/");
-
-    } catch (err) {
-      setError(err.message);
-    }
   };
 
   return (
+    // Main login page container
     <div className="login-page">
+      {/* Wave background image */}
       <img className="wave" src={wave} alt="Wave" />
       <div className="container">
+        {/* Left side education image */}
         <div className="img">
           <img src={educationImg} alt="Education" />
         </div>
+        {/* Right side login form content */}
         <div className="login-content">
           <form onSubmit={handleLogin}>
+            {/* Avatar and welcome message */}
             <img src={avatar} alt="Avatar" />
             <h2 className="title">Welcome</h2>
-
-            {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
-
+            {/* Error message display */}
+            {error && (
+              <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+            )}
+            {/* Email input field */}
             <div
               className={`input-div one ${focusedInputs.email ? "focus" : ""}`}
             >
@@ -101,9 +94,11 @@ const Login = () => {
                 />
               </div>
             </div>
-
+            {/* Password input field */}
             <div
-              className={`input-div pass ${focusedInputs.password ? "focus" : ""}`}
+              className={`input-div pass ${
+                focusedInputs.password ? "focus" : ""
+              }`}
             >
               <div className="i">
                 <FontAwesomeIcon icon={faLock} />
@@ -122,7 +117,7 @@ const Login = () => {
                 />
               </div>
             </div>
-
+            {/* Login button */}
             <input type="submit" className="btn" value="Login" />
           </form>
         </div>

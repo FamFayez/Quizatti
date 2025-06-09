@@ -1,9 +1,9 @@
 import { useState } from "react";
 import sectionData from "../core/data/sectionData";
-import "../../style/content.css";
+import "../style/content.css";
 import ImageBackground from "../Components/ImageBackground";
-import Learning from "../../assets/img/Learning.png";
-import "../../style/Container.css";
+import Learning from "../assets/img/Learning.png";
+import "../style/Container.css";
 import SectionTask from "../Components/sectionTask";
 import UploadFile from "../Components/UploadFile";
 import { ToastContainer, toast } from "react-toastify";

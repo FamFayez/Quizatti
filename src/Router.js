@@ -1,30 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomeTA from "./pages/homeTA/HomeTA.js";
-import MaterialTA from "./pages/materialTa/MaterialTA.js";
+import HomeTA from "./pages/HomeTA.js";
+import MaterialTA from "./pages/MaterialTA.js";
 import App from "./App";
-import HomeDr from "./pages/homeDoctor/HomeDR";
-import SectionTA from "./pages/section/SectionTA";
-import MaterialsDR from "./pages/materialsDoctor/MaterialsDR";
-import QuizDR from "./pages/Quiz/QuizDR";
-import ChaptersDR from "./pages/chapterDR/ChaptersDR";
-import Error from "./pages/notFound/Error";
-import QuizSetupPage from "./pages/createQuiz/QuizSetupPage.js";
-import Login from "./pages/login/Login.js";
-import SectionPage from "./pages/contentTA/SectionPage .js";
-import Content from "./pages/contentDR/Content.js";
-import TaskPage from "./pages/task/taskPage.js";
-import ChooseBook from "./pages/chooseBook/chooseBook.js";
-import Profile from "./pages/Profile/ProfilePage.js";
-import HomePage from "./pages/Home/HomePage";
-import QuizzesPage from "./pages/Quizzes/QuizzesPage.js";
-import QuizPage from "./pages/QuizP/QuizPage";
-
-import SubjPage from "./pages/Subjects/SubjPage";
-import QuestionBankPage from "./pages/QuestionBank/QuestionBankPage.js";
+import HomeDr from "./pages/HomeDR";
+import SectionTA from "./pages/SectionTA";
+import MaterialsDR from "./pages/MaterialsDR";
+import QuizDR from "./pages/QuizDR";
+import ChaptersDR from "./pages/ChaptersDR";
+import Error from "./pages/Error";
+import QuizSetupPage from "./pages/QuizSetupPage.js";
+import Login from "./pages/Login.js";
+import SectionPage from "./pages/SectionPage .js";
+import Content from "./pages/Content.js";
+import TaskPage from "./pages/TaskPage.js";
+import ChooseBook from "./pages/chooseBook.js";
+import Profile from "./pages/ProfilePage.js";
+import HomePage from "./pages/HomePage";
+import QuizzesPage from "./pages/QuizzesPage.js";
+import QuizPage from "./pages/QuizPage";
+import SubjPage from "./pages/SubjPage";
+import QuestionBankPage from "./pages/QuestionBankPage.js";
 export const router = createBrowserRouter([
   {
     path: "login",
-    element: <Login />,
+    element: <Login />
   },
 
   {
@@ -33,84 +32,84 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomeDr />,
+        element: <HomeDr />
       },
       {
         path: "MaterialsDR",
-        element: <MaterialsDR />,
+        element: <MaterialsDR />
       },
       {
         path: "QuizDR",
-        element: <QuizDR />,
+        element: <QuizDR />
       },
       {
         path: "/QuestionBank",
-        element: <QuestionBankPage />,
+        element: <QuestionBankPage />
       },
       {
         path: "Chapter",
-        element: <ChaptersDR />,
+        element: <ChaptersDR />
       },
       {
         path: "QuizSetupPage",
-        element: <QuizSetupPage />,
+        element: <QuizSetupPage />
       },
 
       {
         path: "chooseBook",
-        element: <ChooseBook />,
+        element: <ChooseBook />
       },
 
       {
         path: "HomeTA",
-        element: <HomeTA />,
+        element: <HomeTA />
       },
       {
         path: "MaterialTA",
-        element: <MaterialTA />,
+        element: <MaterialTA />
       },
       {
         path: "SectionTA",
-        element: <SectionTA />,
+        element: <SectionTA />
       },
       {
         path: "Content",
-        element: <Content />,
+        element: <Content />
       },
       {
         path: "TaskPage",
-        element: <TaskPage />,
+        element: <TaskPage />
       },
       {
         path: "SectionPage",
-        element: <SectionPage />,
+        element: <SectionPage />
       },
       {
         path: "Profile",
-        element: <Profile />,
+        element: <Profile />
       },
 
       {
         path: "/Home",
-        element: <HomePage />,
+        element: <HomePage />
       },
 
       {
         path: "/Quiz",
-        element: <QuizPage />,
+        element: <QuizPage />
       },
       {
         path: "/quizzes",
-        element: <QuizzesPage />,
+        element: <QuizzesPage />
       },
       {
         path: "/Subject/:id",
-        element: <SubjPage />,
+        element: <SubjPage />
       },
       {
         path: "*",
-        element: <Error />,
-      },
-    ],
-  },
+        element: <Error />
+      }
+    ]
+  }
 ]);
