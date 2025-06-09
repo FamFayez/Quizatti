@@ -8,3 +8,4 @@ export const HOME_URL = "/Home";
 
 // Backend URLs
 export const LOGIN_URL = "/user/auth/login";
+export const COURSE_URL = "/course";
