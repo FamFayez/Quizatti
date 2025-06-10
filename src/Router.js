@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomeTA from "./pages/HomeTA.js";
 import MaterialTA from "./pages/MaterialTA.js";
 import App from "./App";
-import HomeDr from "./pages/HomeDR";
 import SectionTA from "./pages/SectionTA";
 import MaterialsDR from "./pages/MaterialsDR";
 import QuizDR from "./pages/QuizDR";
