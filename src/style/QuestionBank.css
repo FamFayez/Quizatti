@@ -13,6 +13,7 @@
 .question-bank-table {
   width: 100%;
   border-collapse: collapse;
+  background-color: white; /* Make the whole table white */
 }
 
 .question-bank-table th,
@@ -20,6 +21,7 @@
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
+  background-color: white; /* Ensure cells have white background */
 }
 
 .question-bank-table th {
@@ -28,11 +30,11 @@
 }
 
 .question-bank-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* Make even rows white */
 }
 
 .question-bank-table tr:hover {
-  background-color: #eee;
+  background-color: #eee; /* Slight hover effect */
 }
 
 .delete-btn {
