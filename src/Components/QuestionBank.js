@@ -37,7 +37,43 @@ const QuestionBank = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateForm = () => {
+    const { question, answerA, answerB, answerC, answerD, correctAnswer, chapterNo } = formData;
+
+    if (!question.trim()) {
+      toastMsg("Question text is required.", "error");
+      return false;
+    }
+
+    const options = [answerA, answerB, answerC, answerD];
+    const filledOptions = options.filter((opt) => opt.trim() !== "");
+    if (filledOptions.length < 2) {
+      toastMsg("At least two options must be provided.", "error");
+      return false;
+    }
+
+    const validCorrectAnswers = ["answerA", "answerB", "answerC", "answerD"];
+    if (!validCorrectAnswers.includes(correctAnswer)) {
+      toastMsg("Correct answer must be one of: answerA, answerB, answerC, or answerD.", "error");
+      return false;
+    }
+
+    if (!formData[correctAnswer].trim()) {
+      toastMsg(`Correct answer (${correctAnswer}) is empty.`, "error");
+      return false;
+    }
+
+    if (!chapterNo.trim() || isNaN(chapterNo) || parseInt(chapterNo) <= 0) {
+      toastMsg("Chapter number must be a positive number.", "error");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleAddQuestion = async () => {
+    if (!validateForm()) return;
+
     try {
       const dataToSend = {
         ...formData,
@@ -49,7 +85,7 @@ const QuestionBank = () => {
       toastMsg("Question added successfully!", "success");
       window.location.reload();
     } catch (err) {
-      toastMsg(err.response?.data?.message || "Error adding question");
+      toastMsg(err.response?.data?.message || "Error adding question", "error");
     }
   };
 
@@ -61,7 +97,7 @@ const QuestionBank = () => {
         toastMsg("Question deleted successfully!", "success");
         window.location.reload();
       } catch (err) {
-        toastMsg(err.response?.data?.message || "Error deleting question");
+        toastMsg(err.response?.data?.message || "Error deleting question", "error");
       }
     }
   };
@@ -80,13 +116,24 @@ const QuestionBank = () => {
           <input name="answerB" placeholder="Option B" onChange={handleInputChange} />
           <input name="answerC" placeholder="Option C" onChange={handleInputChange} />
           <input name="answerD" placeholder="Option D" onChange={handleInputChange} />
-          <input name="correctAnswer" placeholder="Correct Answer (e.g. answerB)" onChange={handleInputChange} />
+
+          {/* ✅ Dropdown for correct answer */}
+          <select name="correctAnswer" value={formData.correctAnswer} onChange={handleInputChange}>
+            <option value="">Select Correct Answer</option>
+            <option value="answerA">Option A</option>
+            <option value="answerB">Option B</option>
+            <option value="answerC">Option C</option>
+            <option value="answerD">Option D</option>
+          </select>
+
           <input name="chapterNo" placeholder="Chapter Number" onChange={handleInputChange} />
+
           <select name="difficultyLevel" onChange={handleInputChange} value={formData.difficultyLevel}>
             <option value="1">Easy</option>
             <option value="2">Medium</option>
             <option value="3">Hard</option>
           </select>
+
           <button onClick={handleAddQuestion}>OK</button>
         </div>
       )}
@@ -104,7 +151,7 @@ const QuestionBank = () => {
               <th>Option D</th>
               <th>Answer</th>
               <th>Chapter</th>
-              <th>Level</th>
+              <th>Difficulty</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -134,3 +181,4 @@ const QuestionBank = () => {
 };
 
 export default QuestionBank;
+
