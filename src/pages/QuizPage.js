@@ -73,6 +73,9 @@ export default function QuizPage() {
           <p>Your Score: {((getScore() / quesdata.length) * 100).toFixed(2)}%</p>
         </div>
       )}
+      
     </div>
+
+
   );
 }
