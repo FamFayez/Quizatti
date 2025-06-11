@@ -8,8 +8,8 @@ import ChaptersDR from "./pages/ChaptersDR";
 import Error from "./pages/Error";
 import QuizSetupPage from "./pages/QuizSetupPage.js";
 import Login from "./pages/Login.js";
-import SectionPage from "./pages/SectionPage .js";
-import Content from "./pages/Content.js";
+import SectionPage from "./pages/SectionPage.js";
+import Content from "./pages/ContentPage.js"
 import TaskPage from "./pages/TaskPage.js";
 import ChooseBook from "./pages/chooseBook.js";
 import Profile from "./pages/ProfilePage.js";

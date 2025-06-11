@@ -45,10 +45,10 @@ const QuestionBank = () => {
       return false;
     }
 
+    // ✅ Require all 4 options to be filled
     const options = [answerA, answerB, answerC, answerD];
-    const filledOptions = options.filter((opt) => opt.trim() !== "");
-    if (filledOptions.length < 2) {
-      toastMsg("At least two options must be provided.", "error");
+    if (options.some((opt) => opt.trim() === "")) {
+      toastMsg("All four options (A, B, C, and D) must be filled.", "error");
       return false;
     }
 
@@ -83,7 +83,7 @@ const QuestionBank = () => {
 
       await postData(QUESTION_Bank_API_URL, dataToSend);
       toastMsg("Question added successfully!", "success");
-      window.location.reload();
+      window.location.reload(); // You may replace this with refetch logic if available
     } catch (err) {
       toastMsg(err.response?.data?.message || "Error adding question", "error");
     }
@@ -95,7 +95,7 @@ const QuestionBank = () => {
       try {
         await deleteDataToken(`${QUESTION_Bank_API_URL}/${id}`);
         toastMsg("Question deleted successfully!", "success");
-        window.location.reload();
+        window.location.reload(); // Same here: replace with refetch if needed
       } catch (err) {
         toastMsg(err.response?.data?.message || "Error deleting question", "error");
       }
@@ -117,7 +117,6 @@ const QuestionBank = () => {
           <input name="answerC" placeholder="Option C" onChange={handleInputChange} />
           <input name="answerD" placeholder="Option D" onChange={handleInputChange} />
 
-          {/* ✅ Dropdown for correct answer */}
           <select name="correctAnswer" value={formData.correctAnswer} onChange={handleInputChange}>
             <option value="">Select Correct Answer</option>
             <option value="answerA">Option A</option>
@@ -181,4 +180,3 @@ const QuestionBank = () => {
 };
 
 export default QuestionBank;
-
