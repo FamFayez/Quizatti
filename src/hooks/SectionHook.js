@@ -10,19 +10,14 @@ const SectionHook = () => {
   useEffect(() => {
     setIsLoading(true);
     getData(Section_API_URL)
-      .then((res) => {
-        setSecslides(res.data.data);
-      })
-      .catch((err) => {
-        toastMsg(err.response?.data?.message || "Failed to fetch slides", "error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .then((res) => setSecslides(res.data.data))
+      .catch((err) =>
+        toastMsg(err.response?.data?.message || "Failed to fetch slides", "error")
+      )
+      .finally(() => setIsLoading(false));
   }, []);
 
   return { secslides, isLoading };
 };
 
 export default SectionHook;
-

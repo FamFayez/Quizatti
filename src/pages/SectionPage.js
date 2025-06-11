@@ -7,38 +7,34 @@ import SectionTask from "../Components/sectionTask";
 import Learning from "../assets/img/Learning.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ContentHook from "../hooks/ContentHook";
+import SectionHook from "../hooks/SectionHook";
 
-// 🧠 Get user role (doctor, assistant, student)
-const userRole = localStorage.getItem("role") || "student";
+const userRole = localStorage.getItem("role") || "student"; // 'assistant', 'doctor', or 'student'
 
 const SectionPage = () => {
-  const { secslides, isLoading } = ContentHook();
+  const { secslides, isLoading } = SectionHook();
   const [lectures, setLectures] = useState([]);
 
   useEffect(() => {
     setLectures(secslides);
   }, [secslides]);
 
-  // 🧽 DELETE only if assistant
   const handleDelete = (lectureId) => {
     if (userRole !== "assistant") return;
     // TODO: Call DELETE API
-    setLectures((prev) => prev.filter((lec) => lec.id !== lectureId));
+    setLectures((prev) => prev.filter((lec) => lec._id !== lectureId));
     toast.info("File removed successfully!");
   };
 
-  // ✏️ UPDATE only if assistant
   const handleUpdate = (lectureId, updatedLecture) => {
     if (userRole !== "assistant") return;
     // TODO: Call PUT/PATCH API
     setLectures((prev) =>
-      prev.map((lec) => (lec.id === lectureId ? updatedLecture : lec))
+      prev.map((lec) => (lec._id === lectureId ? updatedLecture : lec))
     );
     toast.success("Lecture updated successfully!");
   };
 
-  // 📤 UPLOAD only if assistant
   const handleUpload = (newLecture) => {
     if (userRole !== "assistant") return;
     // TODO: Call POST API
@@ -48,7 +44,7 @@ const SectionPage = () => {
 
   const handleRemoveAll = () => {
     if (userRole !== "assistant") return;
-    // TODO: Call bulk DELETE API if available
+    // TODO: Bulk delete API if available
     setLectures([]);
     toast.info("All files removed successfully!");
   };
@@ -72,7 +68,6 @@ const SectionPage = () => {
 
       <div className="right-section">
         <ImageBackground imageSrc={Learning} altText="Learning" />
-
         {userRole === "assistant" && (
           <>
             <UploadFile showNote={true} onFileUpload={handleUpload} />

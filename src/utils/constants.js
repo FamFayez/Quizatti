@@ -4,8 +4,9 @@ export const token = sessionStorage.getItem("token");
 export const userData = JSON.parse(sessionStorage.getItem("user"));
 
 // Frontend URLs
+
 export const HOME_URL = "/";
-export const LOGIN_URL = "/login";
+export const LOGIN_URL = "/Login";
 export const MATERIALS_DR_URL = "/materials-teacher";
 export const MATERIAL_TA_URL = "/material-assistant";
 export const QUESTION_BANK_URL = "/question-bank";
@@ -28,4 +29,5 @@ export const COURSE_API_URL = "/course";
 export const QUIZ_API_URL = "/quiz";
 export const QUESTION_Bank_API_URL ="/question";
 export const Content_API_URL="/slide/:courseId/lectures";
-export const Section_API_URL="/slide/:courseId/sections"
+export const Section_API_URL="/slide/:courseId/sections";
+

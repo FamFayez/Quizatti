@@ -4,7 +4,7 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
   return (
     <>
       {lectures.map((lecture, index) => (
-        <article className="section-block" key={index}>
+        <article className="section-block" key={lecture._id || index}>
           <div className="lecture-block">
             <h2>
               {lecture.file ? (
@@ -17,10 +17,10 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
                   >
                     📄 {lecture.title}
                   </a>
-                  {userRole === "doctor" && (
+                  {userRole === "assistant" && (
                     <button
                       className="delete-btn"
-                      onClick={() => onDelete(index, "file")}
+                      onClick={() => onDelete(lecture._id)}
                     >
                       🗑 Remove File
                     </button>
@@ -31,7 +31,7 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
               )}
             </h2>
 
-            {userRole === "doctor" && (
+            {userRole === "assistant" && (
               <EditableLectureItem
                 index={index}
                 lecture={lecture}
@@ -43,21 +43,7 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
           </div>
 
           <div className="task-block">
-            {lecture.note ? (
-              <>
-                <p>{lecture.note}</p>
-                {/* {userRole === "doctor" && (
-                  <button
-                    className="delete-btn"
-                    onClick={() => onDelete(index, "note")}
-                  >
-                    🗑 Remove Note
-                  </button>
-                )} */}
-              </>
-            ) : (
-              <p></p>
-            )}
+            {lecture.note && <p>{lecture.note}</p>}
           </div>
         </article>
       ))}
