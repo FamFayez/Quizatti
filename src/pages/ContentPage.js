@@ -1,3 +1,4 @@
+import "../style/SectionPage.css";import { useParams } from "react-router-dom";
 import "../style/SectionPage.css";
 import content from "../assets/img/content.png";
 import ImageBackground from "../Components/ImageBackground";
@@ -5,15 +6,15 @@ import ContentListComponent from "../Components/ContentListComponent";
 import UploadFile from "../Components/UploadFile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ContentHook from "../hooks/ContentHook";
 import { deleteDataToken, postData } from "../axios/axiosHelper";
+import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
 
-// Get user role
-const userRole = localStorage.getItem("role") || "student"; // assistant | teacher | student
+const userRole = localStorage.getItem("role") || "student";
 
 const Content = () => {
-  const { lectures, isLoading } = ContentHook();
+  const { courseId } = useParams();
+  const { lectures, isLoading } = ContentHook(courseId);
 
   const handleDelete = async (lectureId) => {
     if (userRole !== "assistant") return;
@@ -24,7 +25,7 @@ const Content = () => {
     try {
       await deleteDataToken(`${Content_API_URL}/${lectureId}`);
       toast.success("Lecture deleted successfully.");
-      window.location.reload(); // Optional: You can refetch instead
+      window.location.reload();
     } catch (err) {
       toast.error(err.response?.data?.message || "Error deleting lecture.");
     }
@@ -34,9 +35,9 @@ const Content = () => {
     if (userRole !== "assistant") return;
 
     try {
-      await postData(Content_API_URL, newLecture);
+      await postData(`${Content_API_URL}?courseId=${courseId}`, newLecture);
       toast.success(`Lecture "${newLecture.title}" uploaded successfully!`);
-      window.location.reload(); // Optional
+      window.location.reload();
     } catch (err) {
       toast.error(err.response?.data?.message || "Error uploading lecture.");
     }

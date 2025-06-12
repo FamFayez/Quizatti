@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import "./../style/Card.css";
 import { COURSE_URL } from "../utils/constants";
 
-export default function Card({ items, loading }) {
+export default function Card({ items }) {
   return (
     <section className="leftSection">
       {items.map((item) => (
         <Link
-          to={`${COURSE_URL}/${item.id}`}
+          to={`${COURSE_URL}/${item.id}/content`}
           key={item.id}
           className="card-link"
         >
