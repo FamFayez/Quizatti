@@ -149,13 +149,13 @@
   display: block;
   text-align: right;
   text-decoration: none;
-  color: #999;
+  color: #f9f7f7;
   font-size: 0.9rem;
   transition: 0.3s;
 }
 
 .login-page a:hover {
-  color: #1e90ff;
+  color: #93c4f6;
 }
 
 .login-page .btn {

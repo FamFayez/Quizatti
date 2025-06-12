@@ -1,3 +1,4 @@
+// src/pages/Login.js
 import React from "react";
 import "../style/login.css";
 import avatar from "../assets/img/avatar.png";
@@ -7,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../shared/Spinner";
 import LoginHook from "../hooks/LoginHook";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -22,36 +24,20 @@ const Login = () => {
 
   return (
     <>
-      {/* Loading */}
       {isLoading && <Spinner />}
-      {/* Main login page container */}
       <div className="login-page">
-        {/* Wave background image */}
         <img className="wave" src={wave} alt="Wave" />
         <div className="container">
-          {/* Left side education image */}
           <div className="img">
             <img src={educationImg} alt="Education" />
           </div>
-          {/* Right side login form content */}
           <div className="login-content">
             <form onSubmit={handleLogin}>
-              {/* Avatar and welcome message */}
               <img src={avatar} alt="Avatar" />
               <h2 className="title">Welcome</h2>
-              {/* Error message display */}
-              {error && (
-                <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-              )}
-              {/* Email input field */}
-              <div
-                className={`input-div one ${
-                  focusedInputs.email ? "focus" : ""
-                }`}
-              >
-                <div className="i">
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
+              {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+              <div className={`input-div one ${focusedInputs.email ? "focus" : ""}`}>
+                <div className="i"><FontAwesomeIcon icon={faUser} /></div>
                 <div className="div">
                   <h5>Email</h5>
                   <input
@@ -66,15 +52,8 @@ const Login = () => {
                   />
                 </div>
               </div>
-              {/* Password input field */}
-              <div
-                className={`input-div pass ${
-                  focusedInputs.password ? "focus" : ""
-                }`}
-              >
-                <div className="i">
-                  <FontAwesomeIcon icon={faLock} />
-                </div>
+              <div className={`input-div pass ${focusedInputs.password ? "focus" : ""}`}>
+                <div className="i"><FontAwesomeIcon icon={faLock} /></div>
                 <div className="div">
                   <h5>Password</h5>
                   <input
@@ -89,8 +68,10 @@ const Login = () => {
                   />
                 </div>
               </div>
-              {/* Login button */}
               <input type="submit" className="btn" value="Login" />
+              <div className="forgot-link">
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </div>
             </form>
           </div>
         </div>

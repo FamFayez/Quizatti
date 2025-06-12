@@ -22,6 +22,9 @@ export const QUIZ_DR_URL = "/quiz-teacher";
 export const QUIZ_URL = "/quiz";
 export const QUIZZES_URL = "/quizzes";
 export const COURSE_URL = "/course";
+export const FORGOT_PASSWORD_URL = "/forgot-password";
+export const RESET_PASSWORD_URL = "/reset-password/:token"; // dynamic token param
+
 
 // Backend URLs
 export const LOGIN_API_URL = "/user/auth/login";
