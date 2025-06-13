@@ -57,6 +57,9 @@ export const router = createBrowserRouter([
     path: RESET_PASSWORD_URL, // e.g., "/reset-password/:token"
     element: <ResetPassword />
   },
+  { path: QUIZ_URL,
+     element: <QuizPage /> 
+    },
   {
     path: HOME_URL,
     element: <App />,
@@ -78,7 +81,7 @@ export const router = createBrowserRouter([
       { path: SECTION_TA_URL, element: <SectionTA /> },
       { path: PROFILE_URL, element: <Profile /> },
       { path: TASK_URL, element: <TaskPage /> },
-      { path: QUIZ_URL, element: <QuizPage /> },
+      
       { path: SECTION_URL, element: <SectionPage /> },
       { path: CONTENT_URL, element: <Content /> },
       { path: QUIZZES_URL, element: <QuizzesPage /> },
