@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
       { path: MATERIAL_TA_URL, element: <MaterialTA /> },
       { path: SECTION_TA_URL, element: <SectionTA /> },
       { path: `${COURSE_URL}/:courseId/content`, element: <Content /> },
-      { path: `${COURSE_URL}/:courseId/task`, element: <TaskPage /> },
+      { path: TASK_URL, element: <TaskPage /> },
       { path: `${COURSE_URL}/:courseId/section`, element: <SectionPage /> },
       { path: PROFILE_URL, element: <Profile /> },
       { path: QUIZ_URL, element: <QuizPage /> },
