@@ -1,135 +1,84 @@
-// import { useState } from "react";
-
-// const UploadFile = ({ onFileUpload, showNote = true }) => {
-//   const [title, setTitle] = useState("");
-//   const [file, setFile] = useState(null);
-//   const [note, setNote] = useState("");
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (!title || !file) return alert("Title and file are required.");
-
-//     const newLecture = {
-//       title,
-//       file: URL.createObjectURL(file),
-//       note: showNote ? note : "",
-//     };
-
-//     onFileUpload(newLecture);
-
-//     setTitle("");
-//     setFile(null);
-//     setNote("");
-
-//     // Optionally clear file input manually (if needed)
-//     e.target.reset?.();
-//   };
-
-//   return (
-//     <form className="upload-form" onSubmit={handleSubmit}>
-//       <div>
-//         <input
-//           type="text"
-//           placeholder="Enter lecture title"
-//           value={title}
-//           onChange={(e) => setTitle(e.target.value)}
-//           required
-//         />
-//       </div>
-//       <div>
-//         <input
-//           type="file"
-//           accept=".pdf,.ppt,.pptx,.doc,.docx"
-//           onChange={(e) => {
-//             const selectedFile = e.target.files[0];
-//             if (selectedFile) {
-//               setFile(selectedFile);
-//               const fileName = selectedFile.name.replace(/\.[^/.]+$/, ""); // Remove extension
-//               setTitle(fileName); // Auto-fill title with file name
-//             }
-//           }}
-//           required
-//         />
-//       </div>
-//       {/* {showNote && (
-//         <div>
-//           <input
-//             type="text"
-//             placeholder="Optional note"
-//             value={note}
-//             onChange={(e) => setNote(e.target.value)}
-//           />
-//         </div>
-//       )} */}
-//       <button type="submit">Upload Lecture</button>
-//     </form>
-//   );
-// };
-
-// export default UploadFile;
 import { useState } from "react";
+import "../style/UploadLecture.css"; // Create or update your CSS file as needed
+import { toast } from "react-toastify";
 
-const UploadFile = ({ onFileUpload, showNote = true }) => {
+const UploadFile = ({ onFileUpload }) => {
+  const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [chapterNo, setChapterNo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !file) return alert("Title and file are required.");
 
-    // Send actual File object
+    if (!title || !file) {
+      toast.error("Please provide both title and file.");
+      return;
+    }
+
     onFileUpload({
       title,
-      chapterNo: showNote ? chapterNo : "", // optional note/description
+      chapterNo,
       file,
     });
 
-    // Reset fields
+    toast.success("Lecture added successfully!");
     setTitle("");
     setFile(null);
     setChapterNo("");
-    e.target.reset?.(); // Reset file input if needed
+    setShowForm(false);
   };
 
   return (
-    <form className="upload-form" onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter lecture title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type="file"
-          accept=".pdf,.ppt,.pptx,.doc,.docx"
-          onChange={(e) => {
-            const selectedFile = e.target.files[0];
-            if (selectedFile) {
-              setFile(selectedFile);
-              const fileName = selectedFile.name.replace(/.[^/.]+$/, "");
-              if (!title) setTitle(fileName); // Auto-fill title if empty
-            }
-          }}
-          required
-        />
-      </div>
-      {showNote && (
-        <div>
+    <div className="upload-container">
+      {!showForm ? (
+        <button className="upload-toggle-btn" onClick={() => setShowForm(true)}>
+          📤 Upload Lecture
+        </button>
+      ) : (
+        <form className="upload-form" onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Chapter Number / Note"
+            placeholder="Lecture title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+
+          <input
+            type="file"
+            accept=".pdf,.ppt,.pptx,.doc,.docx"
+            onChange={(e) => {
+              const selectedFile = e.target.files[0];
+              if (selectedFile) {
+                setFile(selectedFile);
+                const fileName = selectedFile.name.replace(/\.[^/.]+$/, "");
+                if (!title) setTitle(fileName);
+              }
+            }}
+            required
+          />
+
+          <input
+            type="text"
+            placeholder="Chapter Number (optional)"
             value={chapterNo}
             onChange={(e) => setChapterNo(e.target.value)}
           />
-        </div>
+
+          <div className="form-actions">
+            <button type="submit" className="ok-btn">OK</button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={() => setShowForm(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       )}
-      <button type="submit">Upload Lecture</button>
-    </form>
+    </div>
   );
 };
 

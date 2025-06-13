@@ -1,33 +1,98 @@
 body {
-  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+  background: linear-gradient(to right, #3931af, #00c6ff);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 0 80px;
-    gap: 20px;
-    min-height: 75vh;
-    flex-wrap: wrap; 
-  }
-  
-  .upload-form {
-    margin-top: 20px;
-  }
-  
-  .upload-form input[type="file"] {
-    margin: 10px 0;
-  }
-  
-.link {
-  display: contents;
+.content-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 per row */
+  gap: 24px;
+  padding: 20px;
+  justify-items: center;
+  flex-direction: row;
 }
-  
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
+
+
+.content-card {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;             /* Take full grid column width */
+  max-width: 300px;        /* Limit size */
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  border-left: 7px solid rgb(8, 187, 236);
+}
+
+
+.content-card:hover {
+  transform: translateY(-5px);
+}
+
+.content-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.content-meta {
+  color: #555;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.content-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.view-link {
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+}
+
+.edit-btn {
+  background-color: #007bff;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #a71d2a;
+}
+
+.no-file {
+  color: #888;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .content-card {
+    width: 90%;
   }
-  
+}

@@ -11,7 +11,7 @@
 }
 
 /* === Task Item Section === */
-.section-block {
+/* .section-block {
   background-color: #f9f9f9;
   border-left: 5px solid #007bff;
   padding: 25px;
@@ -19,7 +19,7 @@
   border-radius: 8px;
   transition: background-color 0.3s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+} */
 
 .section-block:hover {
   background-color: #f1f1f1;

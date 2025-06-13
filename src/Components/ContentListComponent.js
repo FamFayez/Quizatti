@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import EditModal from "./EditModal";
+import "../style/Container.css"; // <-- New CSS for professional styles
 
-const ContentListComponent = ({
-  contentItems,
-  userRole,
-  onRemoveFile,
-  onUpdate
-}) => {
+const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -22,42 +18,42 @@ const ContentListComponent = ({
         ...updatedData
       };
       onUpdate(selectedItem.index, updatedItem);
+      setIsModalOpen(false);
     }
   };
 
   return (
     <div className="content-list">
       {contentItems.map((item, index) => (
-        <div className="section-block" key={item._id || index}>
-          <h2>{item.name}</h2>
-          <p>Chapter: {item.chapterNo}</p>
-          <p>Uploaded: {new Date(item.createdAt).toLocaleDateString()}</p>
+        <div className="content-card" key={item._id || index}>
+          <h2 className="content-title">{item.name}</h2>
+          <p className="content-meta">📘 Chapter: {item.chapterNo}</p>
+          <p className="content-meta">📅 Uploaded: {new Date(item.createdAt).toLocaleDateString()}</p>
 
           {item.file ? (
-            <div>
-              <a href={item.file} target="_blank" rel="noopener noreferrer">
-                View File
+            <div className="content-actions">
+              <a
+                href={item.file}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="view-link"
+              >
+                🔗 View File
               </a>
-              {userRole === "assistant" ||
-                (userRole === "teacher" && (
-                  <button
-                    className="delete-btn"
-                    onClick={() => onRemoveFile(item._id)}
-                  >
-                    🗑️ Remove File
-                  </button>
-                ))}
+
               {(userRole === "teacher" || userRole === "assistant") && (
-                <button
-                  className="edit-btn"
-                  onClick={() => handleEditClick(index, item)}
-                >
-                  ✏️ Edit
-                </button>
+                <>
+                  <button className="btn delete-btn" onClick={() => onRemoveFile(item._id)}>
+                    🗑️ Remove
+                  </button>
+                  <button className="btn edit-btn" onClick={() => handleEditClick(index, item)}>
+                    ✏️ Edit
+                  </button>
+                </>
               )}
             </div>
           ) : (
-            <p>No file uploaded</p>
+            <p className="no-file">❌ No file uploaded</p>
           )}
         </div>
       ))}
@@ -73,3 +69,4 @@ const ContentListComponent = ({
 };
 
 export default ContentListComponent;
+
