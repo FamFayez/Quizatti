@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import EditModal from "./EditModal";
+import EditSection from "./EditSection";
 import "../style/Container.css"; // <-- New CSS for professional styles
 
-const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }) => {
+const SectionListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -41,7 +41,7 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
                 🔗 View File
               </a>
 
-              {(userRole === "teacher" ) && (
+              {( userRole === "assistant") && (
                 <>
                   <button className="btn delete-btn" onClick={() => onRemoveFile(item._id)}>
                     🗑️ Remove
@@ -58,7 +58,7 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
         </div>
       ))}
 
-      <EditModal
+      <EditSection
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleModalSave}
@@ -68,5 +68,5 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
   );
 };
 
-export default ContentListComponent;
+export default SectionListComponent;
 
