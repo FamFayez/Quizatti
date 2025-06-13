@@ -11,12 +11,12 @@ const LoginHook = () => {
 
   const [focusedInputs, setFocusedInputs] = useState({
     email: false,
-    password: false
+    password: false,
   });
 
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [error, setError] = useState(null);
@@ -39,18 +39,27 @@ const LoginHook = () => {
     event.preventDefault();
     setError(null);
     setIsLoading(true);
+
     await postData(LOGIN_API_URL, formData, false)
       .then((res) => {
-        sessionStorage.setItem("token", res.data.token);
-        sessionStorage.setItem("user", JSON.stringify(res.data.data));
-        sessionStorage.setItem("userType", res.data.data.userType);
-        setUser(res.data.data);
-        setToken(res.data.token);
+        const { token, data } = res.data;
+
+        // Store in both sessionStorage and localStorage
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("user", JSON.stringify(data));
+        sessionStorage.setItem("userType", data.userType); // Optional if you use it elsewhere
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem("role", data.userType); // ✅ This is the fix
+
+        setUser(data);
+        setToken(token);
         toastMsg(res.data.message, "success");
         navigate(HOME_URL);
       })
       .catch((err) => {
-        toastMsg(err.response.data.message);
+        toastMsg(err.response?.data?.message || "Login failed");
       })
       .finally(() => {
         setIsLoading(false);
@@ -69,7 +78,7 @@ const LoginHook = () => {
     handleFocus,
     handleBlur,
     handleChange,
-    handleLogin
+    handleLogin,
   };
 };
 
