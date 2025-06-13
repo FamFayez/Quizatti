@@ -1,28 +1,41 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../style/quiz.css";
+import { getData, postData } from "../axios/axiosHelper";
+import { COURSE_API_URL, QUIZ_API_URL } from "../utils/constants";
+import toastMsg from "../functions/toastMsg";
 
 const QuizSetipPage = () => {
+  const { courseId } = useParams();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [numQuestions, setNumQuestions] = useState("");
   const [selectedChapters, setSelectedChapters] = useState([]);
-  const [time, setTime] = useState("");
-  const [grade, setGrade] = useState("");
+  const [duration, setDuration] = useState("");
+  const [startTime, setStartTime] = useState("");
   const [difficultyCounts, setDifficultyCounts] = useState({
     easy: "",
     medium: "",
     hard: ""
   });
-  const [submittedData, setSubmittedData] = useState(null);
-  const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const [course, setCourse] = useState({});
+  useEffect(() => {
+    getData(COURSE_API_URL + `/${courseId}`)
+      .then((res) => {
+        setCourse(res.data.data);
+      })
+      .catch((err) => {
+        toastMsg(err.response.data.message);
+      });
+  }, []);
 
   const handleChapterCheckbox = (e) => {
     const value = e.target.value;
     setSelectedChapters((prev) =>
       prev.includes(value)
-        ? prev.filter((chapter) => chapter !== value)
-        : [...prev, value]
+        ? prev.filter((chapter) => parseInt(chapter) !== parseInt(value))
+        : [...prev, parseInt(value)]
     );
   };
 
@@ -34,49 +47,56 @@ const QuizSetipPage = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    const totalDifficulty =
-      Number(difficultyCounts.easy) +
-      Number(difficultyCounts.medium) +
-      Number(difficultyCounts.hard);
-
-    if (
-      Number(numQuestions) <= 0 ||
-      Number(time) <= 0 ||
-      Number(grade) <= 0 ||
-      selectedChapters.length === 0
-    ) {
-      setError(
-        "Please fill in all fields correctly (values > 0 and at least one chapter selected)."
-      );
-      setSubmittedData(null);
-      return;
-    }
-
-    if (totalDifficulty !== Number(numQuestions)) {
-      setError(
-        `The sum of easy, medium, and hard questions must equal ${numQuestions}. Currently: ${totalDifficulty}`
-      );
-      setSubmittedData(null);
-      return;
-    }
-
-    setError("");
-    setSubmittedData({
-      numQuestions,
-      selectedChapters,
-      time,
-      grade,
-      difficultyCounts
-    });
-  };
-
-  const goToQuizPage = () => {
-    navigate("/quiz");
+  const handleSubmit = async () => {
+    await postData(QUIZ_API_URL + `/${courseId}`, {
+      name,
+      chapters: selectedChapters,
+      duration: parseInt(duration),
+      startTime,
+      numberOfQuestions: parseInt(numQuestions),
+      easy: parseInt(difficultyCounts.easy),
+      medium: parseInt(difficultyCounts.medium),
+      hard: parseInt(difficultyCounts.hard)
+    })
+      .then((res) => {
+        toastMsg(res.data.message, "success");
+        navigate(`/course/${courseId}/quizzes`, { state: { course } });
+      })
+      .catch((err) => {
+        toastMsg(err.response.data.message, "error");
+      })
+      .finally(() => {});
   };
 
   return (
     <div className="quizContainer">
+      <div className="inputGroup">
+        <label>Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="inputBox"
+        />
+      </div>
+      <div className="inputGroup">
+        <label>Duration</label>
+        <input
+          type="number"
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
+          className="inputBox"
+        />
+      </div>
+      <div className="inputGroup">
+        <label>Start Time</label>
+        <input
+          type="datetime-local"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+          className="inputBox"
+        />
+      </div>
       <div className="inputGroup">
         <label>Number of Questions</label>
         <input
@@ -86,7 +106,6 @@ const QuizSetipPage = () => {
           className="inputBox"
         />
       </div>
-
       <div className="inputGroup">
         <label>Difficulty Distribution</label>
         <div className="difficultyInputs">
@@ -116,14 +135,16 @@ const QuizSetipPage = () => {
           />
         </div>
       </div>
-
       <div className="inputGroup">
         <label>Chapters</label>
-        {["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 4"].map((chapter) => (
+        {(course?.chapters?.length > 0
+          ? course.chapters
+          : course?.chaptersIndexes?.map((ch) => ch.number)
+        )?.map((chapter) => (
           <div key={chapter} className="checkboxGroup">
             <input
               type="checkbox"
-              value={chapter}
+              value={parseInt(chapter)}
               checked={selectedChapters.includes(chapter)}
               onChange={handleChapterCheckbox}
             />
@@ -131,34 +152,10 @@ const QuizSetipPage = () => {
           </div>
         ))}
       </div>
-
-      <div className="inputGroup">
-        <label>Time (minutes)</label>
-        <input
-          type="number"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="inputBox"
-        />
-      </div>
-
-      <div className="inputGroup">
-        <label>Grade</label>
-        <input
-          type="number"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-          className="inputBox"
-        />
-      </div>
-
-      {error && <div className="errorMessage">{error}</div>}
-
       <button onClick={handleSubmit} className="submitButton">
         Submit
       </button>
-
-      {submittedData && (
+      {/* {submittedData && (
         <div className="submittedSection">
           <div className="submittedData">
             <h3>Submitted Data</h3>
@@ -174,7 +171,7 @@ const QuizSetipPage = () => {
             Go to Quiz Page
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
