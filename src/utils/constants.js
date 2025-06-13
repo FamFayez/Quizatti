@@ -9,19 +9,21 @@ export const HOME_URL = "/";
 export const LOGIN_URL = "/Login";
 export const MATERIALS_DR_URL = "/materials-teacher";
 export const MATERIAL_TA_URL = "/material-assistant";
-export const QUESTION_BANK_URL = "/question-bank/:courseId";
 export const CHAPTER_URL = "/chapter";
-export const QUIZ_SETUP_URL = "/course/:courseId/quiz-setup-page";
 export const CHOOSE_BOOK_URL = "/choose-book";
-export const SECTION_URL = "/course/:courseId/section";
 export const SECTION_TA_URL = "/section-assistant";
-export const CONTENT_URL = "/course";
-export const TASK_URL = "/:courseId/taskPage";
+
+export const COURSE_URL = "/course";
+export const TASK_URL = "/course/:courseId/task";
+export const CONTENT_URL = "/course/:courseId/content";
+export const SECTION_URL = "/course/:courseId/section";
+export const QUESTION_BANK_URL = "/course/:courseId/question-bank";
+export const QUIZZES_URL = "/course/:courseId/quizzes";
+export const QUIZ_SETUP_URL = "/course/:courseId/quiz-setup-page";
+
 export const PROFILE_URL = "/profile";
 export const QUIZ_DR_URL = "/quiz-teacher";
 export const QUIZ_URL = "/quiz";
-export const QUIZZES_URL = "/course/:courseId/quizzes";
-export const COURSE_URL = "/course";
 export const FORGOT_PASSWORD_URL = "/forgot-password";
 export const RESET_PASSWORD_URL = "/reset-password/:token"; // dynamic token param
 

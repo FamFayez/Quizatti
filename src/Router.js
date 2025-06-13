@@ -76,12 +76,12 @@ export const router = createBrowserRouter([
       { path: CHOOSE_BOOK_URL, element: <ChooseBook /> },
       { path: MATERIAL_TA_URL, element: <MaterialTA /> },
       { path: SECTION_TA_URL, element: <SectionTA /> },
-      { path: `${COURSE_URL}/:courseId/content`, element: <Content /> },
-      { path: TASK_URL, element: <TaskPage /> },
-      { path: `${COURSE_URL}/:courseId/section`, element: <SectionPage /> },
       { path: PROFILE_URL, element: <Profile /> },
+      { path: TASK_URL, element: <TaskPage /> },
       { path: QUIZ_URL, element: <QuizPage /> },
-      { path: `${COURSE_URL}/:courseId/quizzes`, element: <QuizzesPage /> },
+      { path: SECTION_URL, element: <SectionPage /> },
+      { path: CONTENT_URL, element: <Content /> },
+      { path: QUIZZES_URL, element: <QuizzesPage /> },
       { path: `${COURSE_URL}/:id`, element: <SubjPage /> },
       { path: "*", element: <Error /> }
     ]
