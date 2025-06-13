@@ -7,7 +7,7 @@ export default function Card({ items }) {
     <section className="leftSection">
       {items.map((item) => (
         <Link
-          to={`${COURSE_URL}/${item.id}/content`}
+          to={`${COURSE_URL}/:id`}
           key={item.id}
           className="card-link"
         >

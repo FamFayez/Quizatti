@@ -1,30 +1,26 @@
 import { useEffect, useState } from "react";
 import { getData } from "../axios/axiosHelper";
 import { Content_API_URL } from "../utils/constants";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const ContentHook = (courseId) => {
+const ContentHook = () => {
   const [lectures, setLectures] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { courseId } = useParams();
 
   useEffect(() => {
-    const fetchLectures = () => {
-      setIsLoading(true);
-      getData(Content_API_URL)
-        .then((res) => {
-          setLectures(res.data.data);
-        })
-        .catch((err) => {
-          toastMsg(
-            err.response?.data?.message || "Failed to fetch lectures",
-            "error"
-          );
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    };
+    if (!courseId) return;
+    setIsLoading(true);
 
-    if (courseId) fetchLectures();
+    getData(`${Content_API_URL}${courseId}/lectures`)
+      .then((res) => setLectures(res.data.data))
+      .catch((err) =>
+        toast.error(
+          err.response?.data?.message || "Failed to fetch lectures"
+        )
+      )
+      .finally(() => setIsLoading(false));
   }, [courseId]);
 
   return { lectures, isLoading };
