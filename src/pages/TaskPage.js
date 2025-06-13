@@ -16,6 +16,7 @@ import {
   postData
 } from "../axios/axiosHelper";
 import toastMsg from "../functions/toastMsg";
+import Spinner from "../shared/Spinner";
 
 const userRole = localStorage.getItem("role") || "student";
 console.log("Role:", userRole);
@@ -31,24 +32,26 @@ const TaskPage = () => {
   const [loading, setLoading] = useState(false);
   // Sync hook result with local state once loaded
   useEffect(() => {
+    setLoading(true);
     if (!isLoading && assignments.length) {
       setTasks(assignments);
+      setLoading(false);
     }
   }, [assignments, isLoading]);
 
-  const handleTextTaskSubmit = (type) => {
-    if (manualTaskText.trim() === "") return;
-    const newTask = {
-      title: manualTaskText,
-      file: type === "link" ? manualTaskText : null,
-      isLink: type === "link"
-    };
-    setTasks([...tasks, newTask]);
-    setManualTaskText("");
-    toast.success(
-      `✔️ ${type === "link" ? "Link" : "Text"} task added successfully!`
-    );
-  };
+  // const handleTextTaskSubmit = (type) => {
+  //   if (manualTaskText.trim() === "") return;
+  //   const newTask = {
+  //     title: manualTaskText,
+  //     file: type === "link" ? manualTaskText : null,
+  //     isLink: type === "link"
+  //   };
+  //   setTasks([...tasks, newTask]);
+  //   setManualTaskText("");
+  //   toast.success(
+  //     `✔️ ${type === "link" ? "Link" : "Text"} task added successfully!`
+  //   );
+  // };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -125,7 +128,7 @@ const TaskPage = () => {
     if (userRole !== "Assistant") return;
 
     // Update task in frontend state
-    const taskIndex = tasks.findIndex((task) => task.id === id);
+    const taskIndex = tasks.findIndex((task) => task._id === id);
     if (taskIndex !== -1) {
       const updatedTasks = [...tasks];
       updatedTasks[taskIndex] = {
@@ -169,7 +172,7 @@ const TaskPage = () => {
     setLoading(true);
     await postData(`${Task_API_URL}`, formData, true)
       .then((res) => {
-        setTasks([res.data.task, ...tasks]);
+        setTasks([res.data.data, ...tasks]);
         toastMsg(res.data.message, "success");
       })
       .catch((err) => {
@@ -185,6 +188,7 @@ const TaskPage = () => {
 
   return (
     <div className="container">
+      {loading && <Spinner />}
       <ToastContainer position="top-right" autoClose={3000} />
       <div className="contentTA">
         <TaskList
@@ -202,7 +206,7 @@ const TaskPage = () => {
             onFileChange={handleFileChange}
             manualTaskText={manualTaskText}
             setManualTaskText={setManualTaskText}
-            onTextTaskSubmit={handleTextTaskSubmit}
+            // onTextTaskSubmit={handleTextTaskSubmit}
             onUpload={handleUpload}
           />
         )}

@@ -15,14 +15,12 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
     });
   };
 
-  const isExternalLink = task.isLink && task.file;
+  // const isExternalLink = task.isLink && task.file;
 
   return (
     <article className="section-block">
       <div className="lecture-block">
         <h2>
-          {isExternalLink ? (
-            // External link
             <a
               href={task.file}
               target="_blank"
@@ -31,20 +29,6 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
             >
               🔗{task.name}
             </a>
-          ) : task.file ? (
-            // Uploaded file
-            <a
-              href={task.file}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pdf-link"
-            >
-              📄{task.name}
-            </a>
-          ) : (
-            // Plain text
-            <span>📝 {task.title}</span>
-          )}
 
           {(userRole === "Teacher" || userRole === "Assistant") && (
             <>
