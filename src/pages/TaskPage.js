@@ -3,30 +3,37 @@ import "../style/Container.css";
 import "../style/taskPage.css";
 import taskImage from "../assets/img/task.png";
 import ImageBackground from "../Components/ImageBackground";
-import taskData from "../core/data/taskData";
 import TaskList from "../Components/TaskList";
 import TaskUpload from "../Components/taskUpload";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AssignmentHook from "../hooks/AssignmentHook"; // ✅ import the hook
 
-const userRole = "ta";
+const userRole = localStorage.getItem("role");
+console.log("Role:", userRole);
 
 const TaskPage = () => {
-  const [tasks, setTasks] = useState(taskData.tasks);
+  const { assignments, isLoading } = AssignmentHook(); // ✅ get tasks from API
+  const [tasks, setTasks] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [textPreview, setTextPreview] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [manualTaskText, setManualTaskText] = useState("");
 
+  // Sync hook result with local state once loaded
+  useState(() => {
+    if (!isLoading && assignments.length) {
+      setTasks(assignments);
+    }
+  }, [assignments, isLoading]);
+
   const handleTextTaskSubmit = (type) => {
     if (manualTaskText.trim() === "") return;
-
     const newTask = {
       title: manualTaskText,
-      file: type === "link" ? manualTaskText : null, // link goes into file field
+      file: type === "link" ? manualTaskText : null,
       isLink: type === "link",
     };
-
     setTasks([...tasks, newTask]);
     setManualTaskText("");
     toast.success(
@@ -107,8 +114,8 @@ const TaskPage = () => {
         <TaskList
           tasks={tasks}
           userRole={userRole}
-          onDelete={handleDelete}
-          onUpdate={handleUpdate}
+          onDelete={userRole === "Assistant" ? handleDelete : null}
+          onUpdate={userRole === "Assistant" ? handleUpdate : null}
         />
         <TaskUpload
           userRole={userRole}
@@ -120,14 +127,12 @@ const TaskPage = () => {
           setManualTaskText={setManualTaskText}
           onTextTaskSubmit={handleTextTaskSubmit}
         />
-
-        {userRole === "ta" && tasks.length > 0 && (
+        {userRole === "Assistant" && tasks.length > 0 && (
           <button className="remove-all-btn" onClick={handleRemoveAll}>
             Remove All Tasks
           </button>
         )}
       </div>
-
       <div className="image-container">
         <ImageBackground imageSrc={taskImage} altText="tasks" />
       </div>

@@ -8,6 +8,8 @@ import Spinner from "../shared/Spinner";
 export default function HomePage() {
   const { courses, isLoading } = HomeHook();
 
+  const userRole = localStorage.getItem("role");
+  console.log("Role:", userRole);
   return (
     <main className="container">
       {isLoading && <Spinner />}

@@ -10,8 +10,8 @@ import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
 import { useParams } from "react-router-dom"; // Add this import
 
-const userRole = localStorage.getItem("role") || "student";
-
+const userRole = localStorage.getItem("role");
+console.log("Role:", userRole);
 const Content = () => {
   const { courseId } = useParams();
   const { lectures, isLoading } = ContentHook(courseId);
