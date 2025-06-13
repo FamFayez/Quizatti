@@ -33,17 +33,28 @@ const Content = () => {
     }
   };
 
-  const handleUpload = async (newLecture) => {
-    if (userRole !== "teacher") return; // ✅ only teachers can upload
+  const handleUpload = async ({ file, title, chapterNo }) => {
+  if (userRole !== "teacher") return;
 
-    try {
-      await postData(`${Content_API_URL}?courseId=${courseId}`, newLecture);
-      toast.success(`Lecture "${newLecture.title}" uploaded successfully!`);
-      window.location.reload();
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Error uploading lecture.");
-    }
-  };
+  const formData = new FormData();
+  formData.append("name", title); // Slide title
+  formData.append("chapterNo", 5); // Slide chapter
+  formData.append("course", courseId); // Course ID
+  formData.append("file", file); // Slide file (MUST be a File object)
+
+  try {
+    await postData(`${Content_API_URL}?courseId=${courseId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    toast.success(`Lecture "${title}" uploaded successfully!`);
+    window.location.reload();
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Error uploading lecture.");
+  }
+};
+
 
   return (
     <div className="container">
@@ -62,8 +73,9 @@ const Content = () => {
 
         {userRole === "teacher" && (
           <div className="upload-section">
-            <UploadFile showNote={false} onFileUpload={handleUpload} />
-          </div>
+  <UploadFile showNote={false} onFileUpload={handleUpload} />
+</div>
+
         )}
       </div>
 
