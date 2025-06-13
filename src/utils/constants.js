@@ -34,3 +34,4 @@ export const QUIZ_API_URL = "/quiz";
 export const QUESTION_Bank_API_URL = "/question";
 export const Content_API_URL = "/slide/";
 export const Section_API_URL = "/slide/";
+export const Task_API_URL = "/assignment";

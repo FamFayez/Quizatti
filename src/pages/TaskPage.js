@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../style/Container.css";
 import "../style/taskPage.css";
 import taskImage from "../assets/img/task.png";
@@ -8,11 +9,15 @@ import TaskUpload from "../Components/taskUpload";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AssignmentHook from "../hooks/AssignmentHook";
+import { Task_API_URL } from "../utils/constants";
+import { postData } from "../axios/axiosHelper";
 
 const userRole = localStorage.getItem("role") || "student";
 console.log("Role:", userRole);
 
+
 const TaskPage = () => {
+  const { courseId } = useParams();
   const { assignments, isLoading } = AssignmentHook();
   const [tasks, setTasks] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -95,16 +100,61 @@ const TaskPage = () => {
     toast.info(`🗑️ "${deletedTask[0].title}" deleted`);
   };
 
-  const handleUpdate = (index, updatedTask) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index] = updatedTask;
-    setTasks(updatedTasks);
-    toast.success("✏️ Task updated successfully!");
+  const handleUpdate = async({name, solutionFile, deadline, id}) => {
+    if (userRole !== "Assistant") return;
+
+    // Update task in frontend state
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    if (taskIndex !== -1) {
+      const updatedTasks = [...tasks];
+      updatedTasks[taskIndex] = {
+        ...updatedTasks[taskIndex],
+        name: name || updatedTasks[taskIndex].name,
+        solutionFile: solutionFile || updatedTasks[taskIndex].solutionFile,
+        deadline: deadline || updatedTasks[taskIndex].deadline
+      };
+      setTasks(updatedTasks);
+    }
+
+    // Update in backend
+    const formData = new FormData();
+    if (name) formData.append("name", name);
+    if (solutionFile) formData.append("solutionFile", solutionFile);
+    if (deadline) formData.append("deadline", deadline);
+
+    try {
+      await postData(`${Task_API_URL}/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success(`Task "${name}" updated successfully!`);
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Error updating task.");
+    }
   };
 
-  const handleRemoveAll = () => {
-    setTasks([]);
-    toast.info("🧹 All tasks removed successfully!");
+  const handleUpload = async({name, file, solutionFile, deadline}) => {
+    if (userRole !== "Assistant") return;
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("file", file);
+    formData.append("solutionFile", solutionFile);
+    formData.append("course", courseId);
+    formData.append("deadline", deadline);
+
+    try {
+      await postData(`${Task_API_URL}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success(`Task "${name}" uploaded successfully!`);
+      window.location.reload();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Error uploading task.");
+    }
   };
 
   return (
@@ -127,12 +177,8 @@ const TaskPage = () => {
             manualTaskText={manualTaskText}
             setManualTaskText={setManualTaskText}
             onTextTaskSubmit={handleTextTaskSubmit}
+            onUpload={handleUpload}
           />
-        )}
-        {userRole === "Assistant" && tasks.length > 0 && (
-          <button className="remove-all-btn" onClick={handleRemoveAll}>
-            Remove All Tasks
-          </button>
         )}
       </div>
       <div className="image-container">
