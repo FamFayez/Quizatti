@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./../style/Card.css";
 import {
   CONTENT_URL,
@@ -11,6 +11,7 @@ import {
 } from "../utils/constants";
 
 export default function Card({ items, loading, userRole = "student" }) {
+  const { id } = useParams();
   // 1. Teacher Cards (all cards)
   const getTeacherCards = () => [
     { id: 1, name: "Content", path: CONTENT_URL },
@@ -55,7 +56,7 @@ export default function Card({ items, loading, userRole = "student" }) {
   return (
     <section className="leftSection">
       {cardsToRender.map((item) => (
-        <Link to={item.path} key={item.id} className="card-link">
+        <Link to={item.path + "/" + id} key={item.id} className="card-link">
           <div className="card">
             <h3>{item.name}</h3>
           </div>

@@ -70,7 +70,7 @@ export const router = createBrowserRouter([
       { path: CHOOSE_BOOK_URL, element: <ChooseBook /> },
       { path: MATERIAL_TA_URL, element: <MaterialTA /> },
       { path: SECTION_TA_URL, element: <SectionTA /> },
-      { path: CONTENT_URL, element: <Content /> },
+      { path: `${CONTENT_URL}/:courseId`, element: <Content /> },
       { path: TASK_URL, element: <TaskPage /> },
       { path: SECTION_URL, element: <SectionPage /> },
       { path: PROFILE_URL, element: <Profile /> },

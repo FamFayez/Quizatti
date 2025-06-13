@@ -25,12 +25,10 @@ export const COURSE_URL = "/course";
 export const FORGOT_PASSWORD_URL = "/forgot-password";
 export const RESET_PASSWORD_URL = "/reset-password/:token"; // dynamic token param
 
-
 // Backend URLs
 export const LOGIN_API_URL = "/user/auth/login";
 export const COURSE_API_URL = "/course";
 export const QUIZ_API_URL = "/quiz";
-export const QUESTION_Bank_API_URL ="/question";
-export const Content_API_URL="/slide/:courseId/lectures";
-export const Section_API_URL="/slide/:courseId/sections";
-
+export const QUESTION_Bank_API_URL = "/question";
+export const Content_API_URL = "/slide/";
+export const Section_API_URL = "/slide/";
