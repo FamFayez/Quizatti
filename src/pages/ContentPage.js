@@ -10,7 +10,7 @@ import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
 import { useParams } from "react-router-dom"; // Add this import
 
-const userRole = localStorage.getItem("role");
+const userRole = localStorage.getItem("role") || "student"; // Default to 'student' if role is not set);
 console.log("Role:", userRole);
 const Content = () => {
   const { courseId } = useParams();
