@@ -8,20 +8,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { deleteDataToken, postData } from "../axios/axiosHelper";
 import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
-import { useParams } from "react-router-dom"; // Add this import
+import { useParams } from "react-router-dom";
 
-const userRole = localStorage.getItem("role") || "student"; // Default to 'student' if role is not set);
-console.log("Role:", userRole);
+// Normalize role
+const rawRole = localStorage.getItem("role") || "student";
+const userRole = rawRole.toLowerCase(); // ensures lowercase: "teacher", "assistant", "student"
+
 const Content = () => {
   const { courseId } = useParams();
   const { lectures, isLoading } = ContentHook(courseId);
 
   const handleDelete = async (lectureId) => {
-    if (userRole !== "Assistant") return;
+    if (userRole !== "teacher") return; // ✅ now only teachers can delete
 
-    const confirm = window.confirm(
-      "Are you sure you want to delete this file?"
-    );
+    const confirm = window.confirm("Are you sure you want to delete this file?");
     if (!confirm) return;
 
     try {
@@ -34,7 +34,7 @@ const Content = () => {
   };
 
   const handleUpload = async (newLecture) => {
-    if (userRole !== "Assistant") return;
+    if (userRole !== "teacher") return; // ✅ only teachers can upload
 
     try {
       await postData(`${Content_API_URL}?courseId=${courseId}`, newLecture);
@@ -56,11 +56,11 @@ const Content = () => {
           <ContentListComponent
             contentItems={lectures}
             userRole={userRole}
-            onRemoveFile={userRole === "Assistant" ? handleDelete : undefined}
+            onRemoveFile={userRole === "teacher" ? handleDelete : undefined} // ✅ only teacher sees "delete"
           />
         )}
 
-        {userRole === "Assistant" && (
+        {userRole === "teacher" && (
           <div className="upload-section">
             <UploadFile showNote={false} onFileUpload={handleUpload} />
           </div>
