@@ -6,10 +6,11 @@ import {
   QUIZZES_URL,
   QUESTION_BANK_URL,
   QUIZ_SETUP_URL,
-  TASK_URL
+  TASK_URL,
 } from "../utils/constants";
 
-export default function Card({ items, loading, userRole = "student" }) {
+export default function Card() {
+  const userRole = localStorage.getItem("role") || "student"; // Default to 'student' if role is not set
   const { id: courseId } = useParams();
 
   const getTeacherCards = () => [
@@ -17,28 +18,29 @@ export default function Card({ items, loading, userRole = "student" }) {
     { id: 2, name: "Section", path: SECTION_URL },
     { id: 3, name: "Quiz", path: QUIZZES_URL },
     { id: 4, name: "Question Bank", path: QUESTION_BANK_URL },
-    { id: 5, name: "Create Quiz", path: QUIZ_SETUP_URL }
+    { id: 5, name: "Create Quiz", path: QUIZ_SETUP_URL },
+    { id: 6, name: "Task", path: TASK_URL },
   ];
 
   const getAssistantCards = () => [
     { id: 1, name: "Content", path: CONTENT_URL },
     { id: 2, name: "Section", path: SECTION_URL },
-    { id: 3, name: "Quiz", path: QUIZZES_URL }
+    { id: 3, name: "Quiz", path: QUIZZES_URL },
+    { id: 4, name: "Create Quiz", path: QUIZ_SETUP_URL },
+    { id: 5, name: "Task", path: TASK_URL },
   ];
 
   const getStudentCards = () => [
     { id: 1, name: "Content", path: CONTENT_URL },
     { id: 2, name: "Section", path: SECTION_URL },
     { id: 3, name: "Quiz", path: QUIZZES_URL },
-    { id: 4, name: "Question Bank", path: QUESTION_BANK_URL },
-    { id: 5, name: "Create Quiz", path: QUIZ_SETUP_URL },
-    { id: 6, name: "Task", path: TASK_URL }
+    { id: 4, name: "Task", path: TASK_URL },
   ];
 
   const cards =
-    userRole === "teacher"
+    userRole === "Teacher"
       ? getTeacherCards()
-      : userRole === "assistant"
+      : userRole === "Assistant"
       ? getAssistantCards()
       : getStudentCards();
 

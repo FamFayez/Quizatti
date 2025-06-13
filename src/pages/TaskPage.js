@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../style/Container.css";
 import "../style/taskPage.css";
 import taskImage from "../assets/img/task.png";
@@ -7,13 +7,13 @@ import TaskList from "../Components/TaskList";
 import TaskUpload from "../Components/taskUpload";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AssignmentHook from "../hooks/AssignmentHook"; // ✅ import the hook
+import AssignmentHook from "../hooks/AssignmentHook";
 
-const userRole = localStorage.getItem("role") || "student"; // Default to 'student' if role is not set);
+const userRole = (localStorage.getItem("role") || "student").toLowerCase();
 console.log("Role:", userRole);
 
 const TaskPage = () => {
-  const { assignments, isLoading } = AssignmentHook(); // ✅ get tasks from API
+  const { assignments, isLoading } = AssignmentHook();
   const [tasks, setTasks] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [textPreview, setTextPreview] = useState("");
@@ -21,7 +21,7 @@ const TaskPage = () => {
   const [manualTaskText, setManualTaskText] = useState("");
 
   // Sync hook result with local state once loaded
-  useState(() => {
+  useEffect(() => {
     if (!isLoading && assignments.length) {
       setTasks(assignments);
     }
@@ -114,20 +114,22 @@ const TaskPage = () => {
         <TaskList
           tasks={tasks}
           userRole={userRole}
-          onDelete={userRole === "Assistant" ? handleDelete : null}
-          onUpdate={userRole === "Assistant" ? handleUpdate : null}
+          onDelete={userRole === "assistant" ? handleDelete : null}
+          onUpdate={userRole === "assistant" ? handleUpdate : null}
         />
-        <TaskUpload
-          userRole={userRole}
-          selectedFile={selectedFile}
-          textPreview={textPreview}
-          errorMessage={errorMessage}
-          onFileChange={handleFileChange}
-          manualTaskText={manualTaskText}
-          setManualTaskText={setManualTaskText}
-          onTextTaskSubmit={handleTextTaskSubmit}
-        />
-        {userRole === "Assistant" && tasks.length > 0 && (
+        {userRole === "assistant" && (
+          <TaskUpload
+            userRole={userRole}
+            selectedFile={selectedFile}
+            textPreview={textPreview}
+            errorMessage={errorMessage}
+            onFileChange={handleFileChange}
+            manualTaskText={manualTaskText}
+            setManualTaskText={setManualTaskText}
+            onTextTaskSubmit={handleTextTaskSubmit}
+          />
+        )}
+        {userRole === "assistant" && tasks.length > 0 && (
           <button className="remove-all-btn" onClick={handleRemoveAll}>
             Remove All Tasks
           </button>
