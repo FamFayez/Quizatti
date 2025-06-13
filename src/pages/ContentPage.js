@@ -9,6 +9,7 @@ import { deleteDataToken, postData } from "../axios/axiosHelper";
 import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 // Normalize role
 const rawRole = localStorage.getItem("role") || "student";
@@ -16,8 +17,20 @@ const userRole = rawRole.toLowerCase(); // ensures lowercase: "teacher", "assist
 
 const Content = () => {
   const { courseId } = useParams();
-  const { lectures, isLoading } = ContentHook(courseId);
+  const {lectures, isLoading } = ContentHook(courseId);
+  const [localLectures, setLocalLectures] = useState([]);
 
+  useEffect(() => {
+    setLocalLectures(lectures);
+  }, [lectures]);
+
+  const handleUpdate = (index, updatedLecture) => {
+    const updatedLectures = [...localLectures];
+    updatedLectures[index] = updatedLecture;
+    setLocalLectures(updatedLectures);
+    toast.success("✏️ Lecture updated successfully!");
+  };
+  
   const handleDelete = async (lectureId) => {
     if (userRole !== "teacher") return; // ✅ now only teachers can delete
 
@@ -43,7 +56,7 @@ const Content = () => {
   formData.append("file", file); // Slide file (MUST be a File object)
 
   try {
-    await postData(`${Content_API_URL}?courseId=${courseId}`, formData, {
+    await postData(`${Content_API_URL}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -65,15 +78,16 @@ const Content = () => {
           <p>Loading lectures...</p>
         ) : (
           <ContentListComponent
-            contentItems={lectures}
+            contentItems={localLectures}
             userRole={userRole}
             onRemoveFile={userRole === "teacher" ? handleDelete : undefined} // ✅ only teacher sees "delete"
+            onUpdate={handleUpdate}
           />
         )}
 
         {userRole === "teacher" && (
           <div className="upload-section">
-  <UploadFile showNote={false} onFileUpload={handleUpload} />
+        <UploadFile showNote={false} onFileUpload={handleUpload} />
 </div>
 
         )}
