@@ -46,7 +46,7 @@ const TaskPage = () => {
     if (!file) return;
 
     const fileType = file.type;
-    const fileExtension = file.name.split(".").pop().toLowerCase();
+    const fileExtension = file.name.split(".").pop().toUpperCase();
 
     const isText = fileType === "text/plain";
     const isPDF = fileType === "application/pdf";
