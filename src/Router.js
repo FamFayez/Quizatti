@@ -41,21 +41,21 @@ import {
   QUIZZES_URL,
   COURSE_URL,
   FORGOT_PASSWORD_URL,
-  RESET_PASSWORD_URL, // Note: This should be "/reset-password/:token"
+  RESET_PASSWORD_URL // Note: This should be "/reset-password/:token"
 } from "./utils/constants";
 
 export const router = createBrowserRouter([
   {
     path: LOGIN_URL,
-    element: <Login />,
+    element: <Login />
   },
   {
     path: FORGOT_PASSWORD_URL, // e.g., "/forgot-password"
-    element: <ForgotPassword />,
+    element: <ForgotPassword />
   },
   {
     path: RESET_PASSWORD_URL, // e.g., "/reset-password/:token"
-    element: <ResetPassword />,
+    element: <ResetPassword />
   },
   {
     path: HOME_URL,
@@ -64,21 +64,26 @@ export const router = createBrowserRouter([
       { path: HOME_URL, element: <HomePage /> },
       { path: MATERIALS_DR_URL, element: <MaterialsDR /> },
       { path: QUIZ_DR_URL, element: <QuizDR /> },
-      { path: `${COURSE_URL}/:courseId/question-bank`, element: <QuestionBankPage /> },
+      {
+        path: QUESTION_BANK_URL,
+        element: <QuestionBankPage />
+      },
       { path: CHAPTER_URL, element: <ChaptersDR /> },
-      { path: `${COURSE_URL}/:courseId/quiz-setup-page`, element: <QuizSetupPage /> },
+      {
+        path: `${COURSE_URL}/:courseId/quiz-setup-page`,
+        element: <QuizSetupPage />
+      },
       { path: CHOOSE_BOOK_URL, element: <ChooseBook /> },
       { path: MATERIAL_TA_URL, element: <MaterialTA /> },
       { path: SECTION_TA_URL, element: <SectionTA /> },
-       { path: `${COURSE_URL}/:courseId/content`, element: <Content /> },,
-
-     { path: `${COURSE_URL}/:courseId/task`, element: <TaskPage /> },
-       { path: `${COURSE_URL}/:courseId/section`, element: <SectionPage /> },
+      { path: `${COURSE_URL}/:courseId/content`, element: <Content /> },
+      { path: `${COURSE_URL}/:courseId/task`, element: <TaskPage /> },
+      { path: `${COURSE_URL}/:courseId/section`, element: <SectionPage /> },
       { path: PROFILE_URL, element: <Profile /> },
       { path: QUIZ_URL, element: <QuizPage /> },
-     { path: `${COURSE_URL}/:courseId/quizzes`, element: <QuizzesPage /> },
+      { path: `${COURSE_URL}/:courseId/quizzes`, element: <QuizzesPage /> },
       { path: `${COURSE_URL}/:id`, element: <SubjPage /> },
-      { path: "*", element: <Error /> },
-    ],
-  },
+      { path: "*", element: <Error /> }
+    ]
+  }
 ]);
