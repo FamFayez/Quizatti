@@ -12,54 +12,54 @@ export default function Profile() {
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      <div class="container emp-profile">
+      <div className="container emp-profile">
         <form method="post">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="profile-head">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="profile-head">
                 <h1>My Profile</h1>
                 <h4>Position(TA/ST/IN)</h4>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="tab-content profile-tab" id="myTabContent">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="tab-content profile-tab" id="myTabContent">
                 <div
-                  class="tab-pane fade show active"
+                  className="tab-pane fade show active"
                   id="home"
                   role="tabpanel"
                   aria-labelledby="home-tab"
                 >
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>User Id</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.UserID}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Name</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.Name}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Email</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.Email}</p>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
+                  <div className="row">
+                    <div className="col-md-6">
                       <label>Phone</label>
                     </div>
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <p>{user.Phone}</p>
                     </div>
                   </div>
