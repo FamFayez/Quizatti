@@ -1,5 +1,5 @@
-export const baseUrl = "https://api.quizatty.com/api/v1";
-// export const baseUrl = "http://localhost:8000/api/v1";
+// export const baseUrl = "https://api.quizatty.com/api/v1";
+export const baseUrl = "http://localhost:8000/api/v1";
 export const token = sessionStorage.getItem("token");
 export const userData = JSON.parse(sessionStorage.getItem("user"));
 
@@ -9,7 +9,7 @@ export const HOME_URL = "/";
 export const LOGIN_URL = "/Login";
 export const MATERIALS_DR_URL = "/materials-teacher";
 export const MATERIAL_TA_URL = "/material-assistant";
-export const QUESTION_BANK_URL = "/question-bank";
+export const QUESTION_BANK_URL = "/question-bank/:courseId";
 export const CHAPTER_URL = "/chapter";
 export const QUIZ_SETUP_URL = "/quiz-setup-page";
 export const CHOOSE_BOOK_URL = "/choose-book";

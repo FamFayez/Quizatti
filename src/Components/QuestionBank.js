@@ -4,6 +4,10 @@ import QUESTIONBankHook from "../hooks/QuestionBankHook";
 import { postData, deleteDataToken } from "../axios/axiosHelper";
 import { QUESTION_Bank_API_URL } from "../utils/constants";
 import toastMsg from "../functions/toastMsg";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const getDifficultyText = (level) => {
   switch (level) {
@@ -19,7 +23,8 @@ const getDifficultyText = (level) => {
 };
 
 const QuestionBank = () => {
-  const { Questions, isLoading } = QUESTIONBankHook();
+  const { Questions, isLoading, courseId, handlePageChange, page, totalPages } =
+    QUESTIONBankHook();
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     question: "",
@@ -29,7 +34,7 @@ const QuestionBank = () => {
     answerD: "",
     correctAnswer: "",
     chapterNo: "",
-    difficultyLevel: "1",
+    difficultyLevel: "1"
   });
 
   const handleInputChange = (e) => {
@@ -38,7 +43,15 @@ const QuestionBank = () => {
   };
 
   const validateForm = () => {
-    const { question, answerA, answerB, answerC, answerD, correctAnswer, chapterNo } = formData;
+    const {
+      question,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+      correctAnswer,
+      chapterNo
+    } = formData;
 
     if (!question.trim()) {
       toastMsg("Question text is required.", "error");
@@ -54,7 +67,10 @@ const QuestionBank = () => {
 
     const validCorrectAnswers = ["answerA", "answerB", "answerC", "answerD"];
     if (!validCorrectAnswers.includes(correctAnswer)) {
-      toastMsg("Correct answer must be one of: answerA, answerB, answerC, or answerD.", "error");
+      toastMsg(
+        "Correct answer must be one of: answerA, answerB, answerC, or answerD.",
+        "error"
+      );
       return false;
     }
 
@@ -79,6 +95,7 @@ const QuestionBank = () => {
         ...formData,
         difficultyLevel: parseInt(formData.difficultyLevel),
         chapterNo: parseInt(formData.chapterNo),
+        course: courseId
       };
 
       await postData(QUESTION_Bank_API_URL, dataToSend);
@@ -90,14 +107,19 @@ const QuestionBank = () => {
   };
 
   const handleRemove = async (id) => {
-    const confirmDelete = window.confirm("You really want to remove that question?");
+    const confirmDelete = window.confirm(
+      "You really want to remove that question?"
+    );
     if (confirmDelete) {
       try {
         await deleteDataToken(`${QUESTION_Bank_API_URL}/${id}`);
         toastMsg("Question deleted successfully!", "success");
         window.location.reload(); // Same here: replace with refetch if needed
       } catch (err) {
-        toastMsg(err.response?.data?.message || "Error deleting question", "error");
+        toastMsg(
+          err.response?.data?.message || "Error deleting question",
+          "error"
+        );
       }
     }
   };
@@ -106,18 +128,42 @@ const QuestionBank = () => {
     <div className="question-bank-container">
       <h2>Question Bank</h2>
       <button className="add-btn" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Cancel" : "➕ Add Question"}
+        {!showForm && <AddRoundedIcon />} {showForm ? "Cancel" : "Add Question"}
       </button>
 
       {showForm && (
         <div className="add-form">
-          <input name="question" placeholder="Question Text" onChange={handleInputChange} />
-          <input name="answerA" placeholder="Option A" onChange={handleInputChange} />
-          <input name="answerB" placeholder="Option B" onChange={handleInputChange} />
-          <input name="answerC" placeholder="Option C" onChange={handleInputChange} />
-          <input name="answerD" placeholder="Option D" onChange={handleInputChange} />
+          <input
+            name="question"
+            placeholder="Question Text"
+            onChange={handleInputChange}
+          />
+          <input
+            name="answerA"
+            placeholder="Option A"
+            onChange={handleInputChange}
+          />
+          <input
+            name="answerB"
+            placeholder="Option B"
+            onChange={handleInputChange}
+          />
+          <input
+            name="answerC"
+            placeholder="Option C"
+            onChange={handleInputChange}
+          />
+          <input
+            name="answerD"
+            placeholder="Option D"
+            onChange={handleInputChange}
+          />
 
-          <select name="correctAnswer" value={formData.correctAnswer} onChange={handleInputChange}>
+          <select
+            name="correctAnswer"
+            value={formData.correctAnswer}
+            onChange={handleInputChange}
+          >
             <option value="">Select Correct Answer</option>
             <option value="answerA">Option A</option>
             <option value="answerB">Option B</option>
@@ -125,9 +171,17 @@ const QuestionBank = () => {
             <option value="answerD">Option D</option>
           </select>
 
-          <input name="chapterNo" placeholder="Chapter Number" onChange={handleInputChange} />
+          <input
+            name="chapterNo"
+            placeholder="Chapter Number"
+            onChange={handleInputChange}
+          />
 
-          <select name="difficultyLevel" onChange={handleInputChange} value={formData.difficultyLevel}>
+          <select
+            name="difficultyLevel"
+            onChange={handleInputChange}
+            value={formData.difficultyLevel}
+          >
             <option value="1">Easy</option>
             <option value="2">Medium</option>
             <option value="3">Hard</option>
@@ -166,14 +220,29 @@ const QuestionBank = () => {
                 <td>{q.chapterNo}</td>
                 <td>{getDifficultyText(q.difficultyLevel)}</td>
                 <td>
-                  <button className="delete-btn" onClick={() => handleRemove(q._id)}>
-                    ❌
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleRemove(q._id)}
+                  >
+                    <DeleteRoundedIcon />
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      )}
+      {totalPages > 1 && (
+        <div className="flex-center" style={{ marginTop: "20px" }}>
+          <Stack spacing={2}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange}
+              color="primary"
+            />
+          </Stack>
+        </div>
       )}
     </div>
   );

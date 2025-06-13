@@ -1,25 +1,23 @@
-.Page {
-  background-color: #e5fbff
-  ;}
-  .Quizzes{
-    
-    
-    /* background-image: url(./assets/quiz.png); */
-    background-size: 45%;
-    background-repeat : no-repeat;
-    background-position: right center;
-    
-    
-
-  
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.Book{ 
+
+.Page {
+  background-color: #e5fbff;
+}
+.Quizzes {
+  /* background-image: url(./assets/quiz.png); */
+  background-size: 45%;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.Book {
   /* background-image: url(./assets/book.png); */
   background-size: 55%;
-    background-repeat : no-repeat;
-    background-position: right center;
-    
-    
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 /* .homePage{
   background-image: url(./assets/Studying-rafiki.png);
@@ -28,16 +26,15 @@
     background-position: 700px center ;
     
 } */
-.Subpage{
-  
+.Subpage {
   /* background-image: url(./assets/subject.png); */
   background-size: 65%;
-    background-repeat : no-repeat;
-    background-position: 700px top ;
+  background-repeat: no-repeat;
+  background-position: 700px top;
 }
-.Section{
+.Section {
   /* background-image: url(./assets/section.png); */
   background-size: 65%;
-    background-repeat : no-repeat;
-    background-position: 700px top ;
+  background-repeat: no-repeat;
+  background-position: 700px top;
 }
