@@ -114,10 +114,10 @@ const TaskPage = () => {
         <TaskList
           tasks={tasks}
           userRole={userRole}
-          onDelete={userRole === "assistant" ? handleDelete : null}
-          onUpdate={userRole === "assistant" ? handleUpdate : null}
+          onDelete={userRole === "Assistant" ? handleDelete : null}
+          onUpdate={userRole === "Assistant" ? handleUpdate : null}
         />
-        {userRole === "assistant" && (
+        {userRole === "Assistant" && (
           <TaskUpload
             userRole={userRole}
             selectedFile={selectedFile}
@@ -129,7 +129,7 @@ const TaskPage = () => {
             onTextTaskSubmit={handleTextTaskSubmit}
           />
         )}
-        {userRole === "assistant" && tasks.length > 0 && (
+        {userRole === "Assistant" && tasks.length > 0 && (
           <button className="remove-all-btn" onClick={handleRemoveAll}>
             Remove All Tasks
           </button>

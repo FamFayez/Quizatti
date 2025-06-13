@@ -13,7 +13,7 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile }) => {
               <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
                 View File
               </a>
-              {userRole === "assistant" && (
+              {userRole === "Assistant" && (
                 <button
                   className="remove-btn"
                   onClick={() => onRemoveFile(item._id)}

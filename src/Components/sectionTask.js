@@ -17,7 +17,7 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
                   >
                     📄 {lecture.title}
                   </a>
-                  {userRole === "assistant" && (
+                  {userRole === "Assistant" && (
                     <button
                       className="delete-btn"
                       onClick={() => onDelete(lecture._id)}
@@ -31,7 +31,7 @@ const SectionTask = ({ lectures, userRole, onDelete, onUpdate }) => {
               )}
             </h2>
 
-            {userRole === "assistant" && (
+            {userRole === "Assistant" && (
               <EditableLectureItem
                 index={index}
                 lecture={lecture}

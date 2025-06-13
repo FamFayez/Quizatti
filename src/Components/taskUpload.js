@@ -12,7 +12,7 @@ const TaskUpload = ({
 }) => {
   const [taskType, setTaskType] = useState("text"); // text | link | file
 
-  if (userRole !== "doctor" && userRole !== "ta") return null;
+  if (userRole !== "Teacher" && userRole !== "Assistant") return null;
 
   return (
     <div className="upload-section">

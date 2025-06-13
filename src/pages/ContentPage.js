@@ -17,7 +17,7 @@ const Content = () => {
   const { lectures, isLoading } = ContentHook(courseId);
 
   const handleDelete = async (lectureId) => {
-    if (userRole !== "assistant") return;
+    if (userRole !== "Assistant") return;
 
     const confirm = window.confirm(
       "Are you sure you want to delete this file?"
@@ -34,7 +34,7 @@ const Content = () => {
   };
 
   const handleUpload = async (newLecture) => {
-    if (userRole !== "assistant") return;
+    if (userRole !== "Assistant") return;
 
     try {
       await postData(`${Content_API_URL}?courseId=${courseId}`, newLecture);
@@ -56,11 +56,11 @@ const Content = () => {
           <ContentListComponent
             contentItems={lectures}
             userRole={userRole}
-            onRemoveFile={userRole === "assistant" ? handleDelete : undefined}
+            onRemoveFile={userRole === "Assistant" ? handleDelete : undefined}
           />
         )}
 
-        {userRole === "assistant" && (
+        {userRole === "Assistant" && (
           <div className="upload-section">
             <UploadFile showNote={false} onFileUpload={handleUpload} />
           </div>
