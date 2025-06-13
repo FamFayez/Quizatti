@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Question from "../Components/Question";
 import { quesdata } from "../core/data/Questions";
 import "../style/stylee.css";
@@ -19,18 +20,17 @@ export default function QuizPage() {
       setSeconds((prev) => prev + 1);
     }, 1000);
 
-    return () => clearInterval(interval); // cleanup
+    return () => clearInterval(interval);
   }, [isSubmitted]);
 
-  // Format time
   const formatTime = (totalSeconds) => {
     const hrs = Math.floor(totalSeconds / 3600);
     const mins = Math.floor((totalSeconds % 3600) / 60);
     const secs = totalSeconds % 60;
 
-    return `${hrs.toString().padStart(2, '0')}:
-            ${mins.toString().padStart(2, '0')}:
-            ${secs.toString().padStart(2, '0')}`;
+    return `${hrs.toString().padStart(2, "0")}:
+            ${mins.toString().padStart(2, "0")}:
+            ${secs.toString().padStart(2, "0")}`;
   };
 
   const handleAnswer = (index, answer) => {
@@ -63,8 +63,14 @@ export default function QuizPage() {
         <>
           <Question
             question={quesdata[currentIndex]}
-            onNext={() => setCurrentIndex((prev) => Math.min(prev + 1, quesdata.length - 1))}
-            onPrevious={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
+            onNext={() =>
+              setCurrentIndex((prev) =>
+                Math.min(prev + 1, quesdata.length - 1)
+              )
+            }
+            onPrevious={() =>
+              setCurrentIndex((prev) => Math.max(prev - 1, 0))
+            }
             isFirst={currentIndex === 0}
             isLast={currentIndex === quesdata.length - 1}
             onAnswerSelect={(answer) => handleAnswer(currentIndex, answer)}
@@ -80,7 +86,7 @@ export default function QuizPage() {
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`pagination-button ${isAnswered ? 'answered' : 'unanswered'} ${isActive ? 'active' : ''}`}
+                  className={`pagination-button ${isAnswered ? "answered" : "unanswered"} ${isActive ? "active" : ""}`}
                 >
                   {idx + 1}
                 </button>
@@ -90,7 +96,9 @@ export default function QuizPage() {
 
           {currentIndex === quesdata.length - 1 && (
             <div className="submit-section">
-              <button className="submit-btn" onClick={handleSubmit}>Submit Quiz</button>
+              <button className="submit-btn" onClick={handleSubmit}>
+                Submit Quiz
+              </button>
             </div>
           )}
         </>
@@ -102,6 +110,11 @@ export default function QuizPage() {
           <p>Incorrect Answers: {quesdata.length - getScore()}</p>
           <p>Your Score: {((getScore() / quesdata.length) * 100).toFixed(2)}%</p>
           <p>Total Time Taken: {formatTime(seconds)}</p>
+
+          {/* Back to Home Button */}
+          <Link to="/" className="back-home-button">
+             Back to Home
+          </Link>
         </div>
       )}
     </div>
