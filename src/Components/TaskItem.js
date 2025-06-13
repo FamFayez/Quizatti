@@ -1,13 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import EditTaskModal from "./EditTaskModal";
 
 const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(task.title);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSave = () => {
-    if (editedTitle.trim() === "") return;
-    onUpdate(index, { ...task, title: editedTitle });
-    setIsEditing(false);
+  const handleEdit = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleSave = (updatedData) => {
+    onUpdate({
+      ...updatedData,
+      id: task._id
+    });
   };
 
   const isExternalLink = task.isLink && task.file;
@@ -24,17 +29,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
               rel="noopener noreferrer"
               className="pdf-link"
             >
-              🔗{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  className="edit-input"
-                />
-              ) : (
-                task.title
-              )}
+              🔗{task.name}
             </a>
           ) : task.file ? (
             // Uploaded file
@@ -44,79 +39,35 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
               rel="noopener noreferrer"
               className="pdf-link"
             >
-              📄{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  className="edit-input"
-                />
-              ) : (
-                task.title
-              )}
+              📄{task.name}
             </a>
           ) : (
             // Plain text
-            <span>
-              📝{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                  className="edit-input"
-                />
-              ) : (
-                task.title
-              )}
-            </span>
+            <span>📝 {task.title}</span>
           )}
 
           {(userRole === "Teacher" || userRole === "Assistant") && (
             <>
-              {isEditing ? (
-                <>
-                  <button
-                    className="save-btn"
-                    onClick={handleSave}
-                    title="Save Edit"
-                  >
-                    💾
-                  </button>
-                  <button
-                    className="cancel-btn"
-                    onClick={() => {
-                      setIsEditing(false);
-                      setEditedTitle(task.title);
-                    }}
-                    title="Cancel Edit"
-                  >
-                    ❌
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    className="btn"
-                    onClick={() => setIsEditing(true)}
-                    title="Edit Task"
-                  >
-                    ✏️
-                  </button>
-                  <button
-                    className="btn"
-                    onClick={() => onDelete(index)}
-                    title="Delete Task"
-                  >
-                    🗑️
-                  </button>
-                </>
-              )}
+              <button className="btn" onClick={handleEdit} title="Edit Task">
+                ✏️
+              </button>
+              <button
+                className="btn"
+                onClick={() => onDelete(index, task._id)}
+                title="Delete Task"
+              >
+                🗑️
+              </button>
             </>
           )}
         </h2>
       </div>
+      <EditTaskModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSave}
+        initialData={task}
+      />
     </article>
   );
 };
