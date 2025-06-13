@@ -1,4 +1,4 @@
-import "../style/SectionPage.css";
+import "../style/content.css";
 import content from "../assets/img/content.png";
 import ImageBackground from "../Components/ImageBackground";
 import ContentListComponent from "../Components/ContentListComponent";
@@ -18,7 +18,9 @@ const Content = () => {
   const handleDelete = async (lectureId) => {
     if (userRole !== "assistant") return;
 
-    const confirm = window.confirm("Are you sure you want to delete this file?");
+    const confirm = window.confirm(
+      "Are you sure you want to delete this file?"
+    );
     if (!confirm) return;
 
     try {
@@ -59,10 +61,7 @@ const Content = () => {
 
         {userRole === "assistant" && (
           <div className="upload-section">
-            <UploadFile
-              showNote={false}
-              onFileUpload={handleUpload}
-            />
+            <UploadFile showNote={false} onFileUpload={handleUpload} />
           </div>
         )}
       </div>
