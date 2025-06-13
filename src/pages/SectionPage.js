@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SectionHook from "../hooks/SectionHook";
 
-const userRole = localStorage.getItem("role") || "student"; // 'Assistant', 'doctor', or 'student'
+const userRole = localStorage.getItem("role") || "student"; // 'Assistant', 'Teacher', or 'student'
 
 const SectionPage = () => {
   const { secslides, isLoading } = SectionHook();

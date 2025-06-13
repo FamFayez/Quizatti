@@ -51,7 +51,7 @@ const UploadFile = ({ onFileUpload, showNote = true }) => {
           required
         />
       </div>
-      {showNote && (
+      {/* {showNote && (
         <div>
           <input
             type="text"
@@ -60,7 +60,7 @@ const UploadFile = ({ onFileUpload, showNote = true }) => {
             onChange={(e) => setNote(e.target.value)}
           />
         </div>
-      )}
+      )} */}
       <button type="submit">Upload Lecture</button>
     </form>
   );

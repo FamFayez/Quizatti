@@ -12,7 +12,8 @@ const TaskUpload = ({
 }) => {
   const [taskType, setTaskType] = useState("text"); // text | link | file
 
-  if (userRole !== "Teacher" && userRole !== "Assistant") return null;
+  // Allow only "Assistant"
+  if (userRole !== "Assistant") return null;
 
   return (
     <div className="upload-section">

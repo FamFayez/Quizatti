@@ -73,7 +73,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
             </span>
           )}
 
-          {(userRole === "doctor" || userRole === "ta") && (
+          {(userRole === "Teacher" || userRole === "Assistant") && (
             <>
               {isEditing ? (
                 <>

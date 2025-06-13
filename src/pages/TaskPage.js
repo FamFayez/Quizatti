@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AssignmentHook from "../hooks/AssignmentHook";
 
-const userRole = (localStorage.getItem("role") || "student").toLowerCase();
+const userRole = localStorage.getItem("role") || "student";
 console.log("Role:", userRole);
 
 const TaskPage = () => {

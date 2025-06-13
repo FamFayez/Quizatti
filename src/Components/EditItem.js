@@ -22,7 +22,7 @@ const EditableLectureItem = ({ lecture, index, onUpdate, userRole }) => {
       )}
 
       <div className="lecture-actions">
-        {(userRole === "doctor" || userRole === "ta") && (
+        {(userRole === "Teacher" || userRole === "Assistant") && (
           <>
             {isEditing ? (
               <button onClick={handleSave}>💾 Save</button>
