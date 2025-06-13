@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import EditModal from "./EditModal";
 
-const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }) => {
+const ContentListComponent = ({
+  contentItems,
+  userRole,
+  onRemoveFile,
+  onUpdate
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -33,16 +38,22 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
               <a href={item.file} target="_blank" rel="noopener noreferrer">
                 View File
               </a>
-              {userRole === "assistant" || userRole === "teacher" && (
-                <button
-                  className="delete-btn"
-                  onClick={() => onRemoveFile(item._id)}
-                >
-                  🗑️ Remove File
-                </button>
-              )}
+              {userRole === "assistant" ||
+                (userRole === "teacher" && (
+                  <button
+                    className="delete-btn"
+                    onClick={() => onRemoveFile(item._id)}
+                  >
+                    🗑️ Remove File
+                  </button>
+                ))}
               {(userRole === "teacher" || userRole === "assistant") && (
-                <button onClick={() => handleEditClick(index, item)}>✏️ Edit</button>
+                <button
+                  className="edit-btn"
+                  onClick={() => handleEditClick(index, item)}
+                >
+                  ✏️ Edit
+                </button>
               )}
             </div>
           ) : (
