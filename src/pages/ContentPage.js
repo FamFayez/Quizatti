@@ -1,4 +1,4 @@
-import "../style/SectionPage.css";
+import "../style/content.css";
 import content from "../assets/img/content.png";
 import ImageBackground from "../Components/ImageBackground";
 import ContentListComponent from "../Components/ContentListComponent";
