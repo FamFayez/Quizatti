@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import EditTaskModal from './EditTaskModal';
+import React, { useState } from "react";
+import EditTaskModal from "./EditTaskModal";
 
 const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,7 +11,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
   const handleSave = (updatedData) => {
     onUpdate({
       ...updatedData,
-      id: task.id
+      id: task._id
     });
   };
 
@@ -43,24 +43,17 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
             </a>
           ) : (
             // Plain text
-            <span>
-              📝{" "}
-              {task.title}
-            </span>
+            <span>📝 {task.title}</span>
           )}
 
           {(userRole === "Teacher" || userRole === "Assistant") && (
             <>
-              <button
-                className="btn"
-                onClick={handleEdit}
-                title="Edit Task"
-              >
+              <button className="btn" onClick={handleEdit} title="Edit Task">
                 ✏️
               </button>
               <button
                 className="btn"
-                onClick={() => onDelete(index)}
+                onClick={() => onDelete(index, task._id)}
                 title="Delete Task"
               >
                 🗑️
