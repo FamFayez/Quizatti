@@ -34,7 +34,7 @@ const SectionListComponent = ({
           <p className="text-center text-white fs-4">No Sections Uploaded</p>
         </div>
       )}
-      <div className="content-list">
+      <div className="content-list mx-0">
         {contentItems.map((item, index) => (
           <div className="content-card" key={item._id || index}>
             <h2 className="content-title">{item.name}</h2>
@@ -57,13 +57,13 @@ const SectionListComponent = ({
                 {userRole === "assistant" && (
                   <>
                     <button
-                      className="btn delete-btn"
+                      className="btn delete-btn m-0"
                       onClick={() => onRemoveFile(item._id)}
                     >
                       🗑️ Remove
                     </button>
                     <button
-                      className="btn edit-btn"
+                      className="btn edit-btn m-0"
                       onClick={() => handleEditClick(index, item)}
                     >
                       ✏️ Edit

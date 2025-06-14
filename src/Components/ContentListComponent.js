@@ -23,12 +23,14 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
   };
 
   return (
-    <div className="content-list">
+    <div className="content-list m-0">
       {contentItems.map((item, index) => (
         <div className="content-card" key={item._id || index}>
           <h2 className="content-title">{item.name}</h2>
           <p className="content-meta">📘 Chapter: {item.chapterNo}</p>
-          <p className="content-meta">📅 Uploaded: {new Date(item.createdAt).toLocaleDateString()}</p>
+          <p className="content-meta">
+            📅 Uploaded: {new Date(item.createdAt).toLocaleDateString()}
+          </p>
 
           {item.file ? (
             <div className="content-actions">
@@ -41,12 +43,18 @@ const ContentListComponent = ({ contentItems, userRole, onRemoveFile, onUpdate }
                 🔗 View File
               </a>
 
-              {(userRole === "teacher" ) && (
+              {userRole === "teacher" && (
                 <>
-                  <button className="btn delete-btn" onClick={() => onRemoveFile(item._id)}>
+                  <button
+                    className="btn delete-btn m-0"
+                    onClick={() => onRemoveFile(item._id)}
+                  >
                     🗑️ Remove
                   </button>
-                  <button className="btn edit-btn" onClick={() => handleEditClick(index, item)}>
+                  <button
+                    className="btn edit-btn m-0"
+                    onClick={() => handleEditClick(index, item)}
+                  >
                     ✏️ Edit
                   </button>
                 </>

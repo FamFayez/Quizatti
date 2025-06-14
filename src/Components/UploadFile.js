@@ -32,11 +32,12 @@ const UploadFile = ({ onFileUpload }) => {
   return (
     <div className="upload-container">
       {!showForm ? (
-        <button className="upload-toggle-btn" onClick={() => setShowForm(true)}>
+        <button className="upload-toggle-btn p-3" onClick={() => setShowForm(true)}>
           📤 Upload Lecture
         </button>
       ) : (
         <form className="upload-form" onSubmit={handleSubmit}>
+          <h3>Add Lecture</h3>
           <input
             type="text"
             placeholder="Lecture title"
