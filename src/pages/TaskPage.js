@@ -214,10 +214,10 @@ const TaskPage = () => {
           <p>No tasks Uploaded</p>
         </div>
       )}
-      <div className="container">
+      <div className="container m-0">
         {loading && <Spinner />}
         <ToastContainer position="top-right" autoClose={3000} />
-        {tasks?.length > 0 && (
+        {
           <div className="contentTA">
             {userRole === "Assistant" && (
               <TaskUpload
@@ -240,7 +240,7 @@ const TaskPage = () => {
               onSubmit={submitTask}
             />
           </div>
-        )}
+        }
         {/* {tasks?.length === 0 && (
       )} */}
         {/* <div
