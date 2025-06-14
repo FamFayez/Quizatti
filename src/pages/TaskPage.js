@@ -208,42 +208,49 @@ const TaskPage = () => {
   };
 
   return (
-    <div className="container">
-      {loading && <Spinner />}
-      <ToastContainer position="top-right" autoClose={3000} />
-      {tasks?.length > 0 && (
-        <div className="contentTA">
-          {userRole === "Assistant" && (
-            <TaskUpload
-              userRole={userRole}
-              selectedFile={selectedFile}
-              textPreview={textPreview}
-              errorMessage={errorMessage}
-              onFileChange={handleFileChange}
-              manualTaskText={manualTaskText}
-              setManualTaskText={setManualTaskText}
-              // onTextTaskSubmit={handleTextTaskSubmit}
-              onUpload={handleUpload}
-            />
-          )}
-          <TaskList
-            tasks={tasks}
-            userRole={userRole}
-            onDelete={handleDelete}
-            onUpdate={handleUpdate}
-            onSubmit={submitTask}
-          />
+    <>
+      {tasks.length === 0 && (
+        <div className="fs-4 text-white text-center pt-4">
+          <p>No tasks Uploaded</p>
         </div>
       )}
-      {/* {tasks?.length === 0 && (
+      <div className="container">
+        {loading && <Spinner />}
+        <ToastContainer position="top-right" autoClose={3000} />
+        {tasks?.length > 0 && (
+          <div className="contentTA">
+            {userRole === "Assistant" && (
+              <TaskUpload
+                userRole={userRole}
+                selectedFile={selectedFile}
+                textPreview={textPreview}
+                errorMessage={errorMessage}
+                onFileChange={handleFileChange}
+                manualTaskText={manualTaskText}
+                setManualTaskText={setManualTaskText}
+                // onTextTaskSubmit={handleTextTaskSubmit}
+                onUpload={handleUpload}
+              />
+            )}
+            <TaskList
+              tasks={tasks}
+              userRole={userRole}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
+              onSubmit={submitTask}
+            />
+          </div>
+        )}
+        {/* {tasks?.length === 0 && (
       )} */}
-      {/* <div
+        {/* <div
         className="image-container"
         style={{ width: tasks?.length === 0 ? "100%" : "50%" }}
       >
         <ImageBackground imageSrc={taskImage} altText="tasks" />
       </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 
