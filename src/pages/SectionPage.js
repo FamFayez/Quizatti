@@ -1,86 +1,99 @@
 import { useState, useEffect } from "react";
 import "../style/content.css";
 import "../style/Container.css";
-import ImageBackground from "../Components/ImageBackground";
+// import SectionTask from "../Components/sectionTask";
+// import Learning from "../assets/img/Learning.png";
+// import ImageBackground from "../Components/ImageBackground";
 import UploadFile from "../Components/UploadFile";
-import SectionTask from "../Components/sectionTask";
-import Learning from "../assets/img/Learning.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SectionHook from "../hooks/SectionHook";
+import { useParams } from "react-router-dom";
+import { Section_API_URL } from "../utils/constants";
+import SectionListComponent from "../Components/SectionListComponent";
+import { deleteDataToken, postData } from "../axios/axiosHelper";
 
-const userRole = localStorage.getItem("role") || "student"; // 'Assistant', 'Teacher', or 'student'
+const rawRole = localStorage.getItem("role") || "student"; // 'Assistant', 'Teacher', or 'student'
+const userRole = rawRole.toLowerCase(); // ensures lowercase: "teacher", "assistant", "student"
 
 const SectionPage = () => {
-  const { secslides, isLoading } = SectionHook();
-  const [lectures, setLectures] = useState([]);
+  const { courseId } = useParams();
+  const { secslides, isLoading } = SectionHook(courseId);
+  const [localsecslides, setlocalsecslides] = useState([]);
 
   useEffect(() => {
-    setLectures(secslides);
+    setlocalsecslides(secslides);
   }, [secslides]);
 
-  const handleDelete = (lectureId) => {
-    if (userRole !== "Assistant") return;
-    // TODO: Call DELETE API
-    setLectures((prev) => prev.filter((lec) => lec._id !== lectureId));
-    toast.info("File removed successfully!");
+  const handleUpdate = (index, updatedLecture) => {
+    const updatedLectures = [...localsecslides];
+    updatedLectures[index] = updatedLecture;
+    setlocalsecslides(updatedLectures);
+    toast.success("✏️ Lecture updated successfully!");
   };
 
-  const handleUpdate = (lectureId, updatedLecture) => {
-    if (userRole !== "Assistant") return;
-    // TODO: Call PUT/PATCH API
-    setLectures((prev) =>
-      prev.map((lec) => (lec._id === lectureId ? updatedLecture : lec))
+  const handleDelete = async (lectureId) => {
+    if (userRole !== "assistant") return; // ✅ now only assistant can delete
+
+    const confirm = window.confirm(
+      "Are you sure you want to delete this file?"
     );
-    toast.success("Lecture updated successfully!");
+    if (!confirm) return;
+
+    try {
+      await deleteDataToken(`${Section_API_URL}/${lectureId}`);
+      toast.success("Lecture deleted successfully.");
+      window.location.reload();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Error deleting lecture.");
+    }
   };
 
-  const handleUpload = (newLecture) => {
-    if (userRole !== "Assistant") return;
-    // TODO: Call POST API
-    setLectures((prev) => [...prev, newLecture]);
-    toast.success(`Lecture "${newLecture.title}" uploaded successfully!`);
-  };
+  const handleUpload = async ({ file, title, chapterNo }) => {
+    if (userRole !== "assistant") return;
 
-  const handleRemoveAll = () => {
-    if (userRole !== "Assistant") return;
-    // TODO: Bulk delete API if available
-    setLectures([]);
-    toast.info("All files removed successfully!");
+    const formData = new FormData();
+    formData.append("name", title); // Slide title
+    formData.append("chapterNo", 5); // Slide chapter
+    formData.append("course", courseId); // Course ID
+    formData.append("file", file); // Slide file (MUST be a File object)
+
+    try {
+      await postData(`${Section_API_URL}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success(`Lecture "${title}" uploaded successfully!`);
+      window.location.reload();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Error uploading lecture.");
+    }
   };
 
   return (
-    <div className="section-container">
+    <div className="container">
       <ToastContainer position="top-right" autoClose={3000} />
 
-      <div className="section-page-layout">
+      <div className="contentDR">
         {isLoading ? (
-          <p>Loading section slides...</p>
+          <p>Loading lectures...</p>
         ) : (
-          <SectionTask
-            lectures={lectures}
+          <SectionListComponent
+            contentItems={localsecslides}
             userRole={userRole}
-            onDelete={userRole === "Assistant" ? handleDelete : undefined}
-            onUpdate={userRole === "Assistant" ? handleUpdate : undefined}
+            onRemoveFile={userRole === "assistant" ? handleDelete : undefined} // ✅ only teacher sees "delete"
+            onUpdate={handleUpdate}
           />
         )}
-      </div>
 
-      <div className="right-section">
-        <ImageBackground imageSrc={Learning} altText="Learning" />
-        {userRole === "Assistant" && (
-          <>
-            <UploadFile showNote={true} onFileUpload={handleUpload} />
-            {lectures.length > 0 && (
-              <button className="remove-all" onClick={handleRemoveAll}>
-                Remove All Files
-              </button>
-            )}
-          </>
+        {userRole === "assistant" && (
+          <div className="upload-section">
+            <UploadFile showNote={false} onFileUpload={handleUpload} />
+          </div>
         )}
       </div>
     </div>
   );
 };
-
 export default SectionPage;
