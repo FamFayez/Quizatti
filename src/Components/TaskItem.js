@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditTaskModal from "./EditTaskModal";
 import SubmitTaskModal from "./SubmitTaskModal";
+import { patchDataToken } from "../axios/axiosHelper";
 
 const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -19,6 +20,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
       ...updatedData,
       id: task._id
     });
+    // patchDataToken()
   };
 
   const handleFileSubmit = (file) => {
@@ -58,15 +60,17 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
         </p>
         {(userRole === "Teacher" || userRole === "Assistant") && (
           <div className="row justify-content-center ">
-            <div className="col-6 text-center">
-              <button
-                className="btn btn-primary w-50"
-                onClick={handleEdit}
-                title="Edit Task"
-              >
-                <i class="bi bi-pencil-fill"></i>
-              </button>
-            </div>
+            {userRole === "Assistant" && (
+              <div className="col-6 text-center">
+                <button
+                  className="btn btn-primary w-50"
+                  onClick={handleEdit}
+                  title="Edit Task"
+                >
+                  <i class="bi bi-pencil-fill"></i>
+                </button>
+              </div>
+            )}
             <div className="col-6 text-center">
               <button
                 className="btn btn-danger w-50"
