@@ -38,12 +38,25 @@ export default function QuizzesPage() {
                 <div className="d-flex flex-column gap-3 justify-content-center align-items-center w-100">
                   {quizzes.map((item) => (
                     <div
-                      key={item._id}
-                      className="section-button w-50"
-                      onClick={() => startQuiz(item._id)}
-                    >
-                      {item.name}
-                    </div>
+  key={item._id}
+  className="quiz-card"
+  onClick={() => startQuiz(item._id)}
+>
+  <h5 className="quiz-title">{item.name}</h5>
+  <p className="quiz-info">
+    <strong>Duration:</strong> {item.duration} mins
+  </p>
+  <p className="quiz-info">
+    <strong>Questions:</strong> {item.numberOfQuestions}
+  </p>
+  <p className="quiz-info">
+    <p className="quiz-info">
+  <strong>Chapters:</strong> {item.chapters.join(", ")}
+</p>
+
+  </p>
+</div>
+
                   ))}
                 </div>
                 <ImageBackground imageSrc={quiz} altText="Material" />
