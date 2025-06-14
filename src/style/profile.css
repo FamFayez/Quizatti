@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
   margin: 0;
   padding: 0;
@@ -11,6 +11,7 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   padding: 40px;
   max-width: 800px;
+  max-height: fit-content !important;
   margin: 8px auto;
 }
 
@@ -83,11 +84,11 @@ body {
 }
 
 .profile-tab p {
- color: #3498db;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 0;
-    display: flex;
-    align-items: center;
+  color: #3498db;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
 }

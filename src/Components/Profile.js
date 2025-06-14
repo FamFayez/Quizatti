@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../style/profile.css";
 import ChangePasswordHook from "../hooks/ChangePasswordHook";
+import Spinner from "../shared/Spinner";
 
 export default function Profile() {
   const { user, isLoading } = useProfile();
@@ -16,6 +17,7 @@ export default function Profile() {
     setNewPassword,
     confirmPassword,
     setConfirmPassword,
+    setShowChangePassword,
     handleChangePassword,
     loading,
     showChangePassword
@@ -25,9 +27,10 @@ export default function Profile() {
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
+    setShowChangePassword(false);
   };
 
-  if (isLoading) return <p>Loading profile...</p>;
+  if (isLoading) return <Spinner />;
   if (!user) return <p>No user data</p>;
 
   return (
@@ -125,7 +128,6 @@ export default function Profile() {
                   className="btn btn-success"
                   onClick={async () => {
                     await handleChangePassword();
-                    handleCancel(); // hide & reset only after success
                   }}
                   disabled={loading}
                 >
