@@ -8,7 +8,7 @@ import "../style/profile.css";
 
 export default function Profile() {
   const { user, isLoading } = useProfile();
-  const [showChangePassword, setShowChangePassword] = useState(false);
+  const [useChangePassword, setuseChangePassword] = useState(false);
 
   const {
     currentPassword,
@@ -22,7 +22,7 @@ export default function Profile() {
   } = useChangePassword();
 
   const handleCancel = () => {
-    setShowChangePassword(false);
+    setuseChangePassword(false);
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
