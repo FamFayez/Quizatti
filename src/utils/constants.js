@@ -35,3 +35,4 @@ export const QUESTION_Bank_API_URL = "/question";
 export const Content_API_URL = "/slide/";
 export const Section_API_URL = "/slide/";
 export const Task_API_URL = "/assignment";
+export const PROFILE_API_URL = "/user/auth/getMe";
