@@ -10,6 +10,7 @@ import ContentHook from "../hooks/ContentHook";
 import { Content_API_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Spinner from "../shared/Spinner";
 
 // Normalize role
 const rawRole = localStorage.getItem("role") || "student";
@@ -60,8 +61,8 @@ const Content = () => {
     try {
       await postData(`${Content_API_URL}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       });
       toast.success(`Lecture "${title}" uploaded successfully!`);
       window.location.reload();
@@ -76,7 +77,7 @@ const Content = () => {
 
       <div className="contentDR">
         {isLoading ? (
-          <p>Loading lectures...</p>
+          <Spinner />
         ) : (
           <ContentListComponent
             contentItems={localLectures}
@@ -85,7 +86,11 @@ const Content = () => {
             onUpdate={handleUpdate}
           />
         )}
-
+        {localLectures?.length === 0 && (
+          <div className="w-100">
+            <p className="text-white text-center">No Lectures Uploaded</p>
+          </div>
+        )}
         {userRole === "teacher" && (
           <div className="upload-section">
             <UploadFile showNote={false} onFileUpload={handleUpload} />
