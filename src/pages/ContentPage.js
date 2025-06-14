@@ -61,8 +61,8 @@ const Content = () => {
     try {
       await postData(`${Content_API_URL}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       toast.success(`Lecture "${title}" uploaded successfully!`);
       window.location.reload();
@@ -76,6 +76,11 @@ const Content = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <div className="contentDR">
+        {userRole === "teacher" && (
+          <div className="upload-section">
+            <UploadFile showNote={false} onFileUpload={handleUpload} />
+          </div>
+        )}
         {isLoading ? (
           <Spinner />
         ) : (
@@ -89,11 +94,6 @@ const Content = () => {
         {localLectures?.length === 0 && (
           <div className="w-100">
             <p className="text-white text-center">No Lectures Uploaded</p>
-          </div>
-        )}
-        {userRole === "teacher" && (
-          <div className="upload-section">
-            <UploadFile showNote={false} onFileUpload={handleUpload} />
           </div>
         )}
       </div>

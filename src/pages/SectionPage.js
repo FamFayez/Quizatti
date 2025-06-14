@@ -76,6 +76,11 @@ const SectionPage = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <div className="contentDR">
+        {userRole === "assistant" && (
+          <div className="upload-section">
+            <UploadFile showNote={false} onFileUpload={handleUpload} />
+          </div>
+        )}
         {isLoading ? (
           <p>Loading lectures...</p>
         ) : (
@@ -85,12 +90,6 @@ const SectionPage = () => {
             onRemoveFile={userRole === "assistant" ? handleDelete : undefined} // ✅ only teacher sees "delete"
             onUpdate={handleUpdate}
           />
-        )}
-
-        {userRole === "assistant" && (
-          <div className="upload-section">
-            <UploadFile showNote={false} onFileUpload={handleUpload} />
-          </div>
         )}
       </div>
     </div>
