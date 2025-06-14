@@ -13,6 +13,8 @@ export default function Card({ items }) {
         >
           <div className="card">
             <h3>{item.name}</h3>
+            <h4>{item.code}</h4>
+            
           </div>
         </Link>
       ))}

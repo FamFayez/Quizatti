@@ -88,7 +88,7 @@ const Content = () => {
         )}
         {localLectures?.length === 0 && (
           <div className="w-100">
-            <p className="text-white text-center">No Lectures Uploaded</p>
+            <p className="text-white text-center fs-4">No Lectures Uploaded</p>
           </div>
         )}
         {userRole === "teacher" && (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SubmitTaskModal.css';
+import '../style/SubmitTaskModal.css';
 
 const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
   const [file, setFile] = useState(null);

@@ -8,7 +8,7 @@
 .card {
   position: relative;
   background-color: #d9d9d9;
-  padding: 60px;
+  padding: 80px;
   text-align: center;
   border-radius: 30px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -18,11 +18,20 @@
 
 .card h3 {
   position: absolute;
-  bottom: 0px; 
+  top: 55px; 
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 20px;
   color: #333;
+  margin: 0;
+}
+.card h4 {
+  position: absolute;
+  bottom: 5px; 
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #3684fa;
   margin: 0;
 }
 
