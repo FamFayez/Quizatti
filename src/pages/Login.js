@@ -27,7 +27,7 @@ const Login = () => {
       {isLoading && <Spinner />}
       <div className="login-page">
         <img className="wave" src={wave} alt="Wave" />
-        <div className="container">
+        <div className="container d-flex justify-content-center align-items-center h-100">
           <div className="img">
             <img src={educationImg} alt="Education" />
           </div>
