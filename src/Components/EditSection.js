@@ -34,7 +34,7 @@ const EditSection = ({ isOpen, onClose, onSave, initialData }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content bg-white rounded-3">
         <h2>Edit Lecture</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

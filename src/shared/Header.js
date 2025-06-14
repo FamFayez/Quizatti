@@ -1,5 +1,6 @@
 import "../style/Header.css";
 import { Link } from "react-router";
+import { HOME_URL } from "../utils/constants";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link to={"/"}>Home </Link>
+            <Link to={HOME_URL}>Home </Link>
           </li>
           <li>
             <a href="#about">Profile</a>

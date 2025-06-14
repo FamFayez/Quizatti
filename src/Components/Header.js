@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HOME_URL } from "../utils/constants";
 export default function Header(props) {
   return (
     <>
@@ -11,7 +12,7 @@ export default function Header(props) {
         <nav className="headerButtoms">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to={HOME_URL}>Home</Link>
             </li>
             <li>
               <Link to="/Profile">Profile</Link>

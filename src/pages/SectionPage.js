@@ -86,7 +86,7 @@ const SectionPage = () => {
           <Spinner />
         ) : (
           <SectionListComponent
-            contentItems={[] ||localsecslides}
+            contentItems={localsecslides}
             userRole={userRole}
             onRemoveFile={userRole === "assistant" ? handleDelete : undefined} // ✅ only teacher sees "delete"
             onUpdate={handleUpdate}
