@@ -1,38 +1,49 @@
 export default function Question({
+  number = 1,
   question,
   onNext,
   onPrevious,
   isFirst,
   isLast,
   onAnswerSelect,
-  selectedAnswer
+  selectedOption
 }) {
-  const renderOption = (key) => (
-    <p
-      className={`option ${selectedAnswer === key ? 'selected' : ''}`}
-      onClick={() => onAnswerSelect(key)}
-    >
-      {question[key]}
-    </p>
-  );
+  const renderOption = (key) => {
+    return (
+      <p
+        className={`option ${selectedOption === key ? "selected" : ""}`}
+        onClick={() => onAnswerSelect(key)}
+      >
+        {question[key]}
+      </p>
+    );
+  };
 
   return (
     <div className="question">
-      <h4>Question {question.QuestionNum}</h4>
-      <h1>{question.Question}</h1>
+      <h4>Question {number}</h4>
+      <h1>{question?.question}</h1>
 
       <div className="options-container">
-        {renderOption('A')}
-        {renderOption('B')}
+        {renderOption("answerA")}
+        {renderOption("answerB")}
       </div>
       <div className="options-container">
-        {renderOption('C')}
-        {renderOption('D')}
+        {renderOption("answerC")}
+        {renderOption("answerD")}
       </div>
 
       <div className="button-container">
-        {!isFirst && <button onClick={onPrevious}>&laquo; Previous</button>}
-        {!isLast && <button onClick={onNext}>Next &raquo;</button>}
+        {
+          <button disabled={isFirst} onClick={onPrevious}>
+            &laquo; Previous
+          </button>
+        }
+        {
+          <button disabled={isLast} onClick={onNext}>
+            Next &raquo;
+          </button>
+        }
       </div>
     </div>
   );

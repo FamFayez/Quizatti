@@ -1,5 +1,5 @@
-export const baseUrl = "https://api.quizatty.com/api/v1";
-// export const baseUrl = "http://localhost:8000/api/v1";
+// export const baseUrl = "https://api.quizatty.com/api/v1";
+export const baseUrl = "http://localhost:8000/api/v1";
 export const token = sessionStorage.getItem("token");
 export const userData = JSON.parse(sessionStorage.getItem("user"));
 
@@ -23,7 +23,7 @@ export const QUIZ_SETUP_URL = "/course/:courseId/quiz-setup-page";
 
 export const PROFILE_URL = "/profile";
 export const QUIZ_DR_URL = "/quiz-teacher";
-export const QUIZ_URL = "/quiz";
+export const QUIZ_URL = "/quiz/:id";
 export const FORGOT_PASSWORD_URL = "/forgot-password";
 export const RESET_PASSWORD_URL = "/reset-password/:token"; // dynamic token param
 
