@@ -13,8 +13,17 @@ import { useProvider } from "../app/AppContext";
 
 export default function QuizzesPage() {
   const { userType } = useProvider();
-  const { quizzes, isLoading, startQuiz } = QuizzesHook();
+  const {
+    quizzes,
+    isLoading,
+    startQuiz,
+    showQuizResults,
+    setShowQuizResults,
+    quizResults
+  } = QuizzesHook();
   const { courseId } = useParams();
+
+  const handleClose = () => setShowQuizResults(false);
 
   return (
     <>
@@ -40,7 +49,11 @@ export default function QuizzesPage() {
                     <div
                       key={item._id}
                       className="quiz-card"
-                      onClick={() => startQuiz(item._id)}
+                      onClick={() =>
+                        userType === "Student"
+                          ? startQuiz(item._id)
+                          : setShowQuizResults(item._id)
+                      }
                     >
                       <h5 className="quiz-title">{item.name}</h5>
                       <p className="quiz-info">
@@ -57,9 +70,11 @@ export default function QuizzesPage() {
                       {userType === "Student" && (
                         <p className="quiz-info">
                           <p className="quiz-info">
-                            <strong>Mark:</strong>{" ("}
+                            <strong>Mark:</strong>
+                            {" ("}
                             {item?.quizAttempt?.correctAnswers || "-"}/{" "}
-                            {item.numberOfQuestions}{") "}
+                            {item.numberOfQuestions}
+                            {") "}
                             {item?.quizAttempt?.durationTaken &&
                               ` in ${item?.quizAttempt?.durationTaken} min`}
                           </p>
@@ -74,6 +89,77 @@ export default function QuizzesPage() {
           )}
         </div>
       </div>
+
+      {/* Quiz Results Modal */}
+      {showQuizResults && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+          {/* <div className="modal-backdrop fade show"></div> */}
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header bg-light">
+                <h5 className="modal-title fw-bold">Student Results</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={handleClose}
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body bg-white">
+                {quizResults ? (
+                  <div className="">
+                    <div className="table-responsive">
+                      <table className="table table-hover">
+                        <thead className="table-light">
+                          <tr>
+                            <th scope="col">Student</th>
+                            <th scope="col">Correct Answers</th>
+                            <th scope="col">Skipped</th>
+                            <th scope="col">Duration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {quizResults.map((result, index) => (
+                            <tr key={result._id}>
+                              <td>{result.student.fullName}</td>
+                              <td>
+                                <span className="badge bg-success">
+                                  {result.correctAnswers}
+                                </span>
+                              </td>
+                              <td>
+                                <span className="badge bg-warning">
+                                  {result.skippedAnswers}
+                                </span>
+                              </td>
+                              <td>
+                                {result.durationTaken
+                                  ? `${result.durationTaken} min`
+                                  : "-"}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="modal-footer bg-light">
+                <button
+                  type="button"
+                  className="btn btn-secondary px-4"
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

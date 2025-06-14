@@ -8,7 +8,9 @@ const QuizzesHook = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
+  const [quizResults, setQuizResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showQuizResults, setShowQuizResults] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,7 +40,27 @@ const QuizzesHook = () => {
       });
   };
 
-  return { quizzes, isLoading, courseId, startQuiz };
+  useEffect(() => {
+    if (showQuizResults) {
+      setIsLoading(true);
+      getData(QUIZ_API_URL + "/" + showQuizResults + "/history")
+        .then((res) => {
+          setQuizResults(res.data.data);
+        })
+        .catch((err) => toastMsg(err.response.data.message, "error"))
+        .finally(() => setIsLoading(false));
+    }
+  }, [showQuizResults]);
+
+  return {
+    quizzes,
+    isLoading,
+    courseId,
+    startQuiz,
+    showQuizResults,
+    setShowQuizResults,
+    quizResults
+  };
 };
 
 export default QuizzesHook;
