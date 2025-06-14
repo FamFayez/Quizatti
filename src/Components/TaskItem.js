@@ -17,7 +17,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
   const handleSave = (updatedData) => {
     onUpdate({
       ...updatedData,
-      id: task._id,
+      id: task._id
     });
   };
 
@@ -29,7 +29,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
 
   return (
     <article className="section-block">
-      <div className="lecture-block container w-100">
+      <div className="lecture-block h-100 w-100 d-flex flex-column justify-content-between">
         {/* <h2> */}
         <div className="row justify-content-center text-center">
           <a
@@ -42,57 +42,54 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
           </a>
         </div>
         {task.solutionFile && (
-          <>
-            <div className="row justify-content-center text-center ">
-              <a
-                href={task.solutionFile}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pdf-link"
-              >
-                <i class="bi bi-file-earmark-pdf text-success"></i> Solution
-              </a>
-            </div>
-          </>
+          <div className="row justify-content-center text-center">
+            <a
+              href={task.solutionFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pdf-link"
+            >
+              <i class="bi bi-file-earmark-pdf text-success"></i> Solution
+            </a>
+          </div>
         )}
+        <p className=" text-center">
+          Deadline: {new Date(task.deadline).toISOString().split("T")[0]}
+        </p>
         {(userRole === "Teacher" || userRole === "Assistant") && (
-          <>
-            <div className="row justify-content-center ">
-              <div className="col-6 text-center">
-                <button
-                  className="btn btn-primary"
-                  onClick={handleEdit}
-                  title="Edit Task"
-                >
-                  <i class="bi bi-pencil-fill"></i>
-                </button>
-              </div>
-              <div className="col-6 text-center">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => onDelete(index, task._id)}
-                  title="Delete Task"
-                >
-                  <i class="bi bi-trash-fill"></i>
-                </button>
-              </div>
+          <div className="row justify-content-center ">
+            <div className="col-6 text-center">
+              <button
+                className="btn btn-primary w-50"
+                onClick={handleEdit}
+                title="Edit Task"
+              >
+                <i class="bi bi-pencil-fill"></i>
+              </button>
             </div>
-          </>
+            <div className="col-6 text-center">
+              <button
+                className="btn btn-danger w-50"
+                onClick={() => onDelete(index, task._id)}
+                title="Delete Task"
+              >
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
         )}
         {userRole === "Student" && (
-          <>
-            <div className="row justify-content-center ">
-              <div className="col-6 text-center">
-                <button
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                  title="Submit Solution"
-                >
-                  <i className="bi bi-send-fill"></i>
-                </button>
-              </div>
+          <div className="row justify-content-center ">
+            <div className="col-6 text-center">
+              <button
+                className="btn btn-primary w-100"
+                onClick={handleSubmit}
+                title="Submit Solution"
+              >
+                <i className="bi bi-send-fill"></i>
+              </button>
             </div>
-          </>
+          </div>
         )}
         {/* </h2> */}
       </div>
