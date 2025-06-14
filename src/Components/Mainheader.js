@@ -13,7 +13,7 @@ export default function Mainheader() {
       style={{ boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}
     >
       <div class="container-fluid">
-        <Link class="navbar-brand text-white fs-3 fw-bold" to={"/"}>
+        <Link class="navbar-brand text-white fs-3 fw-bold" to={HOME_URL}>
           Quizatty
         </Link>
         <button
@@ -76,7 +76,7 @@ export default function Mainheader() {
     //   <nav className="headerButtoms">
     //     <ul>
     //       <li>
-    //         <Link to="/">Home</Link>
+    //         <Link t0={HOME_URL}>Home</Link>
     //       </li>
     //       <li>
     //         <Link to="/Profile">Profile</Link>
