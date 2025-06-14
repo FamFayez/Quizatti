@@ -5,7 +5,7 @@ export const userData = JSON.parse(sessionStorage.getItem("user"));
 
 // Frontend URLs
 
-export const HOME_URL = "/";
+export const HOME_URL = "/home";
 export const LOGIN_URL = "/Login";
 export const MATERIALS_DR_URL = "/materials-teacher";
 export const MATERIAL_TA_URL = "/material-assistant";

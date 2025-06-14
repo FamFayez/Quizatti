@@ -3,7 +3,7 @@ import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import Question from "../Components/Question";
 import "../style/stylee.css";
 import { getData, patchDataToken, postData } from "../axios/axiosHelper";
-import { QUIZ_API_URL } from "../utils/constants";
+import { HOME_URL, QUIZ_API_URL } from "../utils/constants";
 import { Stack } from "@mui/material";
 import { Pagination } from "@mui/material";
 import Spinner from "../shared/Spinner";
@@ -72,7 +72,7 @@ export default function QuizPage() {
         const now = new Date();
         if (now >= endTime) {
           endQuiz(id, answers);
-          navigate("/");
+          navigate(HOME_URL);
         }
       }
     }, 1000);
@@ -245,7 +245,7 @@ export default function QuizPage() {
           <p>Total Time Taken: {formatTime(seconds)}</p>
 
           {/* Back to Home Button */}
-          <Link to="/" className="back-home-button">
+          <Link to={HOME_URL} className="back-home-button">
             Back to Home
           </Link>
         </div>

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import Login from "./pages/Login.js";
 import ForgotPassword from "./pages/ForgetPassword.js";
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
   },
   { path: QUIZ_URL, element: <QuizPage /> },
   {
-    path: HOME_URL,
+    path: "/",
     element: <App />,
     children: [
       { path: HOME_URL, element: <HomePage /> },
@@ -83,7 +83,8 @@ export const router = createBrowserRouter([
       { path: CONTENT_URL, element: <Content /> },
       { path: QUIZZES_URL, element: <QuizzesPage /> },
       { path: `${COURSE_URL}/:id`, element: <SubjPage /> },
+      { path: "/", element: <Navigate to={LOGIN_URL}/> },
       { path: "*", element: <Error /> }
     ]
-  }
+  },
 ]);
