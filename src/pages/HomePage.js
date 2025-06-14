@@ -11,7 +11,7 @@ export default function HomePage() {
   const userRole = localStorage.getItem("role");
   console.log("Role:", userRole);
   return (
-    <main className="container">
+    <main className="container d-flex justify-content-center align-items-center h-100">
       {isLoading && <Spinner />}
       <Card items={courses} />
       <ImageBackground imageSrc={Doctor} altText="collegeImg" />
