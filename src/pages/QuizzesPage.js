@@ -9,8 +9,10 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import QuizzesHook from "../hooks/QuizzesHook";
 import Spinner from "../shared/Spinner";
 import { Link, useParams } from "react-router-dom";
+import { useProvider } from "../app/AppContext";
 
 export default function QuizzesPage() {
+  const { userType } = useProvider();
   const { quizzes, isLoading, startQuiz } = QuizzesHook();
   const { courseId } = useParams();
 
@@ -20,7 +22,10 @@ export default function QuizzesPage() {
       <div className="container d-flex flex-column justify-content-start align-items-start w-100">
         <div className="d-flex justify-content-between align-items-center w-100">
           <h1 className="text-center text-white">Quizzes</h1>
-          <Link to={`/course/${courseId}/quiz-setup-page`}>
+          <Link
+            to={`/course/${courseId}/quiz-setup-page`}
+            className={userType === "Student" ? "invisible" : ""}
+          >
             <button className="btn btn-primary">Create Quiz</button>
           </Link>
         </div>

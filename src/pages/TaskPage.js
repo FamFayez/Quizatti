@@ -33,7 +33,7 @@ const TaskPage = () => {
   // Sync hook result with local state once loaded
   useEffect(() => {
     setLoading(true);
-    if (!isLoading && assignments.length) {
+    if (!isLoading) {
       setTasks(assignments);
       setLoading(false);
     }
@@ -186,7 +186,7 @@ const TaskPage = () => {
       });
   };
 
-  const submitTask = async ({file, taskId}) => {
+  const submitTask = async ({ file, taskId }) => {
     if (userRole !== "Student") return;
     const formData = new FormData();
     formData.append("file", file);
@@ -211,29 +211,36 @@ const TaskPage = () => {
     <div className="container">
       {loading && <Spinner />}
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className="contentTA">
-        <TaskList
-          tasks={tasks}
-          userRole={userRole}
-          onDelete={handleDelete}
-          onUpdate={handleUpdate}
-          onSubmit={submitTask}
-        />
-        {userRole === "Assistant" && (
-          <TaskUpload
+      {tasks?.length > 0 && (
+        <div className="contentTA">
+          <TaskList
+            tasks={tasks}
             userRole={userRole}
-            selectedFile={selectedFile}
-            textPreview={textPreview}
-            errorMessage={errorMessage}
-            onFileChange={handleFileChange}
-            manualTaskText={manualTaskText}
-            setManualTaskText={setManualTaskText}
-            // onTextTaskSubmit={handleTextTaskSubmit}
-            onUpload={handleUpload}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+            onSubmit={submitTask}
           />
-        )}
-      </div>
-      <div className="image-container">
+          {userRole === "Assistant" && (
+            <TaskUpload
+              userRole={userRole}
+              selectedFile={selectedFile}
+              textPreview={textPreview}
+              errorMessage={errorMessage}
+              onFileChange={handleFileChange}
+              manualTaskText={manualTaskText}
+              setManualTaskText={setManualTaskText}
+              // onTextTaskSubmit={handleTextTaskSubmit}
+              onUpload={handleUpload}
+            />
+          )}
+        </div>
+      )}
+      {/* {tasks?.length === 0 && (
+      )} */}
+      <div
+        className="image-container"
+        style={{ width: tasks?.length === 0 ? "100%" : "50%" }}
+      >
         <ImageBackground imageSrc={taskImage} altText="tasks" />
       </div>
     </div>
