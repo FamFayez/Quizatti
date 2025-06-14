@@ -5,8 +5,8 @@
   align-items: flex-start;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 30px;
-  min-height: 90vh;
+  /* padding: 30px; */
+  /* min-height: 90vh; */
 }
 
 /* Left section (content area) */

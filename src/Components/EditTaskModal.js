@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../style/EditModal.css';
+// import '../style/EditModal.css';
 
 const EditTaskModal = ({ isOpen, onClose, onSave, initialData }) => {
   const [formData, setFormData] = useState({
