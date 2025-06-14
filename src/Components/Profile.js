@@ -1,4 +1,3 @@
-// src/pages/Profile.jsx
 import React, { useState } from "react";
 import useProfile from "../hooks/useProfileHook";
 import useChangePassword from "../hooks/ChangePasswordHook";
