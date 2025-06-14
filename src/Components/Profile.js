@@ -1,4 +1,3 @@
-// src/pages/Profile.jsx
 import React, { useState } from "react";
 import useProfile from "../hooks/useProfileHook";
 import useChangePassword from "../hooks/ChangePasswordHook";
@@ -8,8 +7,7 @@ import "../style/profile.css";
 
 export default function Profile() {
   const { user, isLoading } = useProfile();
-  const [useChangePassword, setuseChangePassword] = useState(false);
-
+  const [showChangePassword, setShowChangePassword] = useState(false);
   const {
     currentPassword,
     setCurrentPassword,
@@ -20,13 +18,6 @@ export default function Profile() {
     handleChangePassword,
     loading,
   } = useChangePassword();
-
-  const handleCancel = () => {
-    setuseChangePassword(false);
-    setCurrentPassword("");
-    setNewPassword("");
-    setConfirmPassword("");
-  };
 
   if (isLoading) return <p>Loading profile...</p>;
   if (!user) return <p>No user data</p>;
@@ -106,26 +97,14 @@ export default function Profile() {
         <div className="row mt-4">
           <div className="col-md-12 text-end">
             {showChangePassword ? (
-              <>
-                <button
-                  type="button"
-                  className="btn btn-success me-2"
-                  onClick={async () => {
-                    await handleChangePassword();
-                    handleCancel(); // hide & reset only after success
-                  }}
-                  disabled={loading}
-                >
-                  {loading ? "Saving..." : "Save Password"}
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-              </>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={handleChangePassword}
+                disabled={loading}
+              >
+                {loading ? "Saving..." : "Save Password"}
+              </button>
             ) : (
               <button
                 type="button"
