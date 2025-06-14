@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import EditTaskModal from "./EditTaskModal";
+import SubmitTaskModal from "./SubmitTaskModal";
 
 
 
-const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const TaskItem = ({ task, index, userRole, onDelete, onUpdate , onSubmit}) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
   const handleEdit = () => {
-    setIsModalOpen(true);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSubmit = () => {
+    setIsSubmitModalOpen(true);
   };
 
   const handleSave = (updatedData) => {
@@ -15,6 +21,10 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
       ...updatedData,
       id: task._id
     });
+  };
+
+  const handleFileSubmit = (file) => {
+    onSubmit(file, task._id);
   };
 
   // const isExternalLink = task.isLink && task.file;
@@ -62,13 +72,29 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate }) => {
             </div>
             </>
           )}
+          {userRole === "Student" &&(
+            <>
+            <div className="row justify-content-center w-100">
+              <div className="col-6 text-center">
+              <button className="btn btn-primary" onClick={handleSubmit} title="Submit Solution">
+              <i className="bi bi-send-fill"></i>
+              </button>
+              </div>
+            </div>
+            </>
+          )}
         {/* </h2> */}
       </div>
       <EditTaskModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
         onSave={handleSave}
         initialData={task}
+      />
+      <SubmitTaskModal
+        isOpen={isSubmitModalOpen}
+        onClose={() => setIsSubmitModalOpen(false)}
+        onSubmit={handleFileSubmit}
       />
     </article>
   );

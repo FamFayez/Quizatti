@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ tasks, userRole, onDelete, onUpdate }) => (
+const TaskList = ({ tasks, userRole, onDelete, onUpdate, onSubmit }) => (
   <>
     {tasks.map((task, index) => (
       <TaskItem
@@ -10,6 +10,7 @@ const TaskList = ({ tasks, userRole, onDelete, onUpdate }) => (
         userRole={userRole}
         onDelete={onDelete}
         onUpdate={onUpdate}
+        onSubmit={onSubmit}
       />
     ))}
   </>

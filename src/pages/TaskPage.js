@@ -186,6 +186,27 @@ const TaskPage = () => {
       });
   };
 
+  const submitTask = async ({file, taskId}) => {
+    if (userRole !== "Student") return;
+    const formData = new FormData();
+    formData.append("file", file);
+    setLoading(true);
+    await postData(`${Task_API_URL}/${taskId}`, formData, true)
+      .then((res) => {
+        setTasks([res.data.data, ...tasks]);
+        toastMsg(res.data.message, "success");
+      })
+      .catch((err) => {
+        toastMsg(
+          err.response?.data?.message || "Error uploading task.",
+          "error"
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <div className="container">
       {loading && <Spinner />}
@@ -196,6 +217,7 @@ const TaskPage = () => {
           userRole={userRole}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
+          onSubmit={submitTask}
         />
         {userRole === "Assistant" && (
           <TaskUpload
