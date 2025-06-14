@@ -5,10 +5,10 @@ import useChangePassword from "../hooks/ChangePasswordHook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../style/profile.css";
+import ChangePasswordHook from "../hooks/ChangePasswordHook";
 
 export default function Profile() {
   const { user, isLoading } = useProfile();
-  const [useChangePassword, setuseChangePassword] = useState(false);
 
   const {
     currentPassword,
@@ -19,10 +19,10 @@ export default function Profile() {
     setConfirmPassword,
     handleChangePassword,
     loading,
-  } = useChangePassword();
+    showChangePassword
+  } = ChangePasswordHook();
 
   const handleCancel = () => {
-    setuseChangePassword(false);
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");
@@ -37,7 +37,7 @@ export default function Profile() {
         <div className="row">
           <div className="col-md-6">
             <div className="profile-head">
-              <h1>My Profile</h1>
+              <h3>My Profile</h3>
             </div>
           </div>
         </div>
@@ -47,20 +47,34 @@ export default function Profile() {
             <div className="tab-content profile-tab">
               <div className="tab-pane fade show active">
                 <div className="row">
-                  <div className="col-md-6"><label>Type</label></div>
-                  <div className="col-md-6"><p>{user.userType}</p></div>
+                  <div className="col-md-12">
+                    <label>Type</label>
+                  </div>
+                  <div className="col-md-12">
+                    <p>{user.userType}</p>
+                  </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6"><label>Name</label></div>
-                  <div className="col-md-6"><p>{user.fullName}</p></div>
+                  <div className="col-md-12">
+                    <label>Name</label>
+                  </div>
+                  <div className="col-md-12">
+                    <p>{user.fullName}</p>
+                  </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6"><label>Email</label></div>
-                  <div className="col-md-6"><p>{user.email}</p></div>
+                  <div className="col-md-12">
+                    <label>Email</label>
+                  </div>
+                  <div className="col-md-12">
+                    <p>{user.email}</p>
+                  </div>
                 </div>
                 {user.createdAt && (
                   <div className="row">
-                    <div className="col-md-6"><label>Created At</label></div>
+                    <div className="col-md-6">
+                      <label>Created At</label>
+                    </div>
                     <div className="col-md-6">
                       <p>{new Date(user.createdAt).toLocaleDateString()}</p>
                     </div>
@@ -104,12 +118,12 @@ export default function Profile() {
         )}
 
         <div className="row mt-4">
-          <div className="col-md-12 text-end">
+          <div className="col-md-12 text-start">
             {showChangePassword ? (
               <>
                 <button
                   type="button"
-                  className="btn btn-success me-2"
+                  className="btn btn-success"
                   onClick={async () => {
                     await handleChangePassword();
                     handleCancel(); // hide & reset only after success
