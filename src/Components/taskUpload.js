@@ -50,19 +50,16 @@ const TaskUpload = ({
 
   return (
     <div className="upload-section">
-      <button 
-        className="add-task-btn"
-        onClick={() => setIsModalOpen(true)}
-      >
+      <button className="add-task-btn" onClick={() => setIsModalOpen(true)}>
         ➕ Add New Task
       </button>
 
       {isModalOpen && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content bg-white rounded-4">
             <div className="modal-header">
-              <h2>Add New Task</h2>
-              <button 
+              <h2 className="text-dark">Add New Task</h2>
+              <button
                 className="close-btn"
                 onClick={() => setIsModalOpen(false)}
               >
@@ -121,10 +118,7 @@ const TaskUpload = ({
               </div>
 
               <div className="modal-footer">
-                <button
-                  onClick={handleSubmit}
-                  className="submit-btn"
-                >
+                <button onClick={handleSubmit} className="submit-btn">
                   Add Task
                 </button>
                 <button
