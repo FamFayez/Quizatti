@@ -6,7 +6,7 @@ import Card from "../Components/ContentCard";
 export default function SubjPage() {
   return (
     <div>
-      <div className="container">
+      <div className="container d-flex justify-content-center align-items-center h-100">
         <Card />
         <ImageBackground imageSrc={subject} altText="collegeImg" />
       </div>
