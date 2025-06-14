@@ -186,14 +186,14 @@ const TaskPage = () => {
       });
   };
 
-  const submitTask = async ({ file, taskId }) => {
+  const submitTask = async ({ file, taskId, submission = false }) => {
     if (userRole !== "Student") return;
     const formData = new FormData();
     formData.append("file", file);
     setLoading(true);
     await postData(`${Task_API_URL}/${taskId}`, formData, true)
       .then((res) => {
-        setTasks([res.data.data, ...tasks]);
+        if (!submission) setTasks([res.data.data, ...tasks]);
         toastMsg(res.data.message, "success");
       })
       .catch((err) => {
