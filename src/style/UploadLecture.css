@@ -1,4 +1,157 @@
+/* Upload container - center aligned with padding */
 .upload-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+
+
+/* Upload lecture toggle button */
+.upload-toggle-btn {
+  display: block;
+  width: 100%;
+  background-color: #4a3aff;
+  color: #fff;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-toggle-btn:hover {
+  background-color: #382ccf;
+}
+
+/* Upload form styling */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 20px;
+  width: auto;
+  background-color: #f7f9fc;
+  border-radius: 10px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.upload-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Input fields */
+.upload-form input[type="text"],
+.upload-form input[type="file"] {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload-form input[type="text"]:focus,
+.upload-form input[type="file"]:focus {
+  border-color: #4a3aff;
+  box-shadow: 0 0 0 3px rgba(74, 58, 255, 0.1);
+  outline: none;
+}
+
+/* Optional helper text under inputs */
+.upload-form .helper-text {
+  font-size: 13px;
+  color: #6c757d;
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+/* Form buttons */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.ok-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ok-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.ok-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}
+
+/* File preview (optional if you add preview logic) */
+.file-preview {
+  margin-top: -10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .upload-container {
+    padding: 15px;
+  }
+
+  .upload-toggle-btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ok-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}
+
+
+/* .upload-container {
   margin-bottom: 20px;
 }
 
@@ -50,4 +203,4 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */

@@ -13,7 +13,7 @@ import { Task_API_URL } from "../utils/constants";
 import {
   deleteDataToken,
   patchDataToken,
-  postData
+  postData,
 } from "../axios/axiosHelper";
 import toastMsg from "../functions/toastMsg";
 import Spinner from "../shared/Spinner";
@@ -67,7 +67,7 @@ const TaskPage = () => {
     if (isPDF || isPPT) {
       const newTask = {
         title: file.name,
-        file: URL.createObjectURL(file)
+        file: URL.createObjectURL(file),
       };
       setTasks([...tasks, newTask]);
       setSelectedFile(file);
@@ -79,7 +79,7 @@ const TaskPage = () => {
       reader.onload = (e) => {
         const newTask = {
           title: file.name,
-          file: null
+          file: null,
         };
         setTasks([...tasks, newTask]);
         setSelectedFile(file);
@@ -135,7 +135,7 @@ const TaskPage = () => {
         ...updatedTasks[taskIndex],
         name: name || updatedTasks[taskIndex].name,
         solutionFile: solutionFile || updatedTasks[taskIndex].solutionFile,
-        deadline: deadline || updatedTasks[taskIndex].deadline
+        deadline: deadline || updatedTasks[taskIndex].deadline,
       };
       setTasks(updatedTasks);
     }
@@ -237,12 +237,12 @@ const TaskPage = () => {
       )}
       {/* {tasks?.length === 0 && (
       )} */}
-      <div
+      {/* <div
         className="image-container"
         style={{ width: tasks?.length === 0 ? "100%" : "50%" }}
       >
         <ImageBackground imageSrc={taskImage} altText="tasks" />
-      </div>
+      </div> */}
     </div>
   );
 };

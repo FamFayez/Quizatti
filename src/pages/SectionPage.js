@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { Section_API_URL } from "../utils/constants";
 import SectionListComponent from "../Components/SectionListComponent";
 import { deleteDataToken, postData } from "../axios/axiosHelper";
+import Spinner from "../shared/Spinner";
 
 const rawRole = localStorage.getItem("role") || "student"; // 'Assistant', 'Teacher', or 'student'
 const userRole = rawRole.toLowerCase(); // ensures lowercase: "teacher", "assistant", "student"
@@ -61,8 +62,8 @@ const SectionPage = () => {
     try {
       await postData(`${Section_API_URL}`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
-        },
+          "Content-Type": "multipart/form-data"
+        }
       });
       toast.success(`Lecture "${title}" uploaded successfully!`);
       window.location.reload();
@@ -76,21 +77,20 @@ const SectionPage = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <div className="contentDR">
-        {isLoading ? (
-          <p>Loading lectures...</p>
-        ) : (
-          <SectionListComponent
-            contentItems={localsecslides}
-            userRole={userRole}
-            onRemoveFile={userRole === "assistant" ? handleDelete : undefined} // ✅ only teacher sees "delete"
-            onUpdate={handleUpdate}
-          />
-        )}
-
         {userRole === "assistant" && (
           <div className="upload-section">
             <UploadFile showNote={false} onFileUpload={handleUpload} />
           </div>
+        )}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <SectionListComponent
+            contentItems={[] ||localsecslides}
+            userRole={userRole}
+            onRemoveFile={userRole === "assistant" ? handleDelete : undefined} // ✅ only teacher sees "delete"
+            onUpdate={handleUpdate}
+          />
         )}
       </div>
     </div>
