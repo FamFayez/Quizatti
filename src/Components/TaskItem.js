@@ -107,6 +107,7 @@ const TaskItem = ({ task, index, userRole, onDelete, onUpdate, onSubmit }) => {
         isOpen={isSubmitModalOpen}
         onClose={() => setIsSubmitModalOpen(false)}
         onSubmit={handleFileSubmit}
+        taskId={task._id}
       />
     </article>
   );

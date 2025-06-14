@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import '../style/SubmitTaskModal.css';
+import React, { useState } from "react";
+import "../style/SubmitTaskModal.css";
 
-const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
+const SubmitTaskModal = ({ isOpen, onClose, onSubmit, taskId }) => {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -11,7 +11,7 @@ const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (file) {
-      onSubmit(file, taskId);
+      onSubmit({ file, taskId });
       onClose();
     }
   };
@@ -20,15 +20,21 @@ const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content bg-white rounded-3">
         <div className="modal-header">
           <h5 className="modal-title">Submit Solution</h5>
-          <button type="button" className="btn-close" onClick={onClose}></button>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={onClose}
+          ></button>
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="solutionFile" className="form-label">Upload Solution File</label>
+              <label htmlFor="solutionFile" className="form-label">
+                Upload Solution File
+              </label>
               <input
                 type="file"
                 className="form-control"
@@ -38,7 +44,11 @@ const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+              >
                 Cancel
               </button>
               <button type="submit" className="btn btn-primary">
@@ -52,4 +62,4 @@ const SubmitTaskModal = ({ isOpen, onClose, onSubmit }) => {
   );
 };
 
-export default SubmitTaskModal; 
+export default SubmitTaskModal;
