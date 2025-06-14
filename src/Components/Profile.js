@@ -18,6 +18,9 @@ export default function Profile() {
             <div className="col-md-6">
               <div className="profile-head">
                 <h1>My Profile</h1>
+              </div>
+
+              <div className="profile">
                 <h4>Position(TA/ST/IN)</h4>
               </div>
             </div>
