@@ -36,3 +36,4 @@ export const Content_API_URL = "/slide/";
 export const Section_API_URL = "/slide/";
 export const Task_API_URL = "/assignment";
 export const PROFILE_API_URL = "/user/auth/getMe";
+export const Change_Password_API_URL="/user/auth/changePassword"

@@ -15,7 +15,7 @@ body {
 }
 
 .profile-head {
-  margin-bottom: 40px; /* Added space below the header */
+  margin-bottom: 40px; /* Added space below the header /
 }
 
 .profile-head h1 {
@@ -51,15 +51,15 @@ body {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
-  margin-top: 0; /* Changed from negative to zero */
-  margin-right: calc(-.5 * var(--bs-gutter-x));
+  / flex-direction: column; /
+  margin-top: 0; / Changed from negative to zero /
+  margin-right: calc(-.5 var(--bs-gutter-x));
   margin-left: calc(-.5 * var(--bs-gutter-x));
-  margin-bottom: 25px; /* Added space between rows */
+  margin-bottom: 25px; /* Added space between rows /
 }
 
 .profile-tab {
-  margin-top: 30px; /* Added space above the profile info */
+  margin-top: 30px; / Added space above the profile info */
 }
 
 .profile-tab .row {
@@ -90,24 +90,4 @@ body {
     padding: 8px 0;
     display: flex;
     align-items: center;
-}
-
-@media (max-width: 768px) {
-  .container.emp-profile {
-    padding: 30px 20px;
-    margin: 20px auto;
-  }
-  
-  .profile-head h1 {
-    font-size: 28px;
-  }
-  
-  .profile-tab .row {
-    flex-direction: column;
-  }
-  
-  .profile-tab .col-md-6 {
-    width: 100%;
-    margin-bottom: 10px;
-  }
 }
