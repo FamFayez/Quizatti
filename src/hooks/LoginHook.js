@@ -44,6 +44,11 @@ const LoginHook = () => {
       .then((res) => {
         const { token, data } = res.data;
 
+        if (res.data.verify) {
+          toastMsg(res.data.message, "success");
+          return;
+        }
+
         // Store in both sessionStorage and localStorage
         sessionStorage.setItem("token", token);
         sessionStorage.setItem("user", JSON.stringify(data));
