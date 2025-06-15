@@ -12,6 +12,7 @@ export const MATERIAL_TA_URL = "/material-assistant";
 export const CHAPTER_URL = "/chapter";
 export const CHOOSE_BOOK_URL = "/choose-book";
 export const SECTION_TA_URL = "/section-assistant";
+export const VERIFY_URL = "/verify/:token";
 
 export const COURSE_URL = "/course";
 export const TASK_URL = "/course/:courseId/task";
@@ -36,4 +37,4 @@ export const Content_API_URL = "/slide/";
 export const Section_API_URL = "/slide/";
 export const Task_API_URL = "/assignment";
 export const PROFILE_API_URL = "/user/auth/getMe";
-export const Change_Password_API_URL="/user/auth/changePassword"
+export const Change_Password_API_URL = "/user/auth/changePassword";

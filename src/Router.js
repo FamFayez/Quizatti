@@ -40,9 +40,11 @@ import {
   QUIZ_URL,
   QUIZZES_URL,
   COURSE_URL,
+  VERIFY_URL,
   FORGOT_PASSWORD_URL,
   RESET_PASSWORD_URL // Note: This should be "/reset-password/:token"
 } from "./utils/constants";
+import Verify from "./pages/Verify.js";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +54,10 @@ export const router = createBrowserRouter([
   {
     path: FORGOT_PASSWORD_URL, // e.g., "/forgot-password"
     element: <ForgotPassword />
+  },
+  {
+    path: VERIFY_URL, // e.g., "/forgot-password"
+    element: <Verify />
   },
   {
     path: RESET_PASSWORD_URL, // e.g., "/reset-password/:token"
@@ -83,8 +89,8 @@ export const router = createBrowserRouter([
       { path: CONTENT_URL, element: <Content /> },
       { path: QUIZZES_URL, element: <QuizzesPage /> },
       { path: `${COURSE_URL}/:id`, element: <SubjPage /> },
-      { path: "/", element: <Navigate to={LOGIN_URL}/> },
+      { path: "/", element: <Navigate to={LOGIN_URL} /> },
       { path: "*", element: <Error /> }
     ]
-  },
+  }
 ]);
